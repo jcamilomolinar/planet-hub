@@ -1,0 +1,12 @@
+Colors:
+    Blue:
+        #29465B
+        #4A698D
+        #6C92BE
+    Orange:
+        #F2994A
+        #D46A17
+    Black (don't use pure black)
+        #A0A0A0
+        #DFE0E2
+
