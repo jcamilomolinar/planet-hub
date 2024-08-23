@@ -9,7 +9,6 @@ function Footer() {
   return (
     <footer className="footer footer-center p-10 bg-palleteBlueVariant text-primary-content text-white text-center">
         <div className="flex justify-center space-x-6 mt-4 p-6">
-            <p className='font-italic'>Follow!</p>
             <a href="" target="_blank" rel="noopener noreferrer">
             <Image src={LogoFacebook} width={40} height={40} alt='Github Logo' />
             </a>
