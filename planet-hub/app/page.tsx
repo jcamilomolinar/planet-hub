@@ -19,7 +19,7 @@ export default function Home() {
 
       <div className="flex items-center">
         <div className="p-1 text-center">
-          <p className="text-textTitle text-5xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"><ReactTyped className="text-textTitle text-5xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]" strings={["Find your next destination!"]} typeSpeed={100} />📍</p>
+          <p className="text-textTitle text-5xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"><ReactTyped className="drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]" strings={["Find your next destination!"]} typeSpeed={100} />📍</p>
           <p className="text-textAll text-lg p-5">PlanetHub is a virtual platform designed for those who wish to explore the vast universe of planets, stars and galaxies, offering an immersive and educational experience.</p>
           <p className="text-textAll italic text-xl">PlanetHub is more than just a travel platform,<br></br> it is a portal to the vastness of the cosmos.</p>
         </div>

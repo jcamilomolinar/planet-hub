@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import Link from 'next/link'
 import { Label } from "@/components/ui/label"
 import {
   Select,
@@ -52,7 +52,7 @@ export function MainPageSearchForm() {
         </form>
       </CardContent>
       <CardFooter className="flex gap-20">
-        <Button variant="outline">Search flights 🚀</Button>
+        <Button variant="outline"><Link href='/flights'>Search flights 🚀</Link></Button>
         <Button variant="outline">Search accommodations 🏨</Button>
       </CardFooter>
     </Card>

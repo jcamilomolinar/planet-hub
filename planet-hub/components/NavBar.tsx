@@ -16,7 +16,7 @@ function NavBar() {
       <ul className='flex items-center space-x-20 text-black p-4 bg-opacity-10'>
         <li>
           <Button asChild className='text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-lg' variant='ghost'>
-            <Link href='/Planets'>Planets</Link>
+            <Link href='/planets'>Planets</Link>
           </Button>
         </li>
         <li>
