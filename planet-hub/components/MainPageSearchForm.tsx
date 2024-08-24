@@ -1,4 +1,5 @@
 import * as React from "react"
+import Link from 'next/link'
 
 import { Button } from "@/components/ui/button"
 import {
@@ -9,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import Link from 'next/link'
 import { Label } from "@/components/ui/label"
 import {
   Select,
@@ -45,15 +45,16 @@ export function MainPageSearchForm() {
               </Select>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <Label className="px-3" htmlFor="dateRange">Dates</Label>
-                <DatePickerWithRange className="w-1/2" id="dateRange"></DatePickerWithRange>
+              <Label className="px-3" htmlFor="dateRange">Dates</Label>
+              <DatePickerWithRange className="w-1/2" id="dateRange"></DatePickerWithRange>
             </div>
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex gap-20">
         <Button variant="outline"><Link href='/flights'>Search flights 🚀</Link></Button>
-        <Button variant="outline">Search accommodations 🏨</Button>
+        <Button variant="outline"><Link href="/space">Search accommodations 🏨</Link></Button>
+
       </CardFooter>
     </Card>
   )
