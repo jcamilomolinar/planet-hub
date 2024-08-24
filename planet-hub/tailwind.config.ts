@@ -9,13 +9,6 @@ const config = {
     './src/**/*.{ts,tsx}',
 	],
   prefix: "",
-  "darkBlue": "#07102d",
-  "midBlue": "#4a698d",
-  "lightBlue": "#6c92be",
-  "darkOrange": "#d46a17",
-  "lightOrange": "#f2994a",
-  "textAll": "#121212",
-  "textTitle": "#222428",
   theme: {
     container: {
       center: true,
@@ -29,6 +22,7 @@ const config = {
         palleteBlue: "var(--palleteBlue)",
         palleteBlueVariant: "var(--palleteBlueVariant)",
         palleteOrange: "var(--palleteOrange)",
+        palleteOrangeVariant: "var(--palleteOrangeVariant)",
         textTitle: "var(--textTitle)",
         textAll: "var(--textAll)",
         border: "hsl(var(--border))",
