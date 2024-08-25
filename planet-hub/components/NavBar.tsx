@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
 import Logo from '@/public/Logo.png'
+import LoginSheet from './ui/loginSheet';
 
 function NavBar() {
   return (
@@ -25,15 +26,15 @@ function NavBar() {
           </Button>
         </li>
         <li>
-          <Button asChild className='text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-lg' variant='ghost'>
-            <Link href=''>Sign In</Link>
-          </Button>
+          <LoginSheet ></LoginSheet>
         </li>
         <li>
           <Button asChild className='text-textTitle drop-shadow-[0_1.2px_1.2px_rgba(155,155,155,0.8)] text-lg' variant='outline'>
             <Link href=''>Sign Up</Link>
           </Button>
         </li>
+
+        
       </ul>
     </nav>
   );
