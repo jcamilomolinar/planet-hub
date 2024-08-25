@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -8,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import PlanetPhoto from "@/public/planet.jpg";
 
 export function MainPageCarousel() {
   return (
@@ -23,7 +25,7 @@ export function MainPageCarousel() {
             <div className="p-1">
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-3xl font-semibold">planet{index + 1}</span>
+                  <Image className="shadow-2xl bg-white rounded-xl hover:scale-105 duration-200 ease-in-out" src={PlanetPhoto} width={250} height={250} alt='PlanetHub App Logo' />
                 </CardContent>
               </Card>
             </div>

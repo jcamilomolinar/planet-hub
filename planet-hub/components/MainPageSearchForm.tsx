@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form"
 import { date, z } from "zod"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import {
   Command,
   CommandEmpty,
@@ -205,7 +204,7 @@ export function MainPageSearchForm() {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Card>
             <CardHeader>
-              <CardTitle className="text-textTitle">Search Flights</CardTitle>
+              <CardTitle className="text-textTitle">Search your next destination!</CardTitle>
             </CardHeader>
             <CardContent className="text-textAll">
               <div>
@@ -213,7 +212,8 @@ export function MainPageSearchForm() {
                     <MainPageFormFieldCombobox elements={languages} form={form} title="Planet" name="planet" description="Select the planet of your preference." />
                     <MainPageFormFieldDate form={form} title="Travel date" name="date" description="Enter when you will travel." />
                     <div className="grid items-center justify-items-center">
-                      <Button className="w-2/3" type="submit" variant="outline">Search!</Button>
+                      <Button className="w-2/3" type="submit" variant="outline">Search flights 🚀</Button>
+                      <Button className="w-2/3" type="submit" variant="outline">Search accomodations 🏨</Button>
                     </div>
                   </div>
               </div>
