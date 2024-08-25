@@ -1,7 +1,5 @@
 import React from 'react'
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Separator } from "@/components/ui/separator"
-import Services from './Services'
 import Image from 'next/image'
 
 export default function SpaceHost() {
@@ -26,12 +24,7 @@ export default function SpaceHost() {
                     </div>
                 </div>
             </div>
-            <Separator className="my-7" />
-            <div className=''>
-                <h1 className="text-2xl font-semibold">Services</h1>
 
-                <Services />
-            </div>
         </div>
     )
 }

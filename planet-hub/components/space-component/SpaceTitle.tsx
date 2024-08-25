@@ -1,11 +1,12 @@
 import * as React from "react"
+import { AccomodationsData } from './types';
 
-export default function SpaceTitle() {
+export default function SpaceTitle({ data }: { data: AccomodationsData }) {
     return (
         <div className='flex justify-between items-center p-4  '>
             {/* Title Div */}
             <div>
-                <p className='text-textTitle text-4xl font-bold '>Cabaña Marte Baratica.</p>
+                <p className='text-textTitle text-4xl font-bold '>{data.name}</p>
             </div>
 
             {/* Div compartir, megusta */}
@@ -22,4 +23,3 @@ export default function SpaceTitle() {
         </div>
     )
 }
-
