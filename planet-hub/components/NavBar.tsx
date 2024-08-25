@@ -21,17 +21,22 @@ function NavBar() {
         </li>
         <li>
           <Button asChild className='text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-lg' variant='ghost'>
-            <Link href='/Accommodations'>Accommodations</Link>
+            <Link href='/flights'>Flights</Link>
           </Button>
         </li>
         <li>
           <Button asChild className='text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-lg' variant='ghost'>
-            <Link href=''>Sign In</Link>
+            <Link href='/accommodations'>Accommodations</Link>
+          </Button>
+        </li>
+        <li>
+          <Button asChild className='text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-lg' variant='ghost'>
+            <Link href='/signin'>Sign In</Link>
           </Button>
         </li>
         <li>
           <Button asChild className='text-textTitle drop-shadow-[0_1.2px_1.2px_rgba(155,155,155,0.8)] text-lg' variant='outline'>
-            <Link href=''>Sign Up</Link>
+            <Link href='/signup'>Sign Up</Link>
           </Button>
         </li>
       </ul>
