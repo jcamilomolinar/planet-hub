@@ -14,34 +14,35 @@ import {
 } from "@/components/ui/sheet";
 import { buttonVariants } from "@/components/ui/button";
 
-const LoginSheet: React.FC = () => {
+const SignUpSheet: React.FC = () => {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const storedEmail = localStorage.getItem("email");
-    const storedPassword = localStorage.getItem("password");
-    if (email === storedEmail && password === storedPassword) {
-      setMessage("Successful login");
-    } else {
-      setMessage("Invalid email or password");
-    }
+    localStorage.setItem("email", email);
+    localStorage.setItem("name", name);
+    localStorage.setItem("username", username);
+    localStorage.setItem("id", id);
+    localStorage.setItem("password", password);
+    alert("Information saved to localStorage!");
   };
 
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button className="text-textTitle drop-shadow-[0_1.2px_1.2px_rgba(155,155,155,0.8)] text-lg bg-white hover:bg-palleteOrange" variant="outline">
-          Sign In
+          Sign Up
         </Button>
       </SheetTrigger>
       <SheetContent side="right">
         <SheetHeader>
-          <SheetTitle>Login</SheetTitle>
+          <SheetTitle>Sign Up</SheetTitle>
           <SheetDescription>
-            Enter your credentials to access your account.
+            Enter your information to Sign Up.
           </SheetDescription>
         </SheetHeader>
         <form className="flex flex-col space-y-4 p-4" onSubmit={handleSubmit}>
@@ -51,6 +52,30 @@ const LoginSheet: React.FC = () => {
             className="input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Name"
+            className="input"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Username"
+            className="input"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="ID"
+            className="input"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
             required
           />
           <input
@@ -69,10 +94,9 @@ const LoginSheet: React.FC = () => {
                 "text-textTitle drop-shadow-[0_1.2px_1.2px_rgba(155,155,155,0.8)] text-lg",
             })}
           >
-            Sign In
+            Sign Up
           </button>
         </form>
-        {message && <p className="mt-4 text-center text-lg">{message}</p>}
         <SheetFooter>
           <SheetClose
             className={buttonVariants({
@@ -88,4 +112,4 @@ const LoginSheet: React.FC = () => {
   );
 };
 
-export default LoginSheet;
+export default SignUpSheet;

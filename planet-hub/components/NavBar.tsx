@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Logo from '@/public/Logo.png'
 import LoginSheet from './ui/loginSheet';
+import SignUpSheet from './ui/signUpSheet';
 
 function NavBar() {
   return (
@@ -22,16 +23,14 @@ function NavBar() {
         </li>
         <li>
           <Button asChild className='text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-lg' variant='ghost'>
-            <Link href='/Accommodations'>Accommodations</Link>
+            <Link href='/flights'>Flights</Link>
           </Button>
         </li>
         <li>
           <LoginSheet ></LoginSheet>
         </li>
         <li>
-          <Button asChild className='text-textTitle drop-shadow-[0_1.2px_1.2px_rgba(155,155,155,0.8)] text-lg' variant='outline'>
-            <Link href=''>Sign Up</Link>
-          </Button>
+          <SignUpSheet/>
         </li>
 
         
