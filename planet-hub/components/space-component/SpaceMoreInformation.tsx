@@ -44,6 +44,7 @@ function SpaceMoreInformation() {
             </div>
 
             {/* Host information */}
+
             <div className='lg:w-1/3 mt-6 lg:mt-0'>
                 <SpaceHost />
             </div>
