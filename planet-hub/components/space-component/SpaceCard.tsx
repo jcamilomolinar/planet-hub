@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog"
 
 
+
 export default function SpaceCard() {
     const [isExpanded, setIsExpanded] = React.useState(false);
 
