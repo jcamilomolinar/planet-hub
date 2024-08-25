@@ -5,26 +5,27 @@ import { Separator } from "@/components/ui/separator"
 import Services from './Services'
 import Valuation from './Valuation';
 import { OpinionCard } from "@/components/OpinionCard";
+import { AccomodationsData } from './types';
 
-function SpaceMoreInformation() {
+function SpaceMoreInformation({ fullData }: { fullData: AccomodationsData }) {
     return (
         <div className='flex flex-col lg:flex-row justify-normal w-full h-auto gap-3'>
             {/* More information about the place */}
             <div className='flex-grow lg:w-2/3'>
-                <SpaceCard />
+                <SpaceCard fullDataSC={fullData} />
 
                 <Separator className="my-7" />
 
                 {/* Services offered */}
                 <div>
                     <h2 className="text-2xl font-semibold mb-4">Services</h2>
-                    <Services />
+                    <Services fullDataS={fullData} />
                 </div>
 
                 <Separator className="my-7" />
 
                 {/* Valuation */}
-                <Valuation />
+                <Valuation fullDataV={fullData} />
 
                 {/* Opinions */}
                 <div className="w-full mt-10">
