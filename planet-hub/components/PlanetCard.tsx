@@ -50,7 +50,7 @@ export function PlanetCard({planetName, planetPhoto }: {planetName:string, plane
             <Button variant="outline">View flights 🚀</Button>
             <Button variant="outline">View accomodations 🏨</Button>
             <DrawerClose asChild>
-              <Button variant="outline">Close</Button>
+              <Button variant="destructive">Close</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

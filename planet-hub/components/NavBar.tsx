@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
 import Logo from '@/public/Logo.png'
-import LoginSheet from './ui/loginSheet';
-import SignUpSheet from './ui/signUpSheet';
+import LoginSheet from '@/components/ui/loginSheet';
+import SignUpSheet from '@/components/ui/signUpSheet';
 
 function NavBar() {
   return (
