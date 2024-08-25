@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
   Command,
   CommandEmpty,
@@ -28,8 +29,38 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+  
+function FlightSearchFormFieldInput({ form, title, name, description }:
+  { form: any, name: string, title: string, description: string }) {
+  
+  return (
+      <FormField
+      control={form.control}
+      name={name}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>{title}</FormLabel>
+          <FormControl>
+            <Input type="numeric" placeholder="Write!" {...field} />
+          </FormControl>
+          <FormDescription>
+            {description}
+          </FormDescription>
+            <FormMessage />
+          </FormItem>
+          )}
+        />
+  )
+}
 
-function FlightSearchFormField({ elements, form, title, name, description }:
+function FlightSearchFormFieldCombobox({ elements, form, title, name, description }:
     { elements: any, form: any, name: string, title: string, description: string }) {
   
     return (
@@ -112,14 +143,25 @@ const languages = [
   ] as const
   
   const FormSchema = z.object({
-    language: z.string({
-      required_error: "Please select a language.",
-    }),
+    tour: z.string(),
+    weather: z.string(),
+    activityType: z.string(),
+    puntuation: z.string(),
+    price: z.coerce.number().nonnegative(),
+    timeTravel: z.coerce.number().nonnegative()
   })
 
 export function FlightSearchForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      tour: "",
+      weather: "",
+      activityType: "",
+      puntuation: "",
+      price: 0,
+      timeTravel: 0
+    }
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
@@ -128,9 +170,23 @@ export function FlightSearchForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <FlightSearchFormField elements={languages} form={form} title="Title" name="language" description="exampleeeeeeeee"/>
-        <Button type="submit">Submit</Button>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-textTitle">Search Flights</CardTitle>
+          </CardHeader>
+          <CardContent className="text-textAll">
+            <div className="grid grid-cols-3 grid-rows-2 gap-6">
+              <FlightSearchFormFieldCombobox elements={languages} form={form} title="Tours" name="tour" description="Select the tour of your preference." />
+              <FlightSearchFormFieldCombobox elements={languages} form={form} title="Weather" name="weather" description="Select the weather of your preference." />
+              <FlightSearchFormFieldCombobox elements={languages} form={form} title="Type of activity" name="activityType" description="Select the type of activity of your preference." />
+              <FlightSearchFormFieldCombobox elements={languages} form={form} title="Puntuation" name="puntuation" description="Select the minimum puntuation you want for your destination" />
+              <FlightSearchFormFieldInput form={form} title="Price" name="price" description="Enter your maximum budget (0 if you don't have a maximum)." />
+              <FlightSearchFormFieldInput form={form} title="Time travel" name="timeTravel" description="Enter your desired maximum travel time (0 if you don't have a maximum)." />
+            </div>
+            <Button className="my-5" type="submit" variant="outline">Search!</Button>
+          </CardContent>
+        </Card>
       </form>
     </Form>
   )
