@@ -11,6 +11,7 @@ function Space() {
       <SpaceTitle />
       <SpaceImages />
       <SpaceMoreInformation />
+
     </div>
   )
 }
