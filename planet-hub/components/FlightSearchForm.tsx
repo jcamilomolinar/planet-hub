@@ -39,6 +39,7 @@ import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
 import { Flight } from "@/components/Flight"
+import { planets, tours, wheaters, activityTypes, puntuations } from "@/lib/data"
 
 function FlightSearchFormFieldDate({ form, title, name, description }:
   { form: any, name: string, title: string, description: string }){
@@ -190,17 +191,10 @@ function FlightSearchFormFieldCombobox({ elements, form, title, name, descriptio
     );
 }
 
-const languages = [
-    { label: "English", value: "en" },
-    { label: "French", value: "fr" },
-    { label: "German", value: "de" },
-    { label: "Spanish", value: "es" },
-    { label: "Portuguese", value: "pt" },
-    { label: "Russian", value: "ru" },
-    { label: "Japanese", value: "ja" },
-    { label: "Korean", value: "ko" },
-    { label: "Chinese", value: "zh" },
-  ] as const
+const planetsList = planets.map(planet => ({
+  label: planet.name,
+  value: planet.name
+}));
   
   const DATE_REQUIRED_ERROR = "Date is required.";
 
@@ -249,11 +243,11 @@ export function FlightSearchForm() {
             <CardContent className="text-textAll">
               <div>
                 <div className="grid grid-cols-5 grid-rows-1 gap-6">
-                  <FlightSearchFormFieldCombobox elements={languages} form={form} title="Tours" name="tour" description="Select the tour of your preference." />
-                  <FlightSearchFormFieldCombobox elements={languages} form={form} title="Weather" name="weather" description="Select the weather of your preference." />
-                  <FlightSearchFormFieldCombobox elements={languages} form={form} title="Type of activity" name="activityType" description="Select the type of activity of your preference." />
-                  <FlightSearchFormFieldCombobox elements={languages} form={form} title="Puntuation" name="puntuation" description="Select the minimum puntuation you want for your destination." />
-                  <FlightSearchFormFieldCombobox elements={languages} form={form} title="Planet" name="planet" description="Select the planet." />
+                  <FlightSearchFormFieldCombobox elements={tours} form={form} title="Tours" name="tour" description="Select the tour of your preference." />
+                  <FlightSearchFormFieldCombobox elements={wheaters} form={form} title="Weather" name="weather" description="Select the weather of your preference." />
+                  <FlightSearchFormFieldCombobox elements={activityTypes} form={form} title="Type of activity" name="activityType" description="Select the type of activity of your preference." />
+                  <FlightSearchFormFieldCombobox elements={puntuations} form={form} title="Puntuation" name="puntuation" description="Select the minimum puntuation you want for your destination." />
+                  <FlightSearchFormFieldCombobox elements={planetsList} form={form} title="Planet" name="planet" description="Select the planet." />
                 </div>
                 <div className="grid grid-cols-3 grid-rows-1 gap-6">
                   <FlightSearchFormFieldDate form={form} title="Travel date" name="date" description="Enter when you will travel." />

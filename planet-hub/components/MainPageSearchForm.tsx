@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { useForm } from "react-hook-form"
-import { date, z } from "zod"
+import { z } from "zod"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -37,6 +37,7 @@ import {
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
+import { planets } from "@/lib/data"
 
 function MainPageFormFieldDate({ form, title, name, description }:
   { form: any, name: string, title: string, description: string }){
@@ -165,17 +166,10 @@ function MainPageFormFieldCombobox({ elements, form, title, name, description }:
     );
 }
 
-const languages = [
-    { label: "English", value: "en" },
-    { label: "French", value: "fr" },
-    { label: "German", value: "de" },
-    { label: "Spanish", value: "es" },
-    { label: "Portuguese", value: "pt" },
-    { label: "Russian", value: "ru" },
-    { label: "Japanese", value: "ja" },
-    { label: "Korean", value: "ko" },
-    { label: "Chinese", value: "zh" },
-  ] as const
+const planetsList = planets.map(planet => ({
+  label: planet.name,
+  value: planet.name
+}));
   
   const DATE_REQUIRED_ERROR = "Date is required.";
 
@@ -209,7 +203,7 @@ export function MainPageSearchForm() {
             <CardContent className="text-textAll">
               <div>
                   <div className="grid grid-cols-3 grid-rows-1 gap-6">
-                    <MainPageFormFieldCombobox elements={languages} form={form} title="Planet" name="planet" description="Select the planet of your preference." />
+                    <MainPageFormFieldCombobox elements={planetsList} form={form} title="Planet" name="planet" description="Select the planet of your preference." />
                     <MainPageFormFieldDate form={form} title="Travel date" name="date" description="Enter when you will travel." />
                     <div className="grid items-center justify-items-center">
                       <Button className="w-2/3" type="submit" variant="outline">Search flights 🚀</Button>
