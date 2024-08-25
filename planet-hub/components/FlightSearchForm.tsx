@@ -38,6 +38,7 @@ import {
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
+import { Flight } from "@/components/Flight"
 
 function FlightSearchFormFieldDate({ form, title, name, description }:
   { form: any, name: string, title: string, description: string }){
@@ -204,6 +205,7 @@ const languages = [
   const DATE_REQUIRED_ERROR = "Date is required.";
 
   const FormSchema = z.object({
+    planet: z.string(),
     tour: z.string(),
     weather: z.string(),
     activityType: z.string(),
@@ -222,6 +224,7 @@ export function FlightSearchForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
+      planet: "",
       tour: "",
       weather: "",
       activityType: "",
@@ -236,30 +239,37 @@ export function FlightSearchForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-textTitle">Search Flights</CardTitle>
-          </CardHeader>
-          <CardContent className="text-textAll">
-            <div>
-              <div className="grid grid-cols-4 grid-rows-1 gap-6">
-                <FlightSearchFormFieldCombobox elements={languages} form={form} title="Tours" name="tour" description="Select the tour of your preference." />
-                <FlightSearchFormFieldCombobox elements={languages} form={form} title="Weather" name="weather" description="Select the weather of your preference." />
-                <FlightSearchFormFieldCombobox elements={languages} form={form} title="Type of activity" name="activityType" description="Select the type of activity of your preference." />
-                <FlightSearchFormFieldCombobox elements={languages} form={form} title="Puntuation" name="puntuation" description="Select the minimum puntuation you want for your destination" />
-              </div>
-              <div className="grid grid-cols-3 grid-rows-1 gap-6">
-                <FlightSearchFormFieldDate form={form} title="Travel date" name="date" description="Enter when you will travel." />
-                <FlightSearchFormFieldInput form={form} title="Price" name="price" description="Enter your maximum budget (0 if you don't have a maximum)." />
-                <FlightSearchFormFieldInput form={form} title="Time travel" name="timeTravel" description="Enter your desired maximum travel time (0 if you don't have a maximum)." />
-              </div>
-           </div>
-            <Button className="my-5" type="submit" variant="outline">Search!</Button>
-          </CardContent>
-        </Card>
-      </form>
-    </Form>
+    <div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-textTitle">Search Flights</CardTitle>
+            </CardHeader>
+            <CardContent className="text-textAll">
+              <div>
+                <div className="grid grid-cols-5 grid-rows-1 gap-6">
+                  <FlightSearchFormFieldCombobox elements={languages} form={form} title="Tours" name="tour" description="Select the tour of your preference." />
+                  <FlightSearchFormFieldCombobox elements={languages} form={form} title="Weather" name="weather" description="Select the weather of your preference." />
+                  <FlightSearchFormFieldCombobox elements={languages} form={form} title="Type of activity" name="activityType" description="Select the type of activity of your preference." />
+                  <FlightSearchFormFieldCombobox elements={languages} form={form} title="Puntuation" name="puntuation" description="Select the minimum puntuation you want for your destination." />
+                  <FlightSearchFormFieldCombobox elements={languages} form={form} title="Planet" name="planet" description="Select the planet." />
+                </div>
+                <div className="grid grid-cols-3 grid-rows-1 gap-6">
+                  <FlightSearchFormFieldDate form={form} title="Travel date" name="date" description="Enter when you will travel." />
+                  <FlightSearchFormFieldInput form={form} title="Price" name="price" description="Enter your maximum budget (0 if you don't have a maximum)." />
+                  <FlightSearchFormFieldInput form={form} title="Time travel" name="timeTravel" description="Enter your desired maximum travel time (0 if you don't have a maximum)." />
+                </div>
+            </div>
+              <Button className="my-5" type="submit" variant="outline">Search!</Button>
+            </CardContent>
+          </Card>
+        </form>
+      </Form>
+      <div className="my-5">
+        <Flight planet="Planeta Marte" timeTravel={100} price={150000}/>
+      </div>
+      
+    </div>
   )
 }
