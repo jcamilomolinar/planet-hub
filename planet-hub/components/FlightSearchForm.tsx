@@ -32,19 +32,30 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input";
+import { FlightSearchFormField } from "@/components/FlightSearchFormField";
 
+const languages = [
+    { label: "English", value: "en" },
+    { label: "French", value: "fr" },
+    { label: "German", value: "de" },
+    { label: "Spanish", value: "es" },
+    { label: "Portuguese", value: "pt" },
+    { label: "Russian", value: "ru" },
+    { label: "Japanese", value: "ja" },
+    { label: "Korean", value: "ko" },
+    { label: "Chinese", value: "zh" },
+  ]
 
 const formSchema = z.object({
-  username: z.string().min(2).max(50),
+    language: z.string({
+        required_error: "Please select an option.",
+    })
 })
 
-export function ProfileForm() {
+function ProfileForm() {
     const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
-      defaultValues: {
-        username: "",
-      },
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
@@ -54,21 +65,12 @@ export function ProfileForm() {
     return (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }:{ field: any }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input placeholder="0" {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+            <FlightSearchFormField
+                    elements={languages}
+                    form={form}
+                    title="Title"
+                    name="planet"
+                    description="Description" 
             />
             <Button type="submit" variant="outline">Submit</Button>
           </form>
