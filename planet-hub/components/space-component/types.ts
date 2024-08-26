@@ -20,6 +20,14 @@ export interface Category {
     icon: React.ReactElement<IconType>;
 }
 
+export interface HostData {
+    name: string;
+    joinedYear: number;
+    email: string;
+    avatar: string;
+
+}
+
 export interface AccomodationsData {
     id: number;
     name: string;
@@ -30,6 +38,7 @@ export interface AccomodationsData {
     imageUrls: string[];
     services: ServiceData[];
     valuation: ValuationData;
+    host: HostData;
 }
 
 export interface AccomodationsProps {

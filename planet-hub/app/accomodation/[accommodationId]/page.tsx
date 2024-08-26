@@ -78,6 +78,12 @@ const data: AccomodationsData[] = [
                 { name: 'Ubicación', rating: 4.2, icon: <FaMapMarkerAlt className="text-red-500 text-4xl" /> },
                 { name: 'Precio', rating: 4.2, icon: <FaTag className="text-indigo-500 text-4xl" /> },
             ]
+        },
+        host: {
+            name: "Daniel Silva",
+            joinedYear: 2021,
+            email: "correo@correo.com",
+            avatar: "/planet.jpg"
         }
     },
     {
@@ -150,6 +156,12 @@ const data: AccomodationsData[] = [
                 { name: 'Ubicación', rating: 4.9, icon: <FaMapMarkerAlt className="text-red-500 text-4xl" /> },
                 { name: 'Precio', rating: 4.9, icon: <FaTag className="text-indigo-500 text-4xl" /> },
             ]
+        },
+        host: {
+            name: "Paula Bloom",
+            joinedYear: 2020,
+            email: "paula@bloom.com",
+            avatar: "/planet.jpg"
         }
     }
     ,

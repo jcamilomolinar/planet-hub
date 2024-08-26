@@ -1,5 +1,6 @@
 import * as React from "react"
 import { AccomodationsData } from './types';
+import Link from "next/link";
 
 export default function SpaceTitle({ data }: { data: AccomodationsData }) {
     return (
@@ -10,14 +11,14 @@ export default function SpaceTitle({ data }: { data: AccomodationsData }) {
             </div>
 
             {/* Div compartir, megusta */}
-            <div className='flex justify-normal gap-4'>
+            <div className='flex justify-normal gap-4 '>
                 {/* Div compartir */}
                 <div>
-                    🔗 Compartir
+                    <Link href="/">🔗 Compartir</Link>
                 </div>
                 {/* Div megusta */}
                 <div>
-                    ❤️ Me gusta
+                    <Link href="/">❤️ Me gusta</Link>
                 </div>
             </div>
         </div>
