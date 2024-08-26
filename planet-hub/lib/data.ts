@@ -13,7 +13,7 @@ export const planets = [
     },
     {
       "name": "Hoth",
-      "description": "Hoth is a remote, frozen planet located in the Outer Rim, known for its inhospitable climate and icy terrain. The planet's surface is covered in thick layers of snow and ice, with temperatures plummeting far below freezing. Hoth's desolate landscape is punctuated by jagged mountains and massive glaciers. Despite its harsh environment, Hoth became a key location in the Galactic Civil War, serving as the site of Echo Base, a hidden Rebel Alliance outpost. The Battle of Hoth, fought between the Rebel forces and the Imperial army, remains one of the most significant engagements of the conflict."
+      "description": "Hoth is a remote, frozen planet located in the Outer Rim, known for its inhospitable weather and icy terrain. The planet's surface is covered in thick layers of snow and ice, with temperatures plummeting far below freezing. Hoth's desolate landscape is punctuated by jagged mountains and massive glaciers. Despite its harsh environment, Hoth became a key location in the Galactic Civil War, serving as the site of Echo Base, a hidden Rebel Alliance outpost. The Battle of Hoth, fought between the Rebel forces and the Imperial army, remains one of the most significant engagements of the conflict."
     },
     {
       "name": "Dagobah",
@@ -65,6 +65,10 @@ export const tours = [
     {
       "label": "Ancient Ruins Exploration",
       "value": "ancient_ruins_exploration"
+    },
+    {
+      "label": "None",
+      "value": ""
     }
   ] as const
   
@@ -100,6 +104,10 @@ export const wheaters = [
     {
       "label": "Volcanic Ashfall",
       "value": "volcanic_ashfall"
+    },
+    {
+      "label": "None",
+      "value": ""
     }
   ] as const
   
@@ -135,6 +143,10 @@ export const activityTypes = [
     {
       "label": "Yoga Retreat",
       "value": "yoga_retreat"
+    },
+    {
+      "label": "None",
+      "value": ""
     }
   ] as const
 
@@ -154,7 +166,194 @@ export const puntuations = [
     {
       "label": "⭐⭐⭐⭐",
       "value": "4"
+    },
+    {
+      "label": "None",
+      "value": ""
     }
   ] as const
   
-  
+const setDateToMidnight = (date: string) => {
+  const newDate = new Date(date);
+  newDate.setHours(0, 0, 0, 0);
+  return newDate;
+};
+
+export const flights_data = [
+    {
+        "planet": "Tatooine",
+        "tour": "outer_rim_expedition",
+        "weather": "aurora_borealis",
+        "activityType": "yoga_retreat",
+        "puntuation": "2.53",
+        "date": setDateToMidnight("2024-09-01"),
+        "time": "14:30",
+        "price": 14500,
+        "timeTravel": 120
+    },
+    {
+        "planet": "Coruscant",
+        "tour": "sith_secrets_journey",
+        "weather": "icy_tundra",
+        "activityType": "skydiving_thrill",
+        "puntuation": "1.44",
+        "date": setDateToMidnight("2024-09-02"),
+        "time": "09:15",
+        "price": 17500,
+        "timeTravel": 95
+    },
+    {
+        "planet": "Naboo",
+        "tour": "outer_rim_expedition",
+        "weather": "desert_heatwave",
+        "activityType": "yoga_retreat",
+        "puntuation": "1.95",
+        "date": setDateToMidnight("2024-09-03"),
+        "time": "16:45",
+        "price": 12300,
+        "timeTravel": 150
+    },
+    {
+        "planet": "Hoth",
+        "tour": "mystical_planets_tour",
+        "weather": "aurora_borealis",
+        "activityType": "skydiving_thrill",
+        "puntuation": "2.14",
+        "date": setDateToMidnight("2024-09-04"),
+        "time": "11:00",
+        "price": 18900,
+        "timeTravel": 80
+    },
+    {
+        "planet": "Dagobah",
+        "tour": "galactic_adventure",
+        "weather": "tropical_stormfront",
+        "activityType": "yoga_retreat",
+        "puntuation": "4.42",
+        "date": setDateToMidnight("2024-09-05"),
+        "time": "18:30",
+        "price": 15800,
+        "timeTravel": 135
+    },
+    {
+        "planet": "Mustafar",
+        "tour": "mystical_planets_tour",
+        "weather": "rainforest_monsoon",
+        "activityType": "deep_sea_diving",
+        "puntuation": "1.15",
+        "date": setDateToMidnight("2024-09-06"),
+        "time": "07:45",
+        "price": 13700,
+        "timeTravel": 110
+    },
+    {
+        "planet": "Endor",
+        "tour": "jedi_training_experience",
+        "weather": "aurora_borealis",
+        "activityType": "cultural_heritage_tour",
+        "puntuation": "2.42",
+        "date": setDateToMidnight("2024-09-07"),
+        "time": "12:00",
+        "price": 16500,
+        "timeTravel": 140
+    },
+    {
+        "planet": "Kamino",
+        "tour": "jedi_training_experience",
+        "weather": "tropical_stormfront",
+        "activityType": "cultural_heritage_tour",
+        "puntuation": "2.44",
+        "date": setDateToMidnight("2024-09-08"),
+        "time": "15:30",
+        "price": 15500,
+        "timeTravel": 125
+    },
+    {
+        "planet": "Tatooine",
+        "tour": "outer_rim_expedition",
+        "weather": "aurora_borealis",
+        "activityType": "yoga_retreat",
+        "puntuation": "2.53",
+        "date": setDateToMidnight("2024-09-15"),
+        "time": "10:00",
+        "price": 14800,
+        "timeTravel": 120
+    },
+    {
+        "planet": "Coruscant",
+        "tour": "sith_secrets_journey",
+        "weather": "icy_tundra",
+        "activityType": "skydiving_thrill",
+        "puntuation": "1.44",
+        "date": setDateToMidnight("2024-09-16"),
+        "time": "13:45",
+        "price": 18200,
+        "timeTravel": 95
+    },
+    {
+        "planet": "Naboo",
+        "tour": "outer_rim_expedition",
+        "weather": "desert_heatwave",
+        "activityType": "yoga_retreat",
+        "puntuation": "1.95",
+        "date": setDateToMidnight("2024-09-17"),
+        "time": "08:30",
+        "price": 12900,
+        "timeTravel": 150
+    },
+    {
+        "planet": "Hoth",
+        "tour": "mystical_planets_tour",
+        "weather": "aurora_borealis",
+        "activityType": "skydiving_thrill",
+        "puntuation": "2.14",
+        "date": setDateToMidnight("2024-09-18"),
+        "time": "17:15",
+        "price": 19400,
+        "timeTravel": 80
+    },
+    {
+        "planet": "Dagobah",
+        "tour": "galactic_adventure",
+        "weather": "tropical_stormfront",
+        "activityType": "yoga_retreat",
+        "puntuation": "4.42",
+        "date": setDateToMidnight("2024-09-19"),
+        "time": "14:00",
+        "price": 16200,
+        "timeTravel": 135
+    },
+    {
+        "planet": "Mustafar",
+        "tour": "mystical_planets_tour",
+        "weather": "rainforest_monsoon",
+        "activityType": "deep_sea_diving",
+        "puntuation": "1.15",
+        "date": setDateToMidnight("2024-09-20"),
+        "time": "06:30",
+        "price": 14100,
+        "timeTravel": 110
+    },
+    {
+        "planet": "Endor",
+        "tour": "jedi_training_experience",
+        "weather": "aurora_borealis",
+        "activityType": "cultural_heritage_tour",
+        "puntuation": "2.42",
+        "date": setDateToMidnight("2024-09-21"),
+        "time": "09:00",
+        "price": 17000,
+        "timeTravel": 140
+    },
+    {
+        "planet": "Kamino",
+        "tour": "jedi_training_experience",
+        "weather": "tropical_stormfront",
+        "activityType": "cultural_heritage_tour",
+        "puntuation": "2.44",
+        "date": setDateToMidnight("2024-09-22"),
+        "time": "12:30",
+        "price": 15800,
+        "timeTravel": 125
+    }
+] as const;
