@@ -18,7 +18,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 
-export function PlanetCard({planetName, planetPhoto }: {planetName:string, planetPhoto:StaticImageData }) {
+export function PlanetCard({planetName, planetPhoto, description }: {planetName: string, planetPhoto: StaticImageData, description: string }) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -43,14 +43,14 @@ export function PlanetCard({planetName, planetPhoto }: {planetName:string, plane
 
           <div className="flex items-center gap-10">
             <Image className="shadow-2xl bg-white rounded-xl p-3 m-4 shadow-palleteOrangeVariant hover:scale-105 duration-200 ease-in-out" src={planetPhoto} width={250} height={250} alt='PlanetHub App Logo' />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae fugit labore harum totam culpa praesentium voluptate? Quidem iusto ducimus provident, commodi voluptas illo neque quo, nam hic beatae consectetur culpa!</p>
+            <p>{description}</p>
           </div>
 
           <DrawerFooter className="flex flex-row">
             <Button variant="outline">View flights 🚀</Button>
             <Button variant="outline">View accomodations 🏨</Button>
             <DrawerClose asChild>
-              <Button variant="outline">Close</Button>
+              <Button variant="destructive">Close</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

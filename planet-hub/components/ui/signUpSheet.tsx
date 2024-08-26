@@ -100,8 +100,8 @@ const SignUpSheet: React.FC = () => {
         <SheetFooter>
           <SheetClose
             className={buttonVariants({
-              variant: "secondary",
-              className: "text-lg",
+              variant: "destructive",
+              className: "text-lg w-full",
             })}
           >
             Close

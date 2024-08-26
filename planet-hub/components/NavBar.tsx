@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
 import Logo from '@/public/Logo.png'
-import LoginSheet from './ui/loginSheet';
-import SignUpSheet from './ui/signUpSheet';
+import LoginSheet from '@/components/ui/loginSheet';
+import SignUpSheet from '@/components/ui/signUpSheet';
 
 function NavBar() {
   return (
@@ -23,17 +23,20 @@ function NavBar() {
         </li>
         <li>
           <Button asChild className='text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-lg' variant='ghost'>
+            <Link href='/accomodation'>Accomodations</Link>
+          </Button>
+        </li>
+        <li>
+          <Button asChild className='text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] text-lg' variant='ghost'>
             <Link href='/flights'>Flights</Link>
           </Button>
         </li>
         <li>
-          <LoginSheet ></LoginSheet>
+          <LoginSheet></LoginSheet>
         </li>
         <li>
-          <SignUpSheet/>
+          <SignUpSheet />
         </li>
-
-        
       </ul>
     </nav>
   );
