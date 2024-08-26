@@ -20,6 +20,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import TripSummary from "./TripSummary"
 
 function PaymentInput({ form, title, name, placeholder, description, maxLength, formatValue }:
   { form: any, name: string, title: string, placeholder: string, description: string, maxLength: number, formatValue?: (value: string) => string }) {
@@ -79,6 +80,11 @@ export function PaymentForm() {
         <CardTitle className="text-textTitle">Payment Information</CardTitle>
       </CardHeader>
       <CardContent>
+
+        <TripSummary planet="planet1" dates="Sep 11 - 12" total="$900"></TripSummary>
+
+        <div className="mb-5"></div>
+
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid grid-cols-1 gap-6">

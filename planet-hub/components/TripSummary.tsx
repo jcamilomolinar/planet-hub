@@ -20,16 +20,16 @@ const TripSummary: React.FC<TripSummaryProps> = ({ planet, dates, total }) => (
       <CardDescription>Details of your selection</CardDescription>
     </CardHeader>
     <CardContent>
-      <div style={{ marginBottom: '20px' }}>
-        <p style={{ fontWeight: 'bold' }}>Your selection</p>
+      <div className="mb-5">
+        <p className="font-bold">Your selection</p>
         <p>{planet}</p>
       </div>
-      <div style={{ marginBottom: '20px' }}>
-        <p style={{ fontWeight: 'bold' }}>Dates</p>
+      <div className="mb-5">
+        <p className="font-bold">Dates</p>
         <p>{dates}</p>
       </div>
       <div>
-        <p style={{ fontWeight: 'bold' }}>Total (USD)</p>
+        <p className="font-bold">Total (USD)</p>
         <p>{total}</p>
       </div>
     </CardContent>
