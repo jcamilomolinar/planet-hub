@@ -33,5 +33,5 @@ export interface AccomodationsData {
 }
 
 export interface AccomodationsProps {
-    data: AccomodationsData;
+    data: AccomodationsData[];
 }

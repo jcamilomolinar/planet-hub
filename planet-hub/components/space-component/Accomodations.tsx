@@ -6,11 +6,16 @@ import SpaceMoreInformation from "@/components/space-component/SpaceMoreInformat
 import { AccomodationsProps } from './types';
 
 function Accomodations({ data }: AccomodationsProps) {
+    if (data.length === 0) {
+        return <div>No accommodation data available</div>;
+    }
+
+    const accommodation = data[0]; // Since we're dealing with a single accommodation
     return (
         <div>
-            <SpaceTitle data={data} />
-            <SpaceImages images={data.imageUrls} />
-            <SpaceMoreInformation fullData={data} />
+            <SpaceTitle data={accommodation} />
+            <SpaceImages images={accommodation.imageUrls} />
+            <SpaceMoreInformation fullData={accommodation} />
         </div>
     )
 }

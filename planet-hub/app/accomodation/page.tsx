@@ -1,7 +1,7 @@
 import React from 'react';
 import { AccommodationsCard } from '@/components/Accommodations/AccommodationsCard';
 import PlanetPhoto from "@/public/planet.jpg";
-
+import Link from 'next/link';
 
 
 const accommodationsOptions = [
@@ -59,15 +59,17 @@ function Accomodation() {
 
             <div className="grid grid-cols-3 gap-4">
                 {accommodationsOptions.map(option => (
-                    <AccommodationsCard
-                        key={option.id}
-                        accommodationName={option.accommodationName}
-                        accommodationPhotos={option.accommodationPhotos}
-                        accommodationStars={option.accommodationStars}
-                        accommodationPrice={option.accommodationPrice}
-                    />
+                    <Link href={`/accomodation/${option.id}`} key={option.id}>
+                        <AccommodationsCard
+                            accommodationName={option.accommodationName}
+                            accommodationPhotos={option.accommodationPhotos}
+                            accommodationStars={option.accommodationStars}
+                            accommodationPrice={option.accommodationPrice}
+                        />
+                    </Link>
                 ))}
             </div>
+
         </div>
     );
 }

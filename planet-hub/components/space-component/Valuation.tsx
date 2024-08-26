@@ -32,7 +32,7 @@ function Valuation({ fullDataV }: { fullDataV: AccomodationsData }) {
     return (
         <div>
             <div>
-                <RatingComponent overallRating={4.7} categories={fullDataV.valuation.categories} />
+                <RatingComponent overallRating={fullDataV.valuation.averageRating} categories={fullDataV.valuation.categories} />
             </div>
 
         </div>
