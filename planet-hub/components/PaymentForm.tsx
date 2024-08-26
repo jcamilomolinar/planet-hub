@@ -45,6 +45,11 @@ function PaymentInput({ form, title, name, placeholder, description, maxLength, 
               }}
             />
           </FormControl>
+          {description && (
+            <p className="mt-2 text-sm text-gray-500">
+              {description}
+            </p>
+          )}
           <FormMessage />
         </FormItem>
       )}
