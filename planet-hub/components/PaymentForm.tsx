@@ -1,114 +1,130 @@
-import * as React from "react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+"use client"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import {
+  Card,
+  CardDescription,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
-interface PaymentFormProps {
-  cardNumber: string;
-  expirationDate: string;
-  cvv: string;
-  zipCode: string;
-  region: string;
-  onCardNumberChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onExpirationDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onCVVChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onZipCodeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onRegionChange: (value: string) => void;
+function PaymentInput({ form, title, name, placeholder, description, maxLength, formatValue }:
+  { form: any, name: string, title: string, placeholder: string, description: string, maxLength: number, formatValue?: (value: string) => string }) {
+
+  return (
+    <FormField
+      control={form.control}
+      name={name}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>{title}</FormLabel>
+          <FormControl>
+            <Input
+              type="text"
+              placeholder={placeholder}
+              maxLength={maxLength}
+              {...field}
+              onChange={(e) => {
+                let value = e.target.value.replace(/\D/g, ""); // Solo números
+                if (formatValue) value = formatValue(value); // Formatear si es necesario
+                field.onChange(value);
+              }}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  )
 }
 
-const PaymentForm: React.FC<PaymentFormProps> = ({
-  cardNumber,
-  expirationDate,
-  cvv,
-  zipCode,
-  region,
-  onCardNumberChange,
-  onExpirationDateChange,
-  onCVVChange,
-  onZipCodeChange,
-  onRegionChange,
-}) => (
-  <form>
-    <Label className="px-3" htmlFor="card-number">Credit or debit card number</Label>
-    <div style={{ marginBottom: '20px' }}>
-      <Input
-        id="card-number"
-        name="card-number"
-        type="text"
-        maxLength={19}
-        placeholder="0000 0000 0000 0000"
-        inputMode="numeric"
-        pattern="[0-9]*"
-        value={cardNumber}
-        onChange={onCardNumberChange}
-      />
-    </div>
+const FormSchema = z.object({
+  card: z.string().min(19).max(19),
+  expiration: z.string().min(5).max(5),
+  cvv: z.string().min(3).max(4),
+  zipcode: z.string().min(5).max(8),
+})
 
-    <Label className="px-3" htmlFor="expiration">Expiration</Label>
-    <div style={{ marginBottom: '20px' }}>
-      <Input
-        id="expiration"
-        name="expiration"
-        type="text"
-        maxLength={5}
-        placeholder="MM/YY"
-        inputMode="numeric"
-        pattern="[0-9]*"
-        value={expirationDate}
-        onChange={onExpirationDateChange}
-      />
-    </div>
+export function PaymentForm() {
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      card: "",
+      expiration: "",
+      cvv: "",
+      zipcode: "",
+    }
+  })
 
-    <Label className="px-3" htmlFor="cvv">CVV</Label>
-    <div style={{ marginBottom: '20px' }}>
-      <Input
-        id="cvv"
-        name="cvv"
-        type="text"
-        maxLength={4}
-        placeholder="CVV"
-        inputMode="numeric"
-        pattern="[0-9]*"
-        value={cvv}
-        onChange={onCVVChange}
-      />
-    </div>
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log(data);
+  }
 
-    <Label className="px-3" htmlFor="zip-code">ZIP Code</Label>
-    <div style={{ marginBottom: '20px' }}>
-      <Input
-        id="zip-code"
-        name="zip-code"
-        type="text"
-        maxLength={10}
-        placeholder="999000"
-        inputMode="numeric"
-        pattern="[0-9]*"
-        value={zipCode}
-        onChange={onZipCodeChange}
-      />
-    </div>
-
-    <Label className="px-3" htmlFor="region">Region</Label>
-    <Select onValueChange={onRegionChange}>
-      <SelectTrigger id="region">
-        <SelectValue placeholder="Select a region" />
-      </SelectTrigger>
-      <SelectContent position="popper">
-        <SelectItem value="region1">region1</SelectItem>
-        <SelectItem value="region2">region2</SelectItem>
-        <SelectItem value="region3">region3</SelectItem>
-        <SelectItem value="region4">region4</SelectItem>
-        <SelectItem value="region5">region5</SelectItem>
-      </SelectContent>
-    </Select>
-  </form>
-);
-
-export default PaymentForm;
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-textTitle">Payment Information</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="grid grid-cols-1 gap-6">
+              <PaymentInput
+                form={form}
+                title="Credit or debit card number"
+                name="card"
+                placeholder="0000 0000 0000 0000"
+                description="Enter the 16 digits of your card"
+                maxLength={19}
+                formatValue={(value) =>
+                  value.replace(/(\d{4})(?=\d)/g, "$1 ")
+                }
+              />
+              <PaymentInput
+                form={form}
+                title="Expiration date"
+                name="expiration"
+                placeholder="MM/YY"
+                description="Enter the expiration date of your card."
+                maxLength={5}
+                formatValue={(value) =>
+                  value.length > 2 ? value.slice(0, 2) + '/' + value.slice(2) : value
+                }
+              />
+              <PaymentInput
+                form={form}
+                title="CVV"
+                name="cvv"
+                placeholder="1234"
+                description="Enter the CVV of your card."
+                maxLength={4}
+              />
+              <PaymentInput
+                form={form}
+                title="ZIP Code"
+                name="zipcode"
+                placeholder="99990000"
+                description="Enter the ZIP Code of your region."
+                maxLength={8}
+              />
+            </div>
+            <Button className="my-5" type="submit" variant="outline">Confirm and pay</Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
+  )
+}
