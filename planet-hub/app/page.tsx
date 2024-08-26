@@ -35,7 +35,7 @@ export default function Home() {
       <Separator className="my-7" />
 
       <div>
-        <p className="text-center"><span className='text-textTitle text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:text-4xl'>Recommended planets 🪐</span></p>
+        <p className="text-center"><span className='text-textTitle text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:text-4xl duration-200 ease-in-out'>Recommended planets 🪐</span></p>
         <MainPageCarousel></MainPageCarousel>
         <p className="text-textAll italic text-xl text-center underline">Join more than a million travelers from all galaxies!</p>
       </div>
