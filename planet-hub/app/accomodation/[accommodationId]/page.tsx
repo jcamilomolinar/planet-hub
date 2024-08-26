@@ -4,6 +4,7 @@ import { AccomodationsData } from '@/components/space-component/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSwimmer, faTaxi, faSnowflake, faGlobe, faClock, faSnowplow } from '@fortawesome/free-solid-svg-icons';
 import { FaStar, FaSprayCan, FaCheckCircle, FaKey, FaComments, FaMapMarkerAlt, FaTag } from 'react-icons/fa';
+import NotFound from '@/app/not-found';
 
 const data: AccomodationsData[] = [
     {
@@ -178,7 +179,7 @@ function AccommodationPage({ params }: { params: Params }) {
     const selectedAccommodation = data.find(acc => acc.id === accommodationId);
 
     if (!selectedAccommodation) {
-        return <div>Accommodation not found</div>;
+        return <div><NotFound /></div>;
     }
 
     return (
