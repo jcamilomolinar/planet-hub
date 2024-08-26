@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { useForm } from "react-hook-form"
-import { date, z } from "zod"
+import { date, map, z } from "zod"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -39,7 +39,9 @@ import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
 import { Flight } from "@/components/Flight"
-import { planets, tours, wheaters, activityTypes, puntuations } from "@/lib/data"
+import { planets, tours, wheaters, activityTypes, puntuations, flights_data } from "@/lib/data"
+import { Separator } from "@/components/ui/separator"
+import { useState, useEffect } from 'react';
 
 function FlightSearchFormFieldDate({ form, title, name, description }:
   { form: any, name: string, title: string, description: string }){
@@ -215,6 +217,9 @@ const planetsList = planets.map(planet => ({
     })
 
 export function FlightSearchForm() {
+  const [flights, setFlights]: any = useState([]);
+  const [noFlights, setNoFlights]: any = useState(false);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -229,7 +234,37 @@ export function FlightSearchForm() {
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
+    const filteredData = Object.fromEntries(
+      Object.entries(data).filter(([_, value]) => value !== "" && value !== 0)
+    );
+
+    let filterFlightsByData = (flights: any, data: any) => {
+      return flights.filter((flight: any) => {
+          return Object.entries(data).every(([key, value]) => {
+              if (key === 'date' && value !== null) {
+                  const flightDate = flight.date;
+                  const fromDate = value.from;
+                  if(value.to !== undefined){
+                    const toDate = value.to;
+                    return flightDate.getTime() === fromDate.getTime() || flightDate.getTime() === toDate.getTime();
+                  } else {
+                    return flightDate.getTime() === fromDate.getTime()
+                  }
+              }
+              return flight[key] === value;
+          });
+      });
+    };
+    let show_flights = filterFlightsByData(flights_data, filteredData);
+
+    if (show_flights.length === 0 ) {
+      console.log("Aqui estoy")
+      setNoFlights(true);
+      setFlights([]);
+    } else {
+      setNoFlights(false);
+      setFlights(show_flights);
+    }
   }
 
   return (
@@ -241,13 +276,13 @@ export function FlightSearchForm() {
               <CardTitle className="text-textTitle">Search Flights</CardTitle>
             </CardHeader>
             <CardContent className="text-textAll">
-              <div>
+            <div>
                 <div className="grid grid-cols-5 grid-rows-1 gap-6">
+                  <FlightSearchFormFieldCombobox elements={planetsList} form={form} title="Planet" name="planet" description="Select the planet." />
                   <FlightSearchFormFieldCombobox elements={tours} form={form} title="Tours" name="tour" description="Select the tour of your preference." />
                   <FlightSearchFormFieldCombobox elements={wheaters} form={form} title="Weather" name="weather" description="Select the weather of your preference." />
                   <FlightSearchFormFieldCombobox elements={activityTypes} form={form} title="Type of activity" name="activityType" description="Select the type of activity of your preference." />
                   <FlightSearchFormFieldCombobox elements={puntuations} form={form} title="Puntuation" name="puntuation" description="Select the minimum puntuation you want for your destination." />
-                  <FlightSearchFormFieldCombobox elements={planetsList} form={form} title="Planet" name="planet" description="Select the planet." />
                 </div>
                 <div className="grid grid-cols-3 grid-rows-1 gap-6">
                   <FlightSearchFormFieldDate form={form} title="Travel date" name="date" description="Enter when you will travel." />
@@ -260,10 +295,22 @@ export function FlightSearchForm() {
           </Card>
         </form>
       </Form>
-      <div className="my-5">
-        <Flight planet="Planeta Marte" timeTravel={100} price={150000}/>
+      <Separator className="my-5"/>
+      <div>
+        {noFlights && (
+            <div>
+              <p className="text-textTitle text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.5)] text-center my-10">Oops, it seems that there are no flights with those characteristics, try entering other data.</p>
+            </div>
+        )}
       </div>
-      
+      <div>
+        {
+          flights.map((flight: any, index: number) => (
+            <Flight key={index} planet={flight.planet} timeTravel={flight.timeTravel} price={flight.price} hour={flight.time} />
+          ))
+        }
+      </div>
+
     </div>
   )
 }
