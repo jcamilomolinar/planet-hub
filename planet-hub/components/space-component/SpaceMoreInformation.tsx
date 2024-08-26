@@ -47,7 +47,7 @@ function SpaceMoreInformation({ fullData }: { fullData: AccomodationsData }) {
             {/* Host information */}
 
             <div className='lg:w-1/3 mt-6 lg:mt-0'>
-                <SpaceHost />
+                <SpaceHost host={fullData.host} />
             </div>
         </div>
     )

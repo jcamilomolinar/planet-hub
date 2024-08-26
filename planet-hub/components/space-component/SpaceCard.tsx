@@ -44,7 +44,7 @@ export default function SpaceCard({ fullDataSC }: { fullDataSC: AccomodationsDat
                     <DialogTrigger><p>{displayedText}</p><p className="underline decoration-solid hover:text-palleteOrange">Show more</p></DialogTrigger>
                     <DialogContent>
                         <DialogHeader>
-                            <DialogTitle>Cabaña Marte, Monte Olimpo</DialogTitle>
+                            <DialogTitle>{fullDataSC.nameExtend}</DialogTitle>
                             <DialogDescription>
                                 {fullText}
                             </DialogDescription>
