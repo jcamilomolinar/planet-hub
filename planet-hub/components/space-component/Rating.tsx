@@ -28,7 +28,7 @@ const RatingComponent: React.FC<RatingComponentProps> = ({ overallRating, catego
     return (
         <div className="mx-auto p-4 bg-white shadow-lg rounded-lg">
             <div className="mb-4">
-                <h2 className="text-xl font-semibold">Valoración</h2>
+                <h2 className="text-xl font-semibold">Reviews</h2>
                 <div className="flex items-center">
                     <span className="text-3xl font-bold mr-2">{overallRating}</span>
                     <div>{renderStars(overallRating)}</div>

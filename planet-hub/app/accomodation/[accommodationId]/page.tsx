@@ -34,35 +34,35 @@ const data: AccomodationsData[] = [
         services: [
             {
                 id: 1,
-                title: "Piscina aire libre",
+                title: "Outdoor swimming pool",
                 description: "",
                 imageUrl: "/img1.png",
                 icon: faSwimmer
             },
             {
                 id: 2,
-                title: "Traslado aeropuerto.",
+                title: "Airport transfer.",
                 description: "",
                 imageUrl: "/img2.png",
                 icon: faTaxi
             },
             {
                 id: 3,
-                title: "Aire acondicionado",
+                title: "Air conditioning",
                 description: "",
                 imageUrl: "/img3.png",
                 icon: faSnowflake
             },
             {
                 id: 4,
-                title: "Gastronomía Interplanetaria",
+                title: "Interplanetary Gastronomy",
                 description: "",
                 imageUrl: "/img3.png",
                 icon: faGlobe
             },
             {
                 id: 5,
-                title: "Recepción 24,6 horas",
+                title: "24.6 hour reception",
                 description: "",
                 imageUrl: "/img3.png",
                 icon: faClock
@@ -72,12 +72,12 @@ const data: AccomodationsData[] = [
             averageRating: 4.2,
             totalRatings: 8,
             categories: [
-                { name: 'Limpieza', rating: 4.2, icon: <FaSprayCan className="text-blue-500 text-4xl" /> },
-                { name: 'Exactitud', rating: 4.2, icon: <FaCheckCircle className="text-green-500 text-4xl" /> },
-                { name: 'Check-in', rating: 4.2, icon: <FaKey className="text-yellow-500 text-4xl" /> },
-                { name: 'Comunicación', rating: 4.2, icon: <FaComments className="text-purple-500 text-4xl" /> },
-                { name: 'Ubicación', rating: 4.2, icon: <FaMapMarkerAlt className="text-red-500 text-4xl" /> },
-                { name: 'Precio', rating: 4.2, icon: <FaTag className="text-indigo-500 text-4xl" /> },
+                { name: 'Cleanliness', rating: 4.2, icon: <FaSprayCan className=" text-blue-500 text-4xl" /> },
+                { name: 'Accuracy', rating: 4.2, icon: <FaCheckCircle className=" text-green-500 text-4xl" /> },
+                { name: 'Registration', rating: 4.2, icon: <FaKey className=" text-yellow-500 text-4xl" /> },
+                { name: 'Communication', rating: 4.2, icon: <FaComments className=" text-purple-500 text-4xl" /> },
+                { name: 'Location', rating: 4.2, icon: <FaMapMarkerAlt className=" text-red-500 text-4xl" /> },
+                { name: 'Price', rating: 4.2, icon: <FaTag className=" text-indigo-500 text-4xl" /> },
             ]
         },
         host: {
@@ -112,50 +112,50 @@ const data: AccomodationsData[] = [
         services: [
             {
                 id: 1,
-                title: "Alojamiento Calefaccionado",
-                description: "Habitaciones con sistemas avanzados de calefacción para mantener el confort en el frío neptuniano.",
+                title: "Heated Accommodation",
+                description: "Rooms with advanced heating systems to maintain comfort in the Neptunian cold.",
                 imageUrl: "/img1.png",
                 icon: faSnowflake
             },
             {
                 id: 2,
-                title: "Compañía de Michis Galácticos",
-                description: "Disfruta de la compañía de michis galácticos que te brindarán calidez y alegría durante tu estancia.",
+                title: "Company of Galactic Kittens",
+                description: "Enjoy the company of galactic kitties that will bring you warmth and joy during your stay.",
                 imageUrl: "/img1.png",
-                icon: faSnowflake // Asumiendo que tienes un icono de gato
+                icon: faSnowflake // Assuming you have a cat icon
             },
             {
                 id: 3,
-                title: "Spa Invernal",
-                description: "Tratamientos rejuvenecedores en un spa con agua helada en un ambiente cálido y relajante.",
+                title: "Winter Spa",
+                description: "Rejuvenating treatments in a spa with ice water in a warm and relaxing environment.",
                 imageUrl: "/img1.png",
-                icon: faSnowflake // O cualquier otro icono que represente el spa
+                icon: faSnowflake // Or any other icon that represents the eng
             },
             {
                 id: 4,
-                title: "Cocina Estelar",
-                description: "Platos exquisitos que combinan ingredientes terrícolas y galácticos preparados por nuestro chef.",
+                title: "Star Cuisine",
+                description: "Exquisite dishes that combine earthly and galactic ingredients prepared by our chef.",
                 imageUrl: "/img1.png",
-                icon: faSnowflake // O cualquier otro icono que represente la comida
+                icon: faSnowflake // Or any other icon representing food
             },
             {
                 id: 5,
-                title: "Excursiones en Nieve",
-                description: "Guía y trineos para explorar la superficie neptuniana y experimentar la nieve galáctica.",
+                title: "Snow Tours",
+                description: "Guide and sleds to explore the Neptunian surface and experience the galactic snow.",
                 imageUrl: "/img1.png",
-                icon: faSnowplow // O cualquier otro icono que represente las excursiones
+                icon: faSnowplow // Or any other icon representing tours
             }
         ],
         valuation: {
             averageRating: 4.9,
             totalRatings: 25,
             categories: [
-                { name: 'Limpieza', rating: 4.9, icon: <FaSprayCan className="text-blue-500 text-4xl" /> },
-                { name: 'Exactitud', rating: 4.9, icon: <FaCheckCircle className="text-green-500 text-4xl" /> },
+                { name: 'Cleanliness', rating: 4.9, icon: <FaSprayCan className="text-blue-500 text-4xl" /> },
+                { name: 'Accuracy', rating: 4.9, icon: <FaCheckCircle className="text -green-500 text-4xl" /> },
                 { name: 'Check-in', rating: 4.9, icon: <FaKey className="text-yellow-500 text-4xl" /> },
-                { name: 'Comunicación', rating: 4.9, icon: <FaComments className="text-purple-500 text-4xl" /> },
-                { name: 'Ubicación', rating: 4.9, icon: <FaMapMarkerAlt className="text-red-500 text-4xl" /> },
-                { name: 'Precio', rating: 4.9, icon: <FaTag className="text-indigo-500 text-4xl" /> },
+                { name: 'Communication ', rating: 4.9, icon: <FaComments className="text-purple-500 text-4xl" /> },
+                { name: 'Location', rating: 4.9, icon: <FaMapMarkerAlt className="text-red-500 text -4xl" /> },
+                { name: 'Price', rating: 4.9, icon: <FaTag className="text-indigo-500 text-4xl" /> },
             ]
         },
         host: {
