@@ -14,11 +14,11 @@ export default function SpaceTitle({ data }: { data: AccomodationsData }) {
             <div className='flex justify-normal gap-4 '>
                 {/* Div compartir */}
                 <div>
-                    <Link href="/">🔗 Compartir</Link>
+                    <Link href="/" className="hover:bg-gray-200 rounded-full p-2">🔗 Share</Link>
                 </div>
-                {/* Div megusta */}
+                {/* Div me gusta */}
                 <div>
-                    <Link href="/">❤️ Me gusta</Link>
+                    <Link href="/" className="hover:bg-gray-200 rounded-full p-2">❤️ Like</Link>
                 </div>
             </div>
         </div>
