@@ -1,6 +1,9 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaStar, FaSprayCan, FaCheckCircle, FaKey, FaComments, FaMapMarkerAlt, FaTag } from 'react-icons/fa';
 import { IconType } from 'react-icons';
+import * as FAIcons from 'react-icons/fa';
+import { faSwimmer, faTaxi, faSnowflake, faGlobe, faClock } from '@fortawesome/free-solid-svg-icons';
 
 // Definición de tipos
 type Category = {
@@ -25,6 +28,7 @@ const RatingComponent: React.FC<RatingComponentProps> = ({ overallRating, catego
         ));
     };
 
+
     return (
         <div className="mx-auto p-4 bg-white shadow-lg rounded-lg">
             <div className="mb-4">
@@ -37,7 +41,11 @@ const RatingComponent: React.FC<RatingComponentProps> = ({ overallRating, catego
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {categories.map((category) => (
                     <div key={category.name} className="flex items-center">
-                        {category.icon}
+                        <FontAwesomeIcon
+                            icon={category.icon}
+                            style={{ color: '#d46a17', fontSize: '24px' }}
+                            className="w-6 h-6 mr-2"
+                        />
                         <div className="ml-2">
                             <p className="text-sm font-medium">{category.name}</p>
                             <p className="text-lg font-semibold">{category.rating}</p>

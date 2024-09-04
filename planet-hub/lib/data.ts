@@ -1,7 +1,6 @@
 import PlanetPhoto from "@/public/planet.jpg";
 import { AccommodationsData } from "@/lib/types";
-import { faSwimmer, faTaxi, faSnowflake, faGlobe, faClock, faSnowplow } from '@fortawesome/free-solid-svg-icons';
-import { FaStar, FaSprayCan, FaCheckCircle, FaKey, FaComments, FaMapMarkerAlt, FaTag } from 'react-icons/fa';
+import { faSwimmer, faTaxi, faSnowflake, faGlobe, faClock, faSnowplow, faBroom, faBullseye, faClipboardCheck, faComments, faMapMarkerAlt, faTag } from '@fortawesome/free-solid-svg-icons';
 
 export const planets = [
   {
@@ -433,47 +432,47 @@ export const accommodations: AccommodationsData[] = [
         title: "Outdoor swimming pool",
         description: "",
         imageUrl: "/img1.png",
-        icon: "faSwimmer"
+        icon: faSwimmer,
       },
       {
         id: 2,
         title: "Airport transfer.",
         description: "",
         imageUrl: "/img2.png",
-        icon: "faTaxi"
+        icon: faTaxi
       },
       {
         id: 3,
         title: "Air conditioning",
         description: "",
         imageUrl: "/img3.png",
-        icon: "faSnowflake"
+        icon: faSnowflake
       },
       {
         id: 4,
         title: "Interplanetary Gastronomy",
         description: "",
         imageUrl: "/img3.png",
-        icon: "faGlobe"
+        icon: faGlobe
       },
       {
         id: 5,
         title: "24.6 hour reception",
         description: "",
         imageUrl: "/img3.png",
-        icon: "faClock"
+        icon: faClock
       }
     ],
     valuation: {
       averageRating: 4.2,
       totalRatings: 8,
       categories: [
-        { name: 'Cleanliness', rating: 4.2, icon: "FaSprayCan" },
-        { name: 'Accuracy', rating: 4.2, icon: "FaCheckCircle" },
-        { name: 'Registration', rating: 4.2, icon: "FaKey" },
-        { name: 'Communication', rating: 4.2, icon: "FaComments" },
-        { name: 'Location', rating: 4.2, icon: "FaMapMarkerAlt" },
-        { name: 'Price', rating: 4.2, icon: "FaTag" },
+        { name: 'Cleanliness', rating: 4.2, icon: faBroom },
+        { name: 'Accuracy', rating: 4.2, icon: faBullseye },
+        { name: 'Registration', rating: 4.2, icon: faClipboardCheck },
+        { name: 'Communication', rating: 4.2, icon: faComments },
+        { name: 'Location', rating: 4.2, icon: faMapMarkerAlt },
+        { name: 'Price', rating: 4.2, icon: faTag },
       ]
     },
     host: {
@@ -511,47 +510,47 @@ export const accommodations: AccommodationsData[] = [
         title: "Heated Accommodation",
         description: "Rooms with advanced heating systems to maintain comfort in the Neptunian cold.",
         imageUrl: "/img1.png",
-        icon: "faSnowflake"
+        icon: faSnowflake
       },
       {
         id: 2,
         title: "Company of Galactic Kittens",
         description: "Enjoy the company of galactic kitties that will bring you warmth and joy during your stay.",
         imageUrl: "/img1.png",
-        icon: "faSnowflake" // Assuming you have a cat icon
+        icon: faSnowflake
       },
       {
         id: 3,
         title: "Winter Spa",
         description: "Rejuvenating treatments in a spa with ice water in a warm and relaxing environment.",
         imageUrl: "/img1.png",
-        icon: "faSnowflake" // Or any other icon that represents the eng
+        icon: faSnowflake
       },
       {
         id: 4,
         title: "Star Cuisine",
         description: "Exquisite dishes that combine earthly and galactic ingredients prepared by our chef.",
         imageUrl: "/img1.png",
-        icon: "faSnowflake" // Or any other icon representing food
+        icon: faSnowflake
       },
       {
         id: 5,
         title: "Snow Tours",
         description: "Guide and sleds to explore the Neptunian surface and experience the galactic snow.",
         imageUrl: "/img1.png",
-        icon: "faSnowplow" // Or any other icon representing tours
+        icon: faSnowplow
       }
     ],
     valuation: {
       averageRating: 4.9,
       totalRatings: 25,
       categories: [
-        { name: 'Cleanliness', rating: 4.9, icon: "" },
-        { name: 'Accuracy', rating: 4.9, icon: "" },
-        { name: 'Check-in', rating: 4.9, icon: "" },
-        { name: 'Communication ', rating: 4.9, icon: "" },
-        { name: 'Location', rating: 4.9, icon: "" },
-        { name: 'Price', rating: 4.9, icon: "" },
+        { name: 'Cleanliness', rating: 4.9, icon: faBroom },
+        { name: 'Accuracy', rating: 4.9, icon: faBullseye },
+        { name: 'Check-in', rating: 4.9, icon: faClipboardCheck },
+        { name: 'Communication ', rating: 4.9, icon: faComments },
+        { name: 'Location', rating: 4.9, icon: faMapMarkerAlt },
+        { name: 'Price', rating: 4.9, icon: faTag },
       ]
     },
     host: {
