@@ -2,12 +2,16 @@ import React from 'react';
 import { AccommodationsCard } from '@/components/Accommodations/AccommodationsCard';
 import Link from 'next/link';
 import { accommodations_data } from '@/lib/data';
+import { accommodation_search } from '@/lib/data';
+import AccommodationsSearch from '@/components/Accommodations/AccommodationsSearch';
 
 
 function Accomodation() {
     return (
         <div>
-            <h1 className="text-textTitle text-5xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Search results</h1>
+            <AccommodationsSearch data={accommodation_search} />
+
+            {/* <h1 className="text-textTitle text-5xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Search results</h1>
             <h2 className="text-xl text-muted-foreground my-5">These are the accommodations options we found for you!</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
@@ -21,7 +25,7 @@ function Accomodation() {
                         />
                     </Link>
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 }
