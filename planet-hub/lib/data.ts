@@ -589,3 +589,20 @@ export const accommodation_search = [
   }
 
 ] as const;
+
+// Users info
+
+export let users_data = [
+  {
+    user: "admin",
+    name: "Juan",
+    email: "juan@hotmail.com",
+    password: "admin"
+  },
+  {
+    user: "test",
+    name: "Pepito",
+    email: "pepito@hotmail.com",
+    password: "test"
+  }
+]

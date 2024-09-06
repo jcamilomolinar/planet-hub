@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
 import Logo from '@/public/Logo.png'
-import LoginSheet from '@/components/ui/loginSheet';
-import SignUpSheet from '@/components/ui/signUpSheet';
+import { LoginForm } from '@/components/LoginSheet';
+import { SignUpForm } from '@/components/SignUpSheet';
 
 function NavBar() {
   return (
@@ -31,12 +31,14 @@ function NavBar() {
             <Link href='/flights'>Flights</Link>
           </Button>
         </li>
-        <li>
-          <LoginSheet></LoginSheet>
-        </li>
-        <li>
-          <SignUpSheet />
-        </li>
+        <div className='flex gap-5 mx-3'>
+          <li>
+            <LoginForm />
+          </li>
+          <li>
+            <SignUpForm />
+          </li>
+        </div>
       </ul>
     </nav>
   );

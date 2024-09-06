@@ -41,7 +41,7 @@ import { Calendar } from "@/components/ui/calendar"
 import { Flight } from "@/components/Flight"
 import { planets, tours, wheaters, activityTypes, puntuations, flights_data } from "@/lib/data"
 import { Separator } from "@/components/ui/separator"
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function FlightSearchFormFieldDate({ form, title, name, description }:
   { form: any, name: string, title: string, description: string }){
@@ -198,23 +198,23 @@ const planetsList = planets.map(planet => ({
   value: planet.name
 }));
   
-  const DATE_REQUIRED_ERROR = "Date is required.";
+const DATE_REQUIRED_ERROR = "Date is required.";
 
-  const FormSchema = z.object({
-    planet: z.string(),
-    tour: z.string(),
-    weather: z.string(),
-    activityType: z.string(),
-    puntuation: z.string(),
-    price: z.coerce.number().nonnegative(),
-    timeTravel: z.coerce.number().nonnegative(),
-    date: z.object({
-            from: z.date().optional(),
-            to: z.date().optional(),
-          }, {required_error: DATE_REQUIRED_ERROR}).refine((date) => {
-          return !!date.from;
-          }, DATE_REQUIRED_ERROR),
-    })
+const FormSchema = z.object({
+  planet: z.string(),
+  tour: z.string(),
+  weather: z.string(),
+  activityType: z.string(),
+  puntuation: z.string(),
+  price: z.coerce.number().nonnegative(),
+  timeTravel: z.coerce.number().nonnegative(),
+  date: z.object({
+          from: z.date().optional(),
+          to: z.date().optional(),
+        }, {required_error: DATE_REQUIRED_ERROR}).refine((date) => {
+        return !!date.from;
+        }, DATE_REQUIRED_ERROR),
+})
 
 export function FlightSearchForm() {
   const [flights, setFlights]: any = useState([]);
