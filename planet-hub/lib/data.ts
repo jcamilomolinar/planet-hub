@@ -565,3 +565,27 @@ export const accommodations: AccommodationsData[] = [
   }
 ] as const;
 
+export const accommodation_search = [
+  {
+    "id": "acc001",
+    "planet": "Marte",
+    "date": setDate("2024-09-20"),
+    "capacity": 2,
+    "pricePerNight": 500,
+  },
+  {
+    "id": "acc002",
+    "planet": "Luna",
+    "date": setDate("2024-10-22"),
+    "capacity": 4,
+    "pricePerNight": 750,
+  },
+  {
+    "id": "acc003",
+    "planet": "Venus",
+    "date": setDate("2024-06-26"),
+    "capacity": 3,
+    "pricePerNight": 1000,
+  }
+
+] as const;
