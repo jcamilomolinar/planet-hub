@@ -14,7 +14,6 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,6 +24,8 @@ import { buttonVariants } from "@/components/ui/button"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { users_data } from "@/lib/data"
+import { useState } from "react";
 
 function LoginFormFieldInput({ form, title, name, type }:
   { form: any, name: string, title: string, type: string }) {
@@ -52,6 +53,9 @@ const FormSchema = z.object({
 })
 
 export function LoginForm() {
+  const [registered, setRegistered] = useState<boolean>();
+  const [notRegistered, setNotRegistered] = useState<boolean>();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -61,7 +65,21 @@ export function LoginForm() {
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
+
+    const isRegistered: boolean = users_data.some(
+      (userObj: {user: string, name: string, email: string, password: string}) => 
+        userObj.user === data.user && userObj.password === data.password
+    );
+
+    if (isRegistered){
+      setNotRegistered(false);
+      setRegistered(true);
+      localStorage.setItem("user", data.user);
+    } else {
+      setRegistered(false);
+      setNotRegistered(true);
+    }
+
   };
 
   return (
@@ -85,7 +103,7 @@ export function LoginForm() {
               <Button className="my-5" type="submit" variant="outline">Log in!</Button>
             </form>
           </Form>
-        <SheetFooter>
+        <SheetFooter className="flex flex-col">
           <SheetClose
             className={buttonVariants({
               variant: "destructive",
@@ -95,6 +113,16 @@ export function LoginForm() {
             Close
           </SheetClose>
         </SheetFooter>
+        {registered && (
+            <div>
+              <p className="text-textTitle text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.5)] text-center my-10">Log in successful!</p>
+            </div>
+        )}
+        {notRegistered && (
+            <div>
+              <p className="text-textTitle text-xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.5)] text-center my-10">You are not registered, Sign up first!</p>
+            </div>
+        )}
       </SheetContent>
     </Sheet>
   );
