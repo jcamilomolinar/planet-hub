@@ -173,11 +173,11 @@ export const puntuations = [
     }
   ] as const
   
-const setDateToMidnight = (date: string) => {
-  const newDate = new Date(date);
-  newDate.setHours(0, 0, 0, 0);
-  return newDate;
-};
+  const setDate = (date: string) => {
+    const [year, month, day] = date.split('-').map(Number);
+    const newDate = new Date(year, month - 1, day, 0, 0, 0, 0);
+    return newDate;
+  };
 
 export const flights_data = [
     {
@@ -186,7 +186,7 @@ export const flights_data = [
         "weather": "aurora_borealis",
         "activityType": "yoga_retreat",
         "puntuation": "2.53",
-        "date": setDateToMidnight("2024-09-01"),
+        "date": setDate("2024-09-01"),
         "time": "14:30",
         "price": 14500,
         "timeTravel": 120
@@ -197,7 +197,7 @@ export const flights_data = [
         "weather": "icy_tundra",
         "activityType": "skydiving_thrill",
         "puntuation": "1.44",
-        "date": setDateToMidnight("2024-09-02"),
+        "date": setDate("2024-09-02"),
         "time": "09:15",
         "price": 17500,
         "timeTravel": 95
@@ -208,7 +208,7 @@ export const flights_data = [
         "weather": "desert_heatwave",
         "activityType": "yoga_retreat",
         "puntuation": "1.95",
-        "date": setDateToMidnight("2024-09-03"),
+        "date": setDate("2024-09-03"),
         "time": "16:45",
         "price": 12300,
         "timeTravel": 150
@@ -219,7 +219,7 @@ export const flights_data = [
         "weather": "aurora_borealis",
         "activityType": "skydiving_thrill",
         "puntuation": "2.14",
-        "date": setDateToMidnight("2024-09-04"),
+        "date": setDate("2024-09-04"),
         "time": "11:00",
         "price": 18900,
         "timeTravel": 80
@@ -230,7 +230,7 @@ export const flights_data = [
         "weather": "tropical_stormfront",
         "activityType": "yoga_retreat",
         "puntuation": "4.42",
-        "date": setDateToMidnight("2024-09-05"),
+        "date": setDate("2024-09-05"),
         "time": "18:30",
         "price": 15800,
         "timeTravel": 135
@@ -241,7 +241,7 @@ export const flights_data = [
         "weather": "rainforest_monsoon",
         "activityType": "deep_sea_diving",
         "puntuation": "1.15",
-        "date": setDateToMidnight("2024-09-06"),
+        "date": setDate("2024-09-06"),
         "time": "07:45",
         "price": 13700,
         "timeTravel": 110
@@ -252,7 +252,7 @@ export const flights_data = [
         "weather": "aurora_borealis",
         "activityType": "cultural_heritage_tour",
         "puntuation": "2.42",
-        "date": setDateToMidnight("2024-09-07"),
+        "date": setDate("2024-09-07"),
         "time": "12:00",
         "price": 16500,
         "timeTravel": 140
@@ -263,7 +263,7 @@ export const flights_data = [
         "weather": "tropical_stormfront",
         "activityType": "cultural_heritage_tour",
         "puntuation": "2.44",
-        "date": setDateToMidnight("2024-09-08"),
+        "date": setDate("2024-09-08"),
         "time": "15:30",
         "price": 15500,
         "timeTravel": 125
@@ -274,7 +274,7 @@ export const flights_data = [
         "weather": "aurora_borealis",
         "activityType": "yoga_retreat",
         "puntuation": "2.53",
-        "date": setDateToMidnight("2024-09-15"),
+        "date": setDate("2024-09-15"),
         "time": "10:00",
         "price": 14800,
         "timeTravel": 120
@@ -285,7 +285,7 @@ export const flights_data = [
         "weather": "icy_tundra",
         "activityType": "skydiving_thrill",
         "puntuation": "1.44",
-        "date": setDateToMidnight("2024-09-16"),
+        "date": setDate("2024-09-16"),
         "time": "13:45",
         "price": 18200,
         "timeTravel": 95
@@ -296,7 +296,7 @@ export const flights_data = [
         "weather": "desert_heatwave",
         "activityType": "yoga_retreat",
         "puntuation": "1.95",
-        "date": setDateToMidnight("2024-09-17"),
+        "date": setDate("2024-09-17"),
         "time": "08:30",
         "price": 12900,
         "timeTravel": 150
@@ -307,7 +307,7 @@ export const flights_data = [
         "weather": "aurora_borealis",
         "activityType": "skydiving_thrill",
         "puntuation": "2.14",
-        "date": setDateToMidnight("2024-09-18"),
+        "date": setDate("2024-09-18"),
         "time": "17:15",
         "price": 19400,
         "timeTravel": 80
@@ -318,7 +318,7 @@ export const flights_data = [
         "weather": "tropical_stormfront",
         "activityType": "yoga_retreat",
         "puntuation": "4.42",
-        "date": setDateToMidnight("2024-09-19"),
+        "date": setDate("2024-09-19"),
         "time": "14:00",
         "price": 16200,
         "timeTravel": 135
@@ -329,7 +329,7 @@ export const flights_data = [
         "weather": "rainforest_monsoon",
         "activityType": "deep_sea_diving",
         "puntuation": "1.15",
-        "date": setDateToMidnight("2024-09-20"),
+        "date": setDate("2024-09-20"),
         "time": "06:30",
         "price": 14100,
         "timeTravel": 110
@@ -340,7 +340,7 @@ export const flights_data = [
         "weather": "aurora_borealis",
         "activityType": "cultural_heritage_tour",
         "puntuation": "2.42",
-        "date": setDateToMidnight("2024-09-21"),
+        "date": setDate("2024-09-21"),
         "time": "09:00",
         "price": 17000,
         "timeTravel": 140
@@ -351,7 +351,7 @@ export const flights_data = [
         "weather": "tropical_stormfront",
         "activityType": "cultural_heritage_tour",
         "puntuation": "2.44",
-        "date": setDateToMidnight("2024-09-22"),
+        "date": setDate("2024-09-22"),
         "time": "12:30",
         "price": 15800,
         "timeTravel": 125

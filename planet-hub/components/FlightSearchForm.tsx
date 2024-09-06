@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { useForm } from "react-hook-form"
-import { date, map, z } from "zod"
+import { z } from "zod"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -237,7 +237,6 @@ export function FlightSearchForm() {
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(([_, value]) => value !== "" && value !== 0)
     );
-
     let filterFlightsByData = (flights: any, data: any) => {
       return flights.filter((flight: any) => {
           return Object.entries(data).every(([key, value]) => {
@@ -258,7 +257,6 @@ export function FlightSearchForm() {
     let show_flights = filterFlightsByData(flights_data, filteredData);
 
     if (show_flights.length === 0 ) {
-      console.log("Aqui estoy")
       setNoFlights(true);
       setFlights([]);
     } else {
