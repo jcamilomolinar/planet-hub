@@ -2,6 +2,8 @@ import PlanetPhoto from "@/public/planet.jpg";
 import { AccommodationsData } from "@/lib/types";
 import { faSwimmer, faTaxi, faSnowflake, faGlobe, faClock, faSnowplow, faBroom, faBullseye, faClipboardCheck, faComments, faMapMarkerAlt, faTag } from '@fortawesome/free-solid-svg-icons';
 
+// Planets
+
 export const planets = [
   {
     "name": "Tatooine",
@@ -36,6 +38,8 @@ export const planets = [
     "description": "Kamino is an oceanic planet situated in the Wild Space region, known for its endless storms and vast oceans that cover nearly the entire planet. The planet's inhabitants, the Kaminoans, are skilled cloners and genetic engineers, living in towering cities that rise above the ocean's surface. Kamino is most famous for being the birthplace of the Grand Army of the Republic, as it was here that the Clone Army was created using the genetic template of the bounty hunter Jango Fett. The planet's isolation and constant storms make it a difficult and secretive place, adding to its enigmatic nature."
   }
 ] as const
+
+// Flights Info
 
 export const tours = [
   {
@@ -177,11 +181,12 @@ export const puntuations = [
     }
   ] as const
   
-  const setDate = (date: string) => {
+
+const setDate = (date: string) => {
     const [year, month, day] = date.split('-').map(Number);
     const newDate = new Date(year, month - 1, day, 0, 0, 0, 0);
     return newDate;
-  };
+};
 
 export const flights_data = [
     {
@@ -362,7 +367,7 @@ export const flights_data = [
     }
 ] as const;
 
-// Accomodations
+// Accomodations info
 
 export const accommodations_data = [
   {
@@ -408,8 +413,6 @@ export const accommodations_data = [
     accommodationPrice: "2.100.000"
   }
 ] as const;
-
-
 
 export const accommodations: AccommodationsData[] = [
   {
@@ -561,3 +564,4 @@ export const accommodations: AccommodationsData[] = [
     }
   }
 ] as const;
+

@@ -239,7 +239,7 @@ export function FlightSearchForm() {
     );
     let filterFlightsByData = (flights: any, data: any) => {
       return flights.filter((flight: any) => {
-          return Object.entries(data).every(([key, value]) => {
+          return Object.entries(data).every(([key, value]:[key: any, value: any]) => {
               if (key === 'date' && value !== null) {
                   const flightDate = flight.date;
                   const fromDate = value.from;
