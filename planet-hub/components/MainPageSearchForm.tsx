@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { date, z } from "zod"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -38,6 +38,8 @@ import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
 import { planets } from "@/lib/data"
+import { useRouter } from 'next/navigation'
+import { useState } from "react"
 
 function MainPageFormFieldDate({ form, title, name, description }:
   { form: any, name: string, title: string, description: string }){
@@ -184,12 +186,32 @@ const planetsList = planets.map(planet => ({
     })
 
 export function MainPageSearchForm() {
+  const [isFlightsButton, setIsFlightsButton] = useState<boolean>();
+  const [isAccomodationsButton, setIsAccomodationsButton] = useState<boolean>();
+  const router = useRouter();
+
+  const handleClickFlights = () => {
+    setIsFlightsButton(true);
+    setIsAccomodationsButton(false);
+  };
+
+  const handleClickAccomodations = () => {
+    setIsAccomodationsButton(true);
+    setIsFlightsButton(false);
+  };
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
+    localStorage.setItem("planetName", data.planet);
+    localStorage.setItem("date", JSON.stringify(data.date));
+    if (isFlightsButton) {
+      router.push('/flights');
+    } else if (isAccomodationsButton) {
+      router.push('/accomodation');
+    }
   }
 
   return (
@@ -206,8 +228,8 @@ export function MainPageSearchForm() {
                     <MainPageFormFieldCombobox elements={planetsList} form={form} title="Planet" name="planet" description="Select the planet of your preference." />
                     <MainPageFormFieldDate form={form} title="Travel date" name="date" description="Enter when you will travel." />
                     <div className="grid items-center justify-items-center">
-                      <Button className="w-2/3" type="submit" variant="outline">Search flights 🚀</Button>
-                      <Button className="w-2/3" type="submit" variant="outline">Search accomodations 🏨</Button>
+                      <Button onClick={handleClickFlights} className="w-2/3" type="submit" variant="outline">View flights 🚀</Button>
+                      <Button onClick={handleClickAccomodations} className="w-2/3" type="submit" variant="outline">View accomodations 🏨</Button>
                     </div>
                   </div>
               </div>

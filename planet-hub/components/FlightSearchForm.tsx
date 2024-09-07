@@ -41,7 +41,10 @@ import { Calendar } from "@/components/ui/calendar"
 import { Flight } from "@/components/Flight"
 import { planets, tours, wheaters, activityTypes, puntuations, flights_data } from "@/lib/data"
 import { Separator } from "@/components/ui/separator"
-import { useState } from 'react';
+import { 
+  useState, 
+  useEffect 
+} from 'react'
 
 function FlightSearchFormFieldDate({ form, title, name, description }:
   { form: any, name: string, title: string, description: string }) {
@@ -219,6 +222,19 @@ const FormSchema = z.object({
 export function FlightSearchForm() {
   const [flights, setFlights]: any = useState([]);
   const [noFlights, setNoFlights]: any = useState(false);
+
+  useEffect(() => {
+    const storedPlanet = localStorage.getItem('planetName');
+    const storedDate = localStorage.getItem('date');
+    if (storedPlanet) {
+      form.setValue("planet", storedPlanet);
+      localStorage.removeItem('planetName');
+    }
+    if (storedDate !== null) {
+      form.setValue("date", JSON.parse(storedDate));
+      localStorage.removeItem('date');
+    }
+  }, []);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

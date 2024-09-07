@@ -53,11 +53,9 @@ const FormSchema = z.object({
 })
 
 export function LoginForm({setIsLogged}: {setIsLogged: any}) {
-  const [registered, setRegistered] = useState<boolean>();
   const [notRegistered, setNotRegistered] = useState<boolean>();
 
   const handleClick = () => {
-    setRegistered(false);
     setNotRegistered(false);
   };
 

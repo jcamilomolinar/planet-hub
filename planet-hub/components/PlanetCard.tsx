@@ -1,5 +1,7 @@
-import * as React from "react";
-import Image, { StaticImageData } from "next/image";
+"use client";
+
+import * as React from "react"
+import Image, { StaticImageData } from "next/image"
 import {
     Card,
     CardContent,
@@ -7,7 +9,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Drawer,
   DrawerClose,
@@ -17,8 +19,14 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
+import Link from 'next/link'
 
 export function PlanetCard({planetName, planetPhoto, description }: {planetName: string, planetPhoto: StaticImageData, description: string }) {
+
+  const handleClickFlights = () => {
+    localStorage.setItem("planetName", planetName);
+  };
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -47,8 +55,12 @@ export function PlanetCard({planetName, planetPhoto, description }: {planetName:
           </div>
 
           <DrawerFooter className="flex flex-row">
-            <Button variant="outline">View flights 🚀</Button>
-            <Button variant="outline">View accomodations 🏨</Button>
+            <Button onClick={handleClickFlights} variant="outline">
+              <Link href='/flights'>View flights 🚀</Link>
+            </Button>
+            <Button variant="outline">
+              <Link href='/accomodation'>View accomodations 🏨</Link>
+            </Button>
             <DrawerClose asChild>
               <Button variant="destructive">Close</Button>
             </DrawerClose>

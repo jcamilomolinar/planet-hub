@@ -1,5 +1,5 @@
-import { PlanetCard } from "@/components/PlanetCard";
-import PlanetPhoto from "@/public/planet.jpg";
+import { PlanetCard } from "@/components/PlanetCard"
+import PlanetPhoto from "@/public/planet.jpg"
 import { planets } from "@/lib/data"
 
 export default function Home() {
