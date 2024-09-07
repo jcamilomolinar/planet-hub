@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from 'react'
+import { 
+  useState,
+  useEffect
+} from 'react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,6 +14,13 @@ import { UserMenu } from '@/components/UserMenu';
 
 function NavBar() {
   const [isLogged, setIsLogged] = useState<boolean>();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setIsLogged(true)
+    }
+  }, []);
 
   return (
     <nav className='bg-palleteBlue flex justify-between'>
@@ -39,13 +49,13 @@ function NavBar() {
         <div>
           {isLogged && (
               <div>
-                <UserMenu />
+                <UserMenu setIsLogged={setIsLogged} />
               </div>
           )}
           {!isLogged && (
             <div className='flex gap-5 mx-3'>
               <li>
-                <LoginForm setIsLogged={setIsLogged}/>
+                <LoginForm setIsLogged={setIsLogged} />
               </li>
               <li>
                 <SignUpForm />
