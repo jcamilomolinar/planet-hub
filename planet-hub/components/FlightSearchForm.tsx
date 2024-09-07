@@ -1,20 +1,10 @@
 "use client"
-
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Check, ChevronsUpDown } from "lucide-react"
-import { useForm } from "react-hook-form"
-import { date, map, z } from "zod"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command"
+import React, { useState } from 'react';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -23,47 +13,70 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/form";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
-import { Calendar } from "@/components/ui/calendar"
-import { Flight } from "@/components/Flight"
-import { planets, tours, wheaters, activityTypes, puntuations, flights_data } from "@/lib/data"
-import { Separator } from "@/components/ui/separator"
-import { useState, useEffect } from 'react';
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 
-function FlightSearchFormFieldDate({ form, title, name, description }:
-  { form: any, name: string, title: string, description: string }){
-  
-  return(
+const accommodationSchema = z.object({
+  id: z.string(),
+  planet: z.string(),
+  availableFrom: z.date(),
+  availableTo: z.date(),
+  capacity: z.number().positive(),
+  pricePerNight: z.number().positive(),
+});
+
+const searchFormSchema = z.object({
+  planet: z.string().optional(),
+  date: z.object({
+    from: z.date(),
+    to: z.date().optional(),
+  }),
+  guests: z.number().min(1, "At least 1 guest is required"),
+  max_price: z.number().nonnegative().optional().refine((max_price) => max_price === undefined || max_price > 0, {
+    message: "The maximum price must be greater than 0",
+  }),
+});
+
+type SearchFormInputs = z.infer<typeof searchFormSchema>;
+
+function FlightSearchFormFieldDate({ form, title, name, description }: {
+  form: any;
+  title: string;
+  name: string;
+  description: string;
+}) {
+  return (
     <FormField
       control={form.control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className="flex flex-col">
           <FormLabel>{title}</FormLabel>
-          <FormControl>
-            <Popover>
-              <PopoverTrigger asChild>
+          <Popover>
+            <PopoverTrigger asChild>
+              <FormControl>
                 <Button
                   variant={"outline"}
                   className={cn(
-                    "w-full justify-start text-left font-normal",
-                    !field.value && "text-muted-foreground",
+                    "w-[240px] pl-3 text-left font-normal",
+                    !field.value && "text-muted-foreground"
                   )}
                 >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
                   {field.value?.from ? (
                     field.value.to ? (
                       <>
@@ -76,20 +89,21 @@ function FlightSearchFormFieldDate({ form, title, name, description }:
                   ) : (
                     <span>Pick a date</span>
                   )}
+                  <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                 </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
-                <Calendar
-                  initialFocus
-                  mode="range"
-                  defaultMonth={field.value?.from}
-                  selected={field.value}
-                  onSelect={field.onChange}
-                  numberOfMonths={2}
-                />
-              </PopoverContent>
-            </Popover>
-          </FormControl>
+              </FormControl>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                initialFocus
+                mode="range"
+                defaultMonth={field.value?.from}
+                selected={field.value}
+                onSelect={field.onChange}
+                numberOfMonths={2}
+              />
+            </PopoverContent>
+          </Popover>
           <FormDescription>
             {description}
           </FormDescription>
@@ -100,172 +114,47 @@ function FlightSearchFormFieldDate({ form, title, name, description }:
   );
 }
 
-function FlightSearchFormFieldInput({ form, title, name, description }:
-  { form: any, name: string, title: string, description: string }) {
-  
-  return (
-      <FormField
-      control={form.control}
-      name={name}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>{title}</FormLabel>
-          <FormControl>
-            <Input type="numeric" placeholder="Write!" {...field} />
-          </FormControl>
-          <FormDescription>
-            {description}
-          </FormDescription>
-            <FormMessage />
-          </FormItem>
-          )}
-        />
-  )
-}
+function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSchema>[] }) {
+  const [searchResults, setSearchResults] = useState<z.infer<typeof accommodationSchema>[]>([]);
 
-function FlightSearchFormFieldCombobox({ elements, form, title, name, description }:
-    { elements: any, form: any, name: string, title: string, description: string }) {
-  
-    return (
-        <FormField
-        control={form.control}
-        name={name}
-        render={({ field }:{field: any}) => (
-          <FormItem className="flex flex-col">
-            <FormLabel>{title}</FormLabel>
-            <Popover>
-              <PopoverTrigger asChild>
-                <FormControl>
-                  <Button
-                    variant="outline"
-                    role="combobox"
-                    className={cn(
-                      "w-[200px] justify-between",
-                      !field.value && "text-muted-foreground"
-                    )}
-                  >
-                    {field.value
-                      ? elements.find(
-                          (element: any) => element.value === field.value
-                        )?.label
-                      : "Select an option"}
-                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                  </Button>
-                </FormControl>
-              </PopoverTrigger>
-              <PopoverContent className="w-[200px] p-0">
-                <Command>
-                  <CommandInput placeholder="Search option..." />
-                  <CommandList>
-                    <CommandEmpty>Not found</CommandEmpty>
-                    <CommandGroup>
-                      {elements.map((element: any) => (
-                        <CommandItem
-                          value={element.label}
-                          key={element.value}
-                          onSelect={() => {
-                            form.setValue(name, element.value)
-                          }}
-                        >
-                          <Check
-                            className={cn(
-                              "mr-2 h-4 w-4",
-                              element.value === field.value
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                          {element.label}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </CommandList>
-                </Command>
-              </PopoverContent>
-            </Popover>
-            <FormDescription>
-              {description}
-            </FormDescription>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-    );
-}
-
-const planetsList = planets.map(planet => ({
-  label: planet.name,
-  value: planet.name
-}));
-  
-  const DATE_REQUIRED_ERROR = "Date is required.";
-
-  const FormSchema = z.object({
-    planet: z.string(),
-    tour: z.string(),
-    weather: z.string(),
-    activityType: z.string(),
-    puntuation: z.string(),
-    price: z.coerce.number().nonnegative(),
-    timeTravel: z.coerce.number().nonnegative(),
-    date: z.object({
-            from: z.date().optional(),
-            to: z.date().optional(),
-          }, {required_error: DATE_REQUIRED_ERROR}).refine((date) => {
-          return !!date.from;
-          }, DATE_REQUIRED_ERROR),
-    })
-
-export function FlightSearchForm() {
-  const [flights, setFlights]: any = useState([]);
-  const [noFlights, setNoFlights]: any = useState(false);
-
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<SearchFormInputs>({
+    resolver: zodResolver(searchFormSchema),
     defaultValues: {
       planet: "",
-      tour: "",
-      weather: "",
-      activityType: "",
-      puntuation: "",
-      price: 0,
-      timeTravel: 0
-    }
-  })
+      guests: 1,
+      max_price: undefined,
+    },
+  });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    const filteredData = Object.fromEntries(
-      Object.entries(data).filter(([_, value]) => value !== "" && value !== 0)
+  const onSubmit = (formData: SearchFormInputs) => {
+    let results = data;
+
+    if (formData.planet) {
+      results = results.filter((accommodationInfo) =>
+        accommodationInfo.planet === formData.planet
+      );
+    }
+
+    if (formData.date?.from) {
+      results = results.filter((accommodationInfo) => {
+        const fromDate = formData.date.from;
+        const toDate = formData.date.to || fromDate;
+        return accommodationInfo.availableFrom <= toDate && accommodationInfo.availableTo >= fromDate;
+      });
+    }
+
+    if (formData.max_price) {
+      results = results.filter((accommodationInfo) =>
+        accommodationInfo.pricePerNight <= formData.max_price!
+      );
+    }
+
+    results = results.filter((accommodationInfo) =>
+      accommodationInfo.capacity >= formData.guests
     );
 
-    let filterFlightsByData = (flights: any, data: any) => {
-      return flights.filter((flight: any) => {
-          return Object.entries(data).every(([key, value]) => {
-              if (key === 'date' && value !== null) {
-                  const flightDate = flight.date;
-                  const fromDate = value.from;
-                  if(value.to !== undefined){
-                    const toDate = value.to;
-                    return flightDate.getTime() === fromDate.getTime() || flightDate.getTime() === toDate.getTime();
-                  } else {
-                    return flightDate.getTime() === fromDate.getTime()
-                  }
-              }
-              return flight[key] === value;
-          });
-      });
-    };
-    let show_flights = filterFlightsByData(flights_data, filteredData);
-
-    if (show_flights.length === 0 ) {
-      console.log("Aqui estoy")
-      setNoFlights(true);
-      setFlights([]);
-    } else {
-      setNoFlights(false);
-      setFlights(show_flights);
-    }
-  }
+    setSearchResults(results);
+  };
 
   return (
     <div>
@@ -273,44 +162,91 @@ export function FlightSearchForm() {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Card>
             <CardHeader>
-              <CardTitle className="text-textTitle">Search Flights</CardTitle>
+              <CardTitle className="text-textTitle">Search Accommodations</CardTitle>
             </CardHeader>
             <CardContent className="text-textAll">
-            <div>
-                <div className="grid grid-cols-5 grid-rows-1 gap-6">
-                  <FlightSearchFormFieldCombobox elements={planetsList} form={form} title="Planet" name="planet" description="Select the planet." />
-                  <FlightSearchFormFieldCombobox elements={tours} form={form} title="Tours" name="tour" description="Select the tour of your preference." />
-                  <FlightSearchFormFieldCombobox elements={wheaters} form={form} title="Weather" name="weather" description="Select the weather of your preference." />
-                  <FlightSearchFormFieldCombobox elements={activityTypes} form={form} title="Type of activity" name="activityType" description="Select the type of activity of your preference." />
-                  <FlightSearchFormFieldCombobox elements={puntuations} form={form} title="Puntuation" name="puntuation" description="Select the minimum puntuation you want for your destination." />
-                </div>
-                <div className="grid grid-cols-3 grid-rows-1 gap-6">
-                  <FlightSearchFormFieldDate form={form} title="Travel date" name="date" description="Enter when you will travel." />
-                  <FlightSearchFormFieldInput form={form} title="Price" name="price" description="Enter your maximum budget (0 if you don't have a maximum)." />
-                  <FlightSearchFormFieldInput form={form} title="Time travel" name="timeTravel" description="Enter your desired maximum travel time (0 if you don't have a maximum)." />
-                </div>
-            </div>
-              <Button className="my-5" type="submit" variant="outline">Search!</Button>
+              <div className="grid grid-cols-2 gap-6">
+                <FormField
+                  control={form.control}
+                  name="planet"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Planet</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter planet name" {...field} />
+                      </FormControl>
+                      <FormDescription>
+                        Enter the planet you want to visit.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="guests"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Number of guests</FormLabel>
+                      <FormControl>
+                        <Input type="number" {...field} onChange={e => field.onChange(parseInt(e.target.value))} />
+                      </FormControl>
+                      <FormDescription>
+                        Enter the number of guests.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FlightSearchFormFieldDate
+                  form={form}
+                  title="Travel date"
+                  name="date"
+                  description="Enter when you will travel."
+                />
+                <FormField
+                  control={form.control}
+                  name="max_price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Maximum price per night</FormLabel>
+                      <FormControl>
+                        <Input type="number" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} />
+                      </FormControl>
+                      <FormDescription>
+                        Enter the maximum price per night (optional).
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <Button className="mt-6" type="submit">Search</Button>
             </CardContent>
           </Card>
         </form>
       </Form>
-      <Separator className="my-5"/>
+      <Separator className="my-8" />
       <div>
-        {noFlights && (
-            <div>
-              <p className="text-textTitle text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.5)] text-center my-10">Oops, it seems that there are no flights with those characteristics, try entering other data.</p>
-            </div>
+        <h2 className="text-2xl font-bold mb-4">Search Results</h2>
+        {searchResults.length === 0 ? (
+          <p>No accommodations found matching your criteria.</p>
+        ) : (
+          <ul className="space-y-4">
+            {searchResults.map((result) => (
+              <li key={result.id} className="border p-4 rounded-md">
+                <p className="font-semibold">Planet: {result.planet}</p>
+                <p>Capacity: {result.capacity} guests</p>
+                <p>Price per night: {result.pricePerNight}</p>
+                <p>Available from: {format(result.availableFrom, "PPP")}</p>
+                <p>Available to: {format(result.availableTo, "PPP")}</p>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
-      <div>
-        {
-          flights.map((flight: any, index: number) => (
-            <Flight key={index} planet={flight.planet} timeTravel={flight.timeTravel} price={flight.price} hour={flight.time} />
-          ))
-        }
-      </div>
-
     </div>
-  )
+  );
 }
+
+export default AccommodationsSearch;
