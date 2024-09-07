@@ -2,6 +2,8 @@ import PlanetPhoto from "@/public/planet.jpg";
 import { AccommodationsData } from "@/lib/types";
 import { faSwimmer, faTaxi, faSnowflake, faGlobe, faClock, faSnowplow, faBroom, faBullseye, faClipboardCheck, faComments, faMapMarkerAlt, faTag } from '@fortawesome/free-solid-svg-icons';
 
+// Planets
+
 export const planets = [
   {
     "name": "Tatooine",
@@ -36,6 +38,8 @@ export const planets = [
     "description": "Kamino is an oceanic planet situated in the Wild Space region, known for its endless storms and vast oceans that cover nearly the entire planet. The planet's inhabitants, the Kaminoans, are skilled cloners and genetic engineers, living in towering cities that rise above the ocean's surface. Kamino is most famous for being the birthplace of the Grand Army of the Republic, as it was here that the Clone Army was created using the genetic template of the bounty hunter Jango Fett. The planet's isolation and constant storms make it a difficult and secretive place, adding to its enigmatic nature."
   }
 ] as const
+
+// Flights Info
 
 export const tours = [
   {
@@ -177,9 +181,10 @@ export const puntuations = [
   }
 ] as const
 
-const setDateToMidnight = (date: string) => {
-  const newDate = new Date(date);
-  newDate.setHours(0, 0, 0, 0);
+
+const setDate = (date: string) => {
+  const [year, month, day] = date.split('-').map(Number);
+  const newDate = new Date(year, month - 1, day, 0, 0, 0, 0);
   return newDate;
 };
 
@@ -190,7 +195,7 @@ export const flights_data = [
     "weather": "aurora_borealis",
     "activityType": "yoga_retreat",
     "puntuation": "2.53",
-    "date": setDateToMidnight("2024-09-01"),
+    "date": setDate("2024-09-01"),
     "time": "14:30",
     "price": 14500,
     "timeTravel": 120
@@ -201,7 +206,7 @@ export const flights_data = [
     "weather": "icy_tundra",
     "activityType": "skydiving_thrill",
     "puntuation": "1.44",
-    "date": setDateToMidnight("2024-09-02"),
+    "date": setDate("2024-09-02"),
     "time": "09:15",
     "price": 17500,
     "timeTravel": 95
@@ -212,7 +217,7 @@ export const flights_data = [
     "weather": "desert_heatwave",
     "activityType": "yoga_retreat",
     "puntuation": "1.95",
-    "date": setDateToMidnight("2024-09-03"),
+    "date": setDate("2024-09-03"),
     "time": "16:45",
     "price": 12300,
     "timeTravel": 150
@@ -223,7 +228,7 @@ export const flights_data = [
     "weather": "aurora_borealis",
     "activityType": "skydiving_thrill",
     "puntuation": "2.14",
-    "date": setDateToMidnight("2024-09-04"),
+    "date": setDate("2024-09-04"),
     "time": "11:00",
     "price": 18900,
     "timeTravel": 80
@@ -234,7 +239,7 @@ export const flights_data = [
     "weather": "tropical_stormfront",
     "activityType": "yoga_retreat",
     "puntuation": "4.42",
-    "date": setDateToMidnight("2024-09-05"),
+    "date": setDate("2024-09-05"),
     "time": "18:30",
     "price": 15800,
     "timeTravel": 135
@@ -245,7 +250,7 @@ export const flights_data = [
     "weather": "rainforest_monsoon",
     "activityType": "deep_sea_diving",
     "puntuation": "1.15",
-    "date": setDateToMidnight("2024-09-06"),
+    "date": setDate("2024-09-06"),
     "time": "07:45",
     "price": 13700,
     "timeTravel": 110
@@ -256,7 +261,7 @@ export const flights_data = [
     "weather": "aurora_borealis",
     "activityType": "cultural_heritage_tour",
     "puntuation": "2.42",
-    "date": setDateToMidnight("2024-09-07"),
+    "date": setDate("2024-09-07"),
     "time": "12:00",
     "price": 16500,
     "timeTravel": 140
@@ -267,7 +272,7 @@ export const flights_data = [
     "weather": "tropical_stormfront",
     "activityType": "cultural_heritage_tour",
     "puntuation": "2.44",
-    "date": setDateToMidnight("2024-09-08"),
+    "date": setDate("2024-09-08"),
     "time": "15:30",
     "price": 15500,
     "timeTravel": 125
@@ -278,7 +283,7 @@ export const flights_data = [
     "weather": "aurora_borealis",
     "activityType": "yoga_retreat",
     "puntuation": "2.53",
-    "date": setDateToMidnight("2024-09-15"),
+    "date": setDate("2024-09-15"),
     "time": "10:00",
     "price": 14800,
     "timeTravel": 120
@@ -289,7 +294,7 @@ export const flights_data = [
     "weather": "icy_tundra",
     "activityType": "skydiving_thrill",
     "puntuation": "1.44",
-    "date": setDateToMidnight("2024-09-16"),
+    "date": setDate("2024-09-16"),
     "time": "13:45",
     "price": 18200,
     "timeTravel": 95
@@ -300,7 +305,7 @@ export const flights_data = [
     "weather": "desert_heatwave",
     "activityType": "yoga_retreat",
     "puntuation": "1.95",
-    "date": setDateToMidnight("2024-09-17"),
+    "date": setDate("2024-09-17"),
     "time": "08:30",
     "price": 12900,
     "timeTravel": 150
@@ -311,7 +316,7 @@ export const flights_data = [
     "weather": "aurora_borealis",
     "activityType": "skydiving_thrill",
     "puntuation": "2.14",
-    "date": setDateToMidnight("2024-09-18"),
+    "date": setDate("2024-09-18"),
     "time": "17:15",
     "price": 19400,
     "timeTravel": 80
@@ -322,7 +327,7 @@ export const flights_data = [
     "weather": "tropical_stormfront",
     "activityType": "yoga_retreat",
     "puntuation": "4.42",
-    "date": setDateToMidnight("2024-09-19"),
+    "date": setDate("2024-09-19"),
     "time": "14:00",
     "price": 16200,
     "timeTravel": 135
@@ -333,7 +338,7 @@ export const flights_data = [
     "weather": "rainforest_monsoon",
     "activityType": "deep_sea_diving",
     "puntuation": "1.15",
-    "date": setDateToMidnight("2024-09-20"),
+    "date": setDate("2024-09-20"),
     "time": "06:30",
     "price": 14100,
     "timeTravel": 110
@@ -344,7 +349,7 @@ export const flights_data = [
     "weather": "aurora_borealis",
     "activityType": "cultural_heritage_tour",
     "puntuation": "2.42",
-    "date": setDateToMidnight("2024-09-21"),
+    "date": setDate("2024-09-21"),
     "time": "09:00",
     "price": 17000,
     "timeTravel": 140
@@ -355,14 +360,14 @@ export const flights_data = [
     "weather": "tropical_stormfront",
     "activityType": "cultural_heritage_tour",
     "puntuation": "2.44",
-    "date": setDateToMidnight("2024-09-22"),
+    "date": setDate("2024-09-22"),
     "time": "12:30",
     "price": 15800,
     "timeTravel": 125
   }
 ] as const;
 
-// // Accomodations
+// Accomodations info
 
 // export const accommodations_data = [
 //   {
@@ -408,8 +413,6 @@ export const flights_data = [
 //     accommodationPrice: "2.100.000"
 //   }
 // ] as const;
-
-
 
 export const accommodations: AccommodationsData[] = [
   {
@@ -562,29 +565,28 @@ export const accommodations: AccommodationsData[] = [
   }
 ] as const;
 
-
 export const accommodation_search = [
   {
     "id": "acc001",
     "planet": "Marte",
-    "availableFrom": setDateToMidnight("2024-09-20"),
-    "availableTo": setDateToMidnight("2024-10-20"),
+    "availableFrom": setDate("2024-09-20"),
+    "availableTo": setDate("2024-10-20"),
     "capacity": 2,
     "pricePerNight": 500,
   },
   {
     "id": "acc002",
     "planet": "Luna",
-    "availableFrom": setDateToMidnight("2024-10-22"),
-    "availableTo": setDateToMidnight("2024-11-22"),
+    "availableFrom": setDate("2024-10-22"),
+    "availableTo": setDate("2024-11-22"),
     "capacity": 4,
     "pricePerNight": 750,
   },
   {
     "id": "acc003",
     "planet": "Venus",
-    "availableFrom": setDateToMidnight("2024-06-26"),
-    "availableTo": setDateToMidnight("2024-07-26"),
+    "availableFrom": setDate("2024-06-26"),
+    "availableTo": setDate("2024-07-26"),
     "capacity": 3,
     "pricePerNight": 1000,
   }
@@ -597,8 +599,8 @@ export const accommodations_data = [
   {
     id: "1",
     planet: "Marte",
-    availableFrom: setDateToMidnight("2024-09-10"),
-    availableTo: setDateToMidnight("2024-09-12"),
+    availableFrom: setDate("2024-09-10"),
+    availableTo: setDate("2024-09-12"),
     capacity: 4.2,
     pricePerNight: 1000,
     accommodationName: "Cabaña Marte",
@@ -612,8 +614,8 @@ export const accommodations_data = [
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 450,
     planet: "Neptuno",
-    availableFrom: setDateToMidnight("2024-10-01"),
-    availableTo: setDateToMidnight("2024-11-01"),
+    availableFrom: setDate("2024-10-01"),
+    availableTo: setDate("2024-11-01"),
     capacity: 4
   },
   {
@@ -623,8 +625,8 @@ export const accommodations_data = [
     accommodationPhotos: [PlanetPhoto],
     pricePerNight: 550,
     planet: "Jupiter",
-    availableFrom: setDateToMidnight("2024-09-15"),
-    availableTo: setDateToMidnight("2024-10-15"),
+    availableFrom: setDate("2024-09-15"),
+    availableTo: setDate("2024-10-15"),
     capacity: 3
   },
   {
@@ -634,8 +636,8 @@ export const accommodations_data = [
     accommodationPhotos: [PlanetPhoto, PlanetPhoto, PlanetPhoto],
     pricePerNight: 200,
     planet: "Venus",
-    availableFrom: setDateToMidnight("2024-08-01"),
-    availableTo: setDateToMidnight("2024-08-31"),
+    availableFrom: setDate("2024-08-01"),
+    availableTo: setDate("2024-08-31"),
     capacity: 2
   },
   {
@@ -645,8 +647,8 @@ export const accommodations_data = [
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 600,
     planet: "Saturno",
-    availableFrom: setDateToMidnight("2024-11-01"),
-    availableTo: setDateToMidnight("2024-12-01"),
+    availableFrom: setDate("2024-11-01"),
+    availableTo: setDate("2024-12-01"),
     capacity: 4
   },
   {
@@ -656,8 +658,8 @@ export const accommodations_data = [
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 400,
     planet: "Urano",
-    availableFrom: setDateToMidnight("2024-09-10"),
-    availableTo: setDateToMidnight("2024-10-10"),
+    availableFrom: setDate("2024-09-10"),
+    availableTo: setDate("2024-10-10"),
     capacity: 3
   },
   {
@@ -667,8 +669,8 @@ export const accommodations_data = [
     accommodationPhotos: [PlanetPhoto],
     pricePerNight: 300,
     planet: "Neptuno",
-    availableFrom: setDateToMidnight("2024-10-05"),
-    availableTo: setDateToMidnight("2024-11-05"),
+    availableFrom: setDate("2024-10-05"),
+    availableTo: setDate("2024-11-05"),
     capacity: 2
   },
   {
@@ -678,9 +680,30 @@ export const accommodations_data = [
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 350,
     planet: "Marte",
-    availableFrom: setDateToMidnight("2024-10-20"),
-    availableTo: setDateToMidnight("2024-10-25"),
+    availableFrom: setDate("2024-10-20"),
+    availableTo: setDate("2024-10-25"),
     capacity: 5
   }
 ] as const;
 
+// Users info
+
+export function addUser(user: string, name: string, email: string, password: string) {
+  const newUser = { user, name, email, password };
+  users_data.push(newUser);
+}
+
+export let users_data = [
+  {
+    user: "admin",
+    name: "Juan",
+    email: "juan@hotmail.com",
+    password: "admin"
+  },
+  {
+    user: "test",
+    name: "Pepito",
+    email: "pepito@hotmail.com",
+    password: "test"
+  }
+]

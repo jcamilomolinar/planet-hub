@@ -1,3 +1,5 @@
+import { IconDefinition } from '@fortawesome/fontawesome-common-types';
+
 export interface AccommodationsData {
     id: number;
     name: string;
@@ -11,7 +13,7 @@ export interface AccommodationsData {
         title: string;
         description: string;
         imageUrl: string;
-        icon: string;
+        icon: IconDefinition;
     }[];
     valuation: {
         averageRating: number;
@@ -19,7 +21,7 @@ export interface AccommodationsData {
         categories: readonly {
             name: string;
             rating: number;
-            icon: string;
+            icon: IconDefinition;
         }[];
     };
     host: {
