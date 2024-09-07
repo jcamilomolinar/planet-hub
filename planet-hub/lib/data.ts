@@ -159,266 +159,266 @@ export const activityTypes = [
 ] as const
 
 export const puntuations = [
-    {
-      "label": "⭐",
-      "value": "1"
-    },
-    {
-      "label": "⭐⭐",
-      "value": "2"
-    },
-    {
-      "label": "⭐⭐⭐",
-      "value": "3"
-    },
-    {
-      "label": "⭐⭐⭐⭐",
-      "value": "4"
-    },
-    {
-      "label": "None",
-      "value": ""
-    }
-  ] as const
-  
+  {
+    "label": "⭐",
+    "value": "1"
+  },
+  {
+    "label": "⭐⭐",
+    "value": "2"
+  },
+  {
+    "label": "⭐⭐⭐",
+    "value": "3"
+  },
+  {
+    "label": "⭐⭐⭐⭐",
+    "value": "4"
+  },
+  {
+    "label": "None",
+    "value": ""
+  }
+] as const
+
 
 const setDate = (date: string) => {
-    const [year, month, day] = date.split('-').map(Number);
-    const newDate = new Date(year, month - 1, day, 0, 0, 0, 0);
-    return newDate;
+  const [year, month, day] = date.split('-').map(Number);
+  const newDate = new Date(year, month - 1, day, 0, 0, 0, 0);
+  return newDate;
 };
 
 export const flights_data = [
-    {
-        "planet": "Tatooine",
-        "tour": "outer_rim_expedition",
-        "weather": "aurora_borealis",
-        "activityType": "yoga_retreat",
-        "puntuation": "2.53",
-        "date": setDate("2024-09-01"),
-        "time": "14:30",
-        "price": 14500,
-        "timeTravel": 120
-    },
-    {
-        "planet": "Coruscant",
-        "tour": "sith_secrets_journey",
-        "weather": "icy_tundra",
-        "activityType": "skydiving_thrill",
-        "puntuation": "1.44",
-        "date": setDate("2024-09-02"),
-        "time": "09:15",
-        "price": 17500,
-        "timeTravel": 95
-    },
-    {
-        "planet": "Naboo",
-        "tour": "outer_rim_expedition",
-        "weather": "desert_heatwave",
-        "activityType": "yoga_retreat",
-        "puntuation": "1.95",
-        "date": setDate("2024-09-03"),
-        "time": "16:45",
-        "price": 12300,
-        "timeTravel": 150
-    },
-    {
-        "planet": "Hoth",
-        "tour": "mystical_planets_tour",
-        "weather": "aurora_borealis",
-        "activityType": "skydiving_thrill",
-        "puntuation": "2.14",
-        "date": setDate("2024-09-04"),
-        "time": "11:00",
-        "price": 18900,
-        "timeTravel": 80
-    },
-    {
-        "planet": "Dagobah",
-        "tour": "galactic_adventure",
-        "weather": "tropical_stormfront",
-        "activityType": "yoga_retreat",
-        "puntuation": "4.42",
-        "date": setDate("2024-09-05"),
-        "time": "18:30",
-        "price": 15800,
-        "timeTravel": 135
-    },
-    {
-        "planet": "Mustafar",
-        "tour": "mystical_planets_tour",
-        "weather": "rainforest_monsoon",
-        "activityType": "deep_sea_diving",
-        "puntuation": "1.15",
-        "date": setDate("2024-09-06"),
-        "time": "07:45",
-        "price": 13700,
-        "timeTravel": 110
-    },
-    {
-        "planet": "Endor",
-        "tour": "jedi_training_experience",
-        "weather": "aurora_borealis",
-        "activityType": "cultural_heritage_tour",
-        "puntuation": "2.42",
-        "date": setDate("2024-09-07"),
-        "time": "12:00",
-        "price": 16500,
-        "timeTravel": 140
-    },
-    {
-        "planet": "Kamino",
-        "tour": "jedi_training_experience",
-        "weather": "tropical_stormfront",
-        "activityType": "cultural_heritage_tour",
-        "puntuation": "2.44",
-        "date": setDate("2024-09-08"),
-        "time": "15:30",
-        "price": 15500,
-        "timeTravel": 125
-    },
-    {
-        "planet": "Tatooine",
-        "tour": "outer_rim_expedition",
-        "weather": "aurora_borealis",
-        "activityType": "yoga_retreat",
-        "puntuation": "2.53",
-        "date": setDate("2024-09-15"),
-        "time": "10:00",
-        "price": 14800,
-        "timeTravel": 120
-    },
-    {
-        "planet": "Coruscant",
-        "tour": "sith_secrets_journey",
-        "weather": "icy_tundra",
-        "activityType": "skydiving_thrill",
-        "puntuation": "1.44",
-        "date": setDate("2024-09-16"),
-        "time": "13:45",
-        "price": 18200,
-        "timeTravel": 95
-    },
-    {
-        "planet": "Naboo",
-        "tour": "outer_rim_expedition",
-        "weather": "desert_heatwave",
-        "activityType": "yoga_retreat",
-        "puntuation": "1.95",
-        "date": setDate("2024-09-17"),
-        "time": "08:30",
-        "price": 12900,
-        "timeTravel": 150
-    },
-    {
-        "planet": "Hoth",
-        "tour": "mystical_planets_tour",
-        "weather": "aurora_borealis",
-        "activityType": "skydiving_thrill",
-        "puntuation": "2.14",
-        "date": setDate("2024-09-18"),
-        "time": "17:15",
-        "price": 19400,
-        "timeTravel": 80
-    },
-    {
-        "planet": "Dagobah",
-        "tour": "galactic_adventure",
-        "weather": "tropical_stormfront",
-        "activityType": "yoga_retreat",
-        "puntuation": "4.42",
-        "date": setDate("2024-09-19"),
-        "time": "14:00",
-        "price": 16200,
-        "timeTravel": 135
-    },
-    {
-        "planet": "Mustafar",
-        "tour": "mystical_planets_tour",
-        "weather": "rainforest_monsoon",
-        "activityType": "deep_sea_diving",
-        "puntuation": "1.15",
-        "date": setDate("2024-09-20"),
-        "time": "06:30",
-        "price": 14100,
-        "timeTravel": 110
-    },
-    {
-        "planet": "Endor",
-        "tour": "jedi_training_experience",
-        "weather": "aurora_borealis",
-        "activityType": "cultural_heritage_tour",
-        "puntuation": "2.42",
-        "date": setDate("2024-09-21"),
-        "time": "09:00",
-        "price": 17000,
-        "timeTravel": 140
-    },
-    {
-        "planet": "Kamino",
-        "tour": "jedi_training_experience",
-        "weather": "tropical_stormfront",
-        "activityType": "cultural_heritage_tour",
-        "puntuation": "2.44",
-        "date": setDate("2024-09-22"),
-        "time": "12:30",
-        "price": 15800,
-        "timeTravel": 125
-    }
+  {
+    "planet": "Tatooine",
+    "tour": "outer_rim_expedition",
+    "weather": "aurora_borealis",
+    "activityType": "yoga_retreat",
+    "puntuation": "2.53",
+    "date": setDate("2024-09-01"),
+    "time": "14:30",
+    "price": 14500,
+    "timeTravel": 120
+  },
+  {
+    "planet": "Coruscant",
+    "tour": "sith_secrets_journey",
+    "weather": "icy_tundra",
+    "activityType": "skydiving_thrill",
+    "puntuation": "1.44",
+    "date": setDate("2024-09-02"),
+    "time": "09:15",
+    "price": 17500,
+    "timeTravel": 95
+  },
+  {
+    "planet": "Naboo",
+    "tour": "outer_rim_expedition",
+    "weather": "desert_heatwave",
+    "activityType": "yoga_retreat",
+    "puntuation": "1.95",
+    "date": setDate("2024-09-03"),
+    "time": "16:45",
+    "price": 12300,
+    "timeTravel": 150
+  },
+  {
+    "planet": "Hoth",
+    "tour": "mystical_planets_tour",
+    "weather": "aurora_borealis",
+    "activityType": "skydiving_thrill",
+    "puntuation": "2.14",
+    "date": setDate("2024-09-04"),
+    "time": "11:00",
+    "price": 18900,
+    "timeTravel": 80
+  },
+  {
+    "planet": "Dagobah",
+    "tour": "galactic_adventure",
+    "weather": "tropical_stormfront",
+    "activityType": "yoga_retreat",
+    "puntuation": "4.42",
+    "date": setDate("2024-09-05"),
+    "time": "18:30",
+    "price": 15800,
+    "timeTravel": 135
+  },
+  {
+    "planet": "Mustafar",
+    "tour": "mystical_planets_tour",
+    "weather": "rainforest_monsoon",
+    "activityType": "deep_sea_diving",
+    "puntuation": "1.15",
+    "date": setDate("2024-09-06"),
+    "time": "07:45",
+    "price": 13700,
+    "timeTravel": 110
+  },
+  {
+    "planet": "Endor",
+    "tour": "jedi_training_experience",
+    "weather": "aurora_borealis",
+    "activityType": "cultural_heritage_tour",
+    "puntuation": "2.42",
+    "date": setDate("2024-09-07"),
+    "time": "12:00",
+    "price": 16500,
+    "timeTravel": 140
+  },
+  {
+    "planet": "Kamino",
+    "tour": "jedi_training_experience",
+    "weather": "tropical_stormfront",
+    "activityType": "cultural_heritage_tour",
+    "puntuation": "2.44",
+    "date": setDate("2024-09-08"),
+    "time": "15:30",
+    "price": 15500,
+    "timeTravel": 125
+  },
+  {
+    "planet": "Tatooine",
+    "tour": "outer_rim_expedition",
+    "weather": "aurora_borealis",
+    "activityType": "yoga_retreat",
+    "puntuation": "2.53",
+    "date": setDate("2024-09-15"),
+    "time": "10:00",
+    "price": 14800,
+    "timeTravel": 120
+  },
+  {
+    "planet": "Coruscant",
+    "tour": "sith_secrets_journey",
+    "weather": "icy_tundra",
+    "activityType": "skydiving_thrill",
+    "puntuation": "1.44",
+    "date": setDate("2024-09-16"),
+    "time": "13:45",
+    "price": 18200,
+    "timeTravel": 95
+  },
+  {
+    "planet": "Naboo",
+    "tour": "outer_rim_expedition",
+    "weather": "desert_heatwave",
+    "activityType": "yoga_retreat",
+    "puntuation": "1.95",
+    "date": setDate("2024-09-17"),
+    "time": "08:30",
+    "price": 12900,
+    "timeTravel": 150
+  },
+  {
+    "planet": "Hoth",
+    "tour": "mystical_planets_tour",
+    "weather": "aurora_borealis",
+    "activityType": "skydiving_thrill",
+    "puntuation": "2.14",
+    "date": setDate("2024-09-18"),
+    "time": "17:15",
+    "price": 19400,
+    "timeTravel": 80
+  },
+  {
+    "planet": "Dagobah",
+    "tour": "galactic_adventure",
+    "weather": "tropical_stormfront",
+    "activityType": "yoga_retreat",
+    "puntuation": "4.42",
+    "date": setDate("2024-09-19"),
+    "time": "14:00",
+    "price": 16200,
+    "timeTravel": 135
+  },
+  {
+    "planet": "Mustafar",
+    "tour": "mystical_planets_tour",
+    "weather": "rainforest_monsoon",
+    "activityType": "deep_sea_diving",
+    "puntuation": "1.15",
+    "date": setDate("2024-09-20"),
+    "time": "06:30",
+    "price": 14100,
+    "timeTravel": 110
+  },
+  {
+    "planet": "Endor",
+    "tour": "jedi_training_experience",
+    "weather": "aurora_borealis",
+    "activityType": "cultural_heritage_tour",
+    "puntuation": "2.42",
+    "date": setDate("2024-09-21"),
+    "time": "09:00",
+    "price": 17000,
+    "timeTravel": 140
+  },
+  {
+    "planet": "Kamino",
+    "tour": "jedi_training_experience",
+    "weather": "tropical_stormfront",
+    "activityType": "cultural_heritage_tour",
+    "puntuation": "2.44",
+    "date": setDate("2024-09-22"),
+    "time": "12:30",
+    "price": 15800,
+    "timeTravel": 125
+  }
 ] as const;
 
 // Accomodations info
 
-export const accommodations_data = [
-  {
-    id: 1,
-    accommodationName: "Accomodation 3",
-    accommodationStars: 4.5,
-    accommodationPhotos: [PlanetPhoto, PlanetPhoto, PlanetPhoto],
-    accommodationPrice: "3.000.000"
-  },
-  {
-    id: 2,
-    accommodationName: "Accomodation2",
-    accommodationStars: 4.1,
-    accommodationPhotos: [PlanetPhoto, PlanetPhoto],
-    accommodationPrice: "3.300.000"
-  },
-  {
-    id: 3,
-    accommodationName: "Accomodation3",
-    accommodationStars: 4.1,
-    accommodationPhotos: [PlanetPhoto],
-    accommodationPrice: "3.540.000"
-  },
-  {
-    id: 4,
-    accommodationName: "Accomodation4",
-    accommodationStars: 5.0,
-    accommodationPhotos: [PlanetPhoto, PlanetPhoto, PlanetPhoto],
-    accommodationPrice: "1.000.000"
-  },
-  {
-    id: 5,
-    accommodationName: "Accomodation5",
-    accommodationStars: 4.7,
-    accommodationPhotos: [PlanetPhoto, PlanetPhoto],
-    accommodationPrice: "3.000.000"
-  },
-  {
-    id: 6,
-    accommodationName: "Accomodation6",
-    accommodationStars: 4.9,
-    accommodationPhotos: [PlanetPhoto, PlanetPhoto],
-    accommodationPrice: "2.100.000"
-  }
-] as const;
+// export const accommodations_data = [
+//   {
+//     id: 1,
+//     accommodationName: "Accomodation 3",
+//     accommodationStars: 4.5,
+//     accommodationPhotos: PlanetPhotoPlanetPhotoPlanetPhoto,
+//     accommodationPrice: "3.000.000"
+//   },
+//   {
+//     id: 2,
+//     accommodationName: "Accomodation2",
+//     accommodationStars: 4.1,
+//     accommodationPhotos: PlanetPhotoPlanetPhoto,
+//     accommodationPrice: "3.300.000"
+//   },
+//   {
+//     id: 3,
+//     accommodationName: "Accomodation3",
+//     accommodationStars: 4.1,
+//     accommodationPhotos: PlanetPhoto,
+//     accommodationPrice: "3.540.000"
+//   },
+//   {
+//     id: 4,
+//     accommodationName: "Accomodation4",
+//     accommodationStars: 5.0,
+//     accommodationPhotos: PlanetPhotoPlanetPhotoPlanetPhoto,
+//     accommodationPrice: "1.000.000"
+//   },
+//   {
+//     id: 5,
+//     accommodationName: "Accomodation5",
+//     accommodationStars: 4.7,
+//     accommodationPhotos: PlanetPhotoPlanetPhoto,
+//     accommodationPrice: "3.000.000"
+//   },
+//   {
+//     id: 6,
+//     accommodationName: "Accomodation6",
+//     accommodationStars: 4.9,
+//     accommodationPhotos: PlanetPhotoPlanetPhoto,
+//     accommodationPrice: "2.100.000"
+//   }
+// ] as const;
 
 export const accommodations: AccommodationsData[] = [
   {
     id: 1,
-    name: "Cabaña Marte Baratica..",
-    nameExtend: "Cabaña Marte, Monte Olimpo...",
+    name: "Cabaña Marte",
+    nameExtend: "Cabaña Marte, Monte Olimpo",
     stars: 4.2,
     numberReviews: 19,
     descripcion: `Ubicado en la imponente ladera del monte Olimpo, el Hotel Estelar Olympus redefine el concepto de lujo y aventura en el planeta rojo. Este exclusivo destino ofrece una experiencia inigualable para los viajeros espaciales más audaces. Características Destacadas:`,
@@ -569,31 +569,127 @@ export const accommodation_search = [
   {
     "id": "acc001",
     "planet": "Marte",
-    "date": setDate("2024-09-20"),
+    "availableFrom": setDate("2024-09-20"),
+    "availableTo": setDate("2024-10-20"),
     "capacity": 2,
     "pricePerNight": 500,
   },
   {
     "id": "acc002",
     "planet": "Luna",
-    "date": setDate("2024-10-22"),
+    "availableFrom": setDate("2024-10-22"),
+    "availableTo": setDate("2024-11-22"),
     "capacity": 4,
     "pricePerNight": 750,
   },
   {
     "id": "acc003",
     "planet": "Venus",
-    "date": setDate("2024-06-26"),
+    "availableFrom": setDate("2024-06-26"),
+    "availableTo": setDate("2024-07-26"),
     "capacity": 3,
     "pricePerNight": 1000,
   }
+] as const;
 
+
+// Accomodations
+
+export const accommodations_data = [
+  {
+    id: "1",
+    planet: "Marte",
+    availableFrom: setDate("2024-09-10"),
+    availableTo: setDate("2024-09-12"),
+    capacity: 4.2,
+    pricePerNight: 1000,
+    accommodationName: "Cabaña Marte",
+    accommodationPhotos: [PlanetPhoto, PlanetPhoto],
+    accommodationStars: 5
+  },
+  {
+    id: "2",
+    accommodationName: "Cabaña Bloom",
+    accommodationStars: 4.9,
+    accommodationPhotos: [PlanetPhoto, PlanetPhoto],
+    pricePerNight: 450,
+    planet: "Neptuno",
+    availableFrom: setDate("2024-10-01"),
+    availableTo: setDate("2024-11-01"),
+    capacity: 4
+  },
+  {
+    id: "3",
+    accommodationName: "Juiter Green Suite",
+    accommodationStars: 4,
+    accommodationPhotos: [PlanetPhoto],
+    pricePerNight: 550,
+    planet: "Jupiter",
+    availableFrom: setDate("2024-09-15"),
+    availableTo: setDate("2024-10-15"),
+    capacity: 3
+  },
+  {
+    id: "4",
+    accommodationName: "Venetian Suite",
+    accommodationStars: 5,
+    accommodationPhotos: [PlanetPhoto, PlanetPhoto, PlanetPhoto],
+    pricePerNight: 200,
+    planet: "Venus",
+    availableFrom: setDate("2024-08-01"),
+    availableTo: setDate("2024-08-31"),
+    capacity: 2
+  },
+  {
+    id: "5",
+    accommodationName: "Saturno Suite",
+    accommodationStars: 5,
+    accommodationPhotos: [PlanetPhoto, PlanetPhoto],
+    pricePerNight: 600,
+    planet: "Saturno",
+    availableFrom: setDate("2024-11-01"),
+    availableTo: setDate("2024-12-01"),
+    capacity: 4
+  },
+  {
+    id: "6",
+    accommodationName: "Urano Suite",
+    accommodationStars: 5,
+    accommodationPhotos: [PlanetPhoto, PlanetPhoto],
+    pricePerNight: 400,
+    planet: "Urano",
+    availableFrom: setDate("2024-09-10"),
+    availableTo: setDate("2024-10-10"),
+    capacity: 3
+  },
+  {
+    id: "7",
+    accommodationName: "Neptuno cozy",
+    accommodationStars: 4,
+    accommodationPhotos: [PlanetPhoto],
+    pricePerNight: 300,
+    planet: "Neptuno",
+    availableFrom: setDate("2024-10-05"),
+    availableTo: setDate("2024-11-05"),
+    capacity: 2
+  },
+  {
+    id: "8",
+    accommodationName: "Marte olimpo",
+    accommodationStars: 4,
+    accommodationPhotos: [PlanetPhoto, PlanetPhoto],
+    pricePerNight: 350,
+    planet: "Marte",
+    availableFrom: setDate("2024-10-20"),
+    availableTo: setDate("2024-10-25"),
+    capacity: 5
+  }
 ] as const;
 
 // Users info
 
 export function addUser(user: string, name: string, email: string, password: string) {
-  const newUser = {user, name, email, password};
+  const newUser = { user, name, email, password };
   users_data.push(newUser);
 }
 
