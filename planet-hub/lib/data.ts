@@ -592,6 +592,11 @@ export const accommodation_search = [
 
 // Users info
 
+export function addUser(user: string, name: string, email: string, password: string) {
+  const newUser = {user, name, email, password};
+  users_data.push(newUser);
+}
+
 export let users_data = [
   {
     user: "admin",

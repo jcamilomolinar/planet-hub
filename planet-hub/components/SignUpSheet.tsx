@@ -14,7 +14,6 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,6 +24,8 @@ import { buttonVariants } from "@/components/ui/button"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { addUser } from "@/lib/data"
+import { useState, useEffect } from "react";
 
 function SignUpFormFieldInput({ form, title, name, type }:
   { form: any, name: string, title: string, type: string }) {
@@ -54,6 +55,12 @@ const FormSchema = z.object({
 })
 
 export function SignUpForm() {
+  const [userAdded, setUserAdded] = useState<boolean>();
+
+  const handleClick = () => {
+    setUserAdded(false);
+  };
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -65,7 +72,8 @@ export function SignUpForm() {
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
+    addUser(data.user, data.name, data.email, data.password);
+    setUserAdded(true);
   };
 
   return (
@@ -93,6 +101,7 @@ export function SignUpForm() {
           </Form>
         <SheetFooter>
           <SheetClose
+            onClick={handleClick}
             className={buttonVariants({
               variant: "destructive",
               className: "text-lg w-full",
@@ -101,6 +110,11 @@ export function SignUpForm() {
             Close
           </SheetClose>
         </SheetFooter>
+        {userAdded && (
+            <div>
+              <p className="text-textTitle text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.5)] text-center my-10 animate-bounce">Sign Up successful!</p>
+            </div>
+        )}
       </SheetContent>
     </Sheet>
   );

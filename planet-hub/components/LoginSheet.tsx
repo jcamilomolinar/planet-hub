@@ -52,9 +52,14 @@ const FormSchema = z.object({
   password: z.string().min(1, {message: "Password is required"})
 })
 
-export function LoginForm() {
+export function LoginForm({setIsLogged}: {setIsLogged: any}) {
   const [registered, setRegistered] = useState<boolean>();
   const [notRegistered, setNotRegistered] = useState<boolean>();
+
+  const handleClick = () => {
+    setRegistered(false);
+    setNotRegistered(false);
+  };
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -65,21 +70,18 @@ export function LoginForm() {
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-
     const isRegistered: boolean = users_data.some(
       (userObj: {user: string, name: string, email: string, password: string}) => 
         userObj.user === data.user && userObj.password === data.password
     );
 
     if (isRegistered){
-      setNotRegistered(false);
-      setRegistered(true);
       localStorage.setItem("user", data.user);
+      setNotRegistered(false);
+      setIsLogged(true);
     } else {
-      setRegistered(false);
       setNotRegistered(true);
     }
-
   };
 
   return (
@@ -105,6 +107,7 @@ export function LoginForm() {
           </Form>
         <SheetFooter className="flex flex-col">
           <SheetClose
+            onClick={handleClick}
             className={buttonVariants({
               variant: "destructive",
               className: "text-lg w-full",
@@ -113,14 +116,9 @@ export function LoginForm() {
             Close
           </SheetClose>
         </SheetFooter>
-        {registered && (
-            <div>
-              <p className="text-textTitle text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.5)] text-center my-10">Log in successful!</p>
-            </div>
-        )}
         {notRegistered && (
             <div>
-              <p className="text-textTitle text-xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.5)] text-center my-10">You are not registered, Sign up first!</p>
+              <p className="text-textTitle text-xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.5)] text-center my-10 animate-bounce">You are not registered, Sign up first!</p>
             </div>
         )}
       </SheetContent>
