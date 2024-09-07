@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useState } from 'react';
-import PlanetPhoto from "@/public/planet.jpg";
 import { z } from 'zod';
+
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from 'next/link';
 import { AccommodationsCard } from '@/components/Accommodations/AccommodationsCard';
+import PlanetPhoto from "@/public/planet.jpg";
 import {
     Form,
     FormControl,
@@ -132,7 +133,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
 
     const onSubmit = (formData: SearchFormInputs) => {
         let results = data;
-
+        console.log(data);
         if (formData.planet) {
             results = results.filter((accommodationInfo) =>
                 accommodationInfo.planet === formData.planet
@@ -156,7 +157,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
         results = results.filter((accommodationInfo) =>
             accommodationInfo.capacity >= formData.guests
         );
-        console.log(results);
+        console.log("Resiltados", results);
         setSearchResults(results);
     };
 
@@ -238,7 +239,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
             <h1 className="text-textTitle text-5xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Search results</h1>
             <h2 className="text-xl text-muted-foreground my-5">These are the accommodations options we found for you!</h2>
 
-            <div>
+            {/* <div>
                 <h2 className="text-2xl font-bold mb-4">Search Results</h2>
                 {searchResults.length === 0 ? (
                     <p>No accommodations found matching your criteria.</p>
@@ -256,9 +257,9 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                         ))}
                     </ul>
                 )}
-            </div>
+            </div> */}
 
-            {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
                 {searchResults.map(option => (
 
                     <Link href={`/accomodation/${option.id}`} key={option.id}>
@@ -270,8 +271,8 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                         />
                     </Link>
                 ))}
-            </div> */}
-        </div>
+            </div>
+        </div >
     );
 }
 
