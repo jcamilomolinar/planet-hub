@@ -57,6 +57,7 @@ const searchFormSchema = z.object({
     }),
 });
 
+
 type SearchFormInputs = z.infer<typeof searchFormSchema>;
 
 function FlightSearchFormFieldDate({ form, title, name, description }: {
@@ -134,21 +135,29 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
     const onSubmit = (formData: SearchFormInputs) => {
         let results = data;
         console.log(data);
+
+        // filter by planet | optional
         if (formData.planet) {
             results = results.filter((accommodationInfo) =>
                 accommodationInfo.planet === formData.planet
             );
         }
-
+        // filter by date | obligatory
         if (formData.date?.from) {
-            results = results.filter((accommodationInfo) => {
-                const fromDate = formData.date.from;
-                const toDate = formData.date.to || fromDate;
-                return accommodationInfo.availableFrom <= toDate && accommodationInfo.availableTo >= fromDate;
-            });
+            const fromDate = formData.date.from;
+            const toDate = formData.date.to || fromDate;
+            results = results.filter((accommodationInfo) =>
+                accommodationInfo.availableFrom <= toDate && accommodationInfo.availableTo >= fromDate
+            );
         }
 
-        if (formData.max_price) {
+        // filter by guest | obligatory
+        results = results.filter((accommodationInfo) =>
+            accommodationInfo.capacity >= formData.guests
+        );
+
+        // filter by price | optional
+        if (formData.max_price !== undefined && formData.max_price > 0) {
             results = results.filter((accommodationInfo) =>
                 accommodationInfo.pricePerNight <= formData.max_price!
             );
@@ -157,7 +166,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
         results = results.filter((accommodationInfo) =>
             accommodationInfo.capacity >= formData.guests
         );
-        console.log("Resiltados", results);
+        console.log("Resiltados", results.planet);
         setSearchResults(results);
     };
 
@@ -235,43 +244,29 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
             </Form>
             <Separator className="my-8" />
 
-
             <h1 className="text-textTitle text-5xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Search results</h1>
             <h2 className="text-xl text-muted-foreground my-5">These are the accommodations options we found for you!</h2>
 
-            {/* <div>
-                <h2 className="text-2xl font-bold mb-4">Search Results</h2>
-                {searchResults.length === 0 ? (
-                    <p>No accommodations found matching your criteria.</p>
-                ) : (
-                    <ul className="space-y-4">
-                        {searchResults.map((result) => (
-                            <li key={result.id} className="border p-4 rounded-md">
-                                <p className="font-semibold">Planet: {result.planet}</p>
-                                <p>Capacity: {result.capacity} guests</p>
-                                <p>Price per night: {result.pricePerNight}</p>
-                                <p>Available from: {format(result.availableFrom, "PPP")}</p>
-                                <p>Available to: {format(result.availableTo, "PPP")}</p>
-                                <p>Available to: {result.accommodationPhotos}</p>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div> */}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
-                {searchResults.map(option => (
-
-                    <Link href={`/accomodation/${option.id}`} key={option.id}>
-                        <AccommodationsCard
-                            accommodationName={option.accommodationName}
-                            accommodationPhotos={option.accommodationPhotos}
-                            accommodationStars={option.accommodationStars}
-                            accommodationPrice={option.accommodationPrice}
-                        />
-                    </Link>
-                ))}
-            </div>
+            {searchResults.length === 0 ? (
+                <p>Sorry, no accommodations matching your criteria were found.</p>
+            ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
+                    {searchResults.map(option => (
+                        <Link href={`/accomodation/${option.id}`} key={option.id}>
+                            <AccommodationsCard
+                                accommodationName={option.accommodationName}
+                                accommodationPhotos={option.accommodationPhotos}
+                                accommodationStars={option.accommodationStars}
+                                pricePerNight={option.pricePerNight}
+                                planet={option.planet}
+                                availableFrom={option.availableFrom}
+                                availableTo={option.availableTo}
+                            />
+                        </Link>
+                    ))}
+                </div>
+            )}
         </div >
     );
 }

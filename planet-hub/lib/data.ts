@@ -414,8 +414,8 @@ export const flights_data = [
 export const accommodations: AccommodationsData[] = [
   {
     id: 1,
-    name: "Cabaña Marte Baratica..",
-    nameExtend: "Cabaña Marte, Monte Olimpo...",
+    name: "Cabaña Marte",
+    nameExtend: "Cabaña Marte, Monte Olimpo",
     stars: 4.2,
     numberReviews: 19,
     descripcion: `Ubicado en la imponente ladera del monte Olimpo, el Hotel Estelar Olympus redefine el concepto de lujo y aventura en el planeta rojo. Este exclusivo destino ofrece una experiencia inigualable para los viajeros espaciales más audaces. Características Destacadas:`,
@@ -599,26 +599,26 @@ export const accommodations_data = [
     planet: "Marte",
     availableFrom: setDateToMidnight("2024-09-10"),
     availableTo: setDateToMidnight("2024-09-12"),
-    capacity: 4,
+    capacity: 4.2,
     pricePerNight: 1000,
-    accommodationName: "Marte Red Suite",
+    accommodationName: "Cabaña Marte",
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     accommodationStars: 5
   },
   {
     id: "2",
-    accommodationName: "Accomodation 2",
-    accommodationStars: 4,
+    accommodationName: "Cabaña Bloom",
+    accommodationStars: 4.9,
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 450,
-    planet: "Tierra",
+    planet: "Neptuno",
     availableFrom: setDateToMidnight("2024-10-01"),
     availableTo: setDateToMidnight("2024-11-01"),
     capacity: 4
   },
   {
     id: "3",
-    accommodationName: "Accomodation 3",
+    accommodationName: "Juiter Green Suite",
     accommodationStars: 4,
     accommodationPhotos: [PlanetPhoto],
     pricePerNight: 550,
@@ -629,7 +629,7 @@ export const accommodations_data = [
   },
   {
     id: "4",
-    accommodationName: "Accomodation 4",
+    accommodationName: "Venetian Suite",
     accommodationStars: 5,
     accommodationPhotos: [PlanetPhoto, PlanetPhoto, PlanetPhoto],
     pricePerNight: 200,
@@ -640,7 +640,7 @@ export const accommodations_data = [
   },
   {
     id: "5",
-    accommodationName: "Accomodation 5",
+    accommodationName: "Saturno Suite",
     accommodationStars: 5,
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 600,
@@ -651,7 +651,7 @@ export const accommodations_data = [
   },
   {
     id: "6",
-    accommodationName: "Accomodation 6",
+    accommodationName: "Urano Suite",
     accommodationStars: 5,
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 400,
@@ -662,7 +662,7 @@ export const accommodations_data = [
   },
   {
     id: "7",
-    accommodationName: "Accomodation 7",
+    accommodationName: "Neptuno cozy",
     accommodationStars: 4,
     accommodationPhotos: [PlanetPhoto],
     pricePerNight: 300,
@@ -673,7 +673,7 @@ export const accommodations_data = [
   },
   {
     id: "8",
-    accommodationName: "Accomodation 8",
+    accommodationName: "Marte olimpo",
     accommodationStars: 4,
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 350,
