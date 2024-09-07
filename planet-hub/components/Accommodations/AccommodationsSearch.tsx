@@ -1,11 +1,14 @@
 "use client";
 
 import React, { useState } from 'react';
+import PlanetPhoto from "@/public/planet.jpg";
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Link from 'next/link';
+import { AccommodationsCard } from '@/components/Accommodations/AccommodationsCard';
 import {
     Form,
     FormControl,
@@ -74,7 +77,7 @@ function FlightSearchFormFieldDate({ form, title, name, description }: {
                                 <Button
                                     variant={"outline"}
                                     className={cn(
-                                        "w-[240px] pl-3 text-left font-normal",
+                                        "w-auto pl-3 text-left font-normal content-center",
                                         !field.value && "text-muted-foreground"
                                     )}
                                 >
@@ -153,7 +156,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
         results = results.filter((accommodationInfo) =>
             accommodationInfo.capacity >= formData.guests
         );
-
+        console.log(results);
         setSearchResults(results);
     };
 
@@ -166,6 +169,13 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                             <CardTitle className="text-textTitle">Search Accommodations</CardTitle>
                         </CardHeader>
                         <CardContent className="text-textAll">
+                            <FlightSearchFormFieldDate
+                                form={form}
+                                title="Travel date"
+                                name="date"
+                                description="Enter when you will travel."
+                            />
+
                             <div className="grid grid-cols-2 gap-6">
                                 <FormField
                                     control={form.control}
@@ -199,12 +209,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                                         </FormItem>
                                     )}
                                 />
-                                <FlightSearchFormFieldDate
-                                    form={form}
-                                    title="Travel date"
-                                    name="date"
-                                    description="Enter when you will travel."
-                                />
+
                                 <FormField
                                     control={form.control}
                                     name="max_price"
@@ -228,6 +233,11 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                 </form>
             </Form>
             <Separator className="my-8" />
+
+
+            <h1 className="text-textTitle text-5xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Search results</h1>
+            <h2 className="text-xl text-muted-foreground my-5">These are the accommodations options we found for you!</h2>
+
             <div>
                 <h2 className="text-2xl font-bold mb-4">Search Results</h2>
                 {searchResults.length === 0 ? (
@@ -241,11 +251,26 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                                 <p>Price per night: {result.pricePerNight}</p>
                                 <p>Available from: {format(result.availableFrom, "PPP")}</p>
                                 <p>Available to: {format(result.availableTo, "PPP")}</p>
+                                <p>Available to: {result.accommodationPhotos}</p>
                             </li>
                         ))}
                     </ul>
                 )}
             </div>
+
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
+                {searchResults.map(option => (
+
+                    <Link href={`/accomodation/${option.id}`} key={option.id}>
+                        <AccommodationsCard
+                            accommodationName={option.accommodationName}
+                            accommodationPhotos={option.accommodationPhotos}
+                            accommodationStars={option.accommodationStars}
+                            accommodationPrice={option.accommodationPrice}
+                        />
+                    </Link>
+                ))}
+            </div> */}
         </div>
     );
 }

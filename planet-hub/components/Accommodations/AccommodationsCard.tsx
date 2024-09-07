@@ -1,5 +1,5 @@
 import * as React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import {
     Card,
     CardContent,
@@ -19,12 +19,17 @@ import {
 
 interface AccommodationsCardProps {
     accommodationName: string;
-    accommodationPhotos: StaticImageData[];
+    accommodationPhotos: string[]; // Change to array of strings (URLs)
     accommodationStars: number;
     accommodationPrice: string;
 }
 
-export function AccommodationsCard({ accommodationName, accommodationPhotos, accommodationStars, accommodationPrice }: AccommodationsCardProps) {
+export function AccommodationsCard({
+    accommodationName,
+    accommodationPhotos,
+    accommodationStars,
+    accommodationPrice
+}: AccommodationsCardProps) {
     return (
         <Card className="w-full shadow-2xl bg-white rounded-xl p-3 m-4 shadow-palleteOrangeVariant hover:scale-105 duration-200 ease-in-out">
             <CardHeader className="flex items-center flex-col sm:flex-row gap-2 sm:gap-5">
@@ -49,8 +54,8 @@ export function AccommodationsCard({ accommodationName, accommodationPhotos, acc
                                     <Image
                                         src={photo}
                                         alt={`Image ${index + 1} of ${accommodationName}`}
-                                        layout="fill"
-                                        objectFit="cover"
+                                        fill
+                                        style={{ objectFit: "cover" }}
                                     />
                                 </div>
                             </CarouselItem>

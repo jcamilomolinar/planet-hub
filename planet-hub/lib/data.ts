@@ -362,52 +362,52 @@ export const flights_data = [
   }
 ] as const;
 
-// Accomodations
+// // Accomodations
 
-export const accommodations_data = [
-  {
-    id: 1,
-    accommodationName: "Accomodation 3",
-    accommodationStars: 4.5,
-    accommodationPhotos: [PlanetPhoto, PlanetPhoto, PlanetPhoto],
-    accommodationPrice: "3.000.000"
-  },
-  {
-    id: 2,
-    accommodationName: "Accomodation2",
-    accommodationStars: 4.1,
-    accommodationPhotos: [PlanetPhoto, PlanetPhoto],
-    accommodationPrice: "3.300.000"
-  },
-  {
-    id: 3,
-    accommodationName: "Accomodation3",
-    accommodationStars: 4.1,
-    accommodationPhotos: [PlanetPhoto],
-    accommodationPrice: "3.540.000"
-  },
-  {
-    id: 4,
-    accommodationName: "Accomodation4",
-    accommodationStars: 5.0,
-    accommodationPhotos: [PlanetPhoto, PlanetPhoto, PlanetPhoto],
-    accommodationPrice: "1.000.000"
-  },
-  {
-    id: 5,
-    accommodationName: "Accomodation5",
-    accommodationStars: 4.7,
-    accommodationPhotos: [PlanetPhoto, PlanetPhoto],
-    accommodationPrice: "3.000.000"
-  },
-  {
-    id: 6,
-    accommodationName: "Accomodation6",
-    accommodationStars: 4.9,
-    accommodationPhotos: [PlanetPhoto, PlanetPhoto],
-    accommodationPrice: "2.100.000"
-  }
-] as const;
+// export const accommodations_data = [
+//   {
+//     id: 1,
+//     accommodationName: "Accomodation 3",
+//     accommodationStars: 4.5,
+//     accommodationPhotos: PlanetPhotoPlanetPhotoPlanetPhoto,
+//     accommodationPrice: "3.000.000"
+//   },
+//   {
+//     id: 2,
+//     accommodationName: "Accomodation2",
+//     accommodationStars: 4.1,
+//     accommodationPhotos: PlanetPhotoPlanetPhoto,
+//     accommodationPrice: "3.300.000"
+//   },
+//   {
+//     id: 3,
+//     accommodationName: "Accomodation3",
+//     accommodationStars: 4.1,
+//     accommodationPhotos: PlanetPhoto,
+//     accommodationPrice: "3.540.000"
+//   },
+//   {
+//     id: 4,
+//     accommodationName: "Accomodation4",
+//     accommodationStars: 5.0,
+//     accommodationPhotos: PlanetPhotoPlanetPhotoPlanetPhoto,
+//     accommodationPrice: "1.000.000"
+//   },
+//   {
+//     id: 5,
+//     accommodationName: "Accomodation5",
+//     accommodationStars: 4.7,
+//     accommodationPhotos: PlanetPhotoPlanetPhoto,
+//     accommodationPrice: "3.000.000"
+//   },
+//   {
+//     id: 6,
+//     accommodationName: "Accomodation6",
+//     accommodationStars: 4.9,
+//     accommodationPhotos: PlanetPhotoPlanetPhoto,
+//     accommodationPrice: "2.100.000"
+//   }
+// ] as const;
 
 
 
@@ -589,3 +589,106 @@ export const accommodation_search = [
     "pricePerNight": 1000,
   }
 ] as const;
+
+
+// Accomodations
+
+export const accommodations_data = [
+  {
+    "id": 1,
+    "accommodationName": "Accomodation 3",
+    "accommodationStars": 4.5,
+    "accommodationPhotos": [PlanetPhoto, PlanetPhoto, PlanetPhoto],
+    "accommodationPrice": "3.000.000",
+    "planet": "Marte",
+    "availableFrom": setDateToMidnight("2024-09-20"),
+    "availableTo": setDateToMidnight("2024-09-23"),
+    "capacity": 2,
+    "pricePerNight": 500
+  },
+  {
+    "id": 2,
+    "accommodationName": "Accomodation 2",
+    "accommodationStars": 4.1,
+    "accommodationPhotos": [PlanetPhoto, PlanetPhoto],
+    "accommodationPrice": "3.300.000",
+    "planet": "Tierra",
+    "availableFrom": setDateToMidnight("2024-10-01"),
+    "availableTo": setDateToMidnight("2024-11-01"),
+    "capacity": 4,
+    "pricePerNight": 450
+  },
+  {
+    "id": 3,
+    "accommodationName": "Accomodation 3",
+    "accommodationStars": 4.1,
+    "accommodationPhotos": [PlanetPhoto],
+    "accommodationPrice": "3.540.000",
+    "planet": "Jupiter",
+    "availableFrom": setDateToMidnight("2024-09-15"),
+    "availableTo": setDateToMidnight("2024-10-15"),
+    "capacity": 3,
+    "pricePerNight": 550
+  },
+  {
+    "id": 4,
+    "accommodationName": "Accomodation 4",
+    "accommodationStars": 5.0,
+    "accommodationPhotos": [PlanetPhoto, PlanetPhoto, PlanetPhoto],
+    "accommodationPrice": "1.000.000",
+    "planet": "Venus",
+    "availableFrom": setDateToMidnight("2024-08-01"),
+    "availableTo": setDateToMidnight("2024-08-31"),
+    "capacity": 2,
+    "pricePerNight": 200
+  },
+  {
+    "id": 5,
+    "accommodationName": "Accomodation 5",
+    "accommodationStars": 4.7,
+    "accommodationPhotos": [PlanetPhoto, PlanetPhoto],
+    "accommodationPrice": "3.000.000",
+    "planet": "Saturno",
+    "availableFrom": setDateToMidnight("2024-11-01"),
+    "availableTo": setDateToMidnight("2024-12-01"),
+    "capacity": 4,
+    "pricePerNight": 600
+  },
+  {
+    "id": 6,
+    "accommodationName": "Accomodation 6",
+    "accommodationStars": 4.9,
+    "accommodationPhotos": [PlanetPhoto, PlanetPhoto],
+    "accommodationPrice": "2.100.000",
+    "planet": "Urano",
+    "availableFrom": setDateToMidnight("2024-09-10"),
+    "availableTo": setDateToMidnight("2024-10-10"),
+    "capacity": 3,
+    "pricePerNight": 400
+  },
+  {
+    "id": 7,
+    "accommodationName": "Accomodation 7",
+    "accommodationStars": 3.8,
+    "accommodationPhotos": [PlanetPhoto],
+    "accommodationPrice": "2.500.000",
+    "planet": "Neptuno",
+    "availableFrom": setDateToMidnight("2024-10-05"),
+    "availableTo": setDateToMidnight("2024-11-05"),
+    "capacity": 2,
+    "pricePerNight": 300
+  },
+  {
+    "id": 8,
+    "accommodationName": "Accomodation 8",
+    "accommodationStars": 4.3,
+    "accommodationPhotos": [PlanetPhoto, PlanetPhoto],
+    "accommodationPrice": "2.800.000",
+    "planet": "Marte",
+    "availableFrom": setDateToMidnight("2024-10-20"),
+    "availableTo": setDateToMidnight("2024-10-25"),
+    "capacity": 5,
+    "pricePerNight": 350
+  }
+] as const;
+
