@@ -76,6 +76,7 @@ export function SignUpForm() {
   function onSubmit(data: z.infer<typeof FormSchema>) {
     addUser(data.user, data.name, data.email, data.password);
     toast({
+      variant: "info",
       title: "Sign Up successful",
       description: "Try to log in to your new Account!",
     })

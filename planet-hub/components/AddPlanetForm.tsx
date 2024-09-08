@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { useToast } from "@/hooks/use-toast"
 
 function AddPlanetFormFieldInput({ form, title, name, description }:
   { form: any, name: string, title: string, description: string }) {
@@ -53,6 +54,7 @@ const FormSchema = z.object({
 })
 
 export function AddPlanetForm() {
+  const { toast } = useToast()
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -67,6 +69,11 @@ export function AddPlanetForm() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
+    toast({
+      variant: "info",
+      title: "Planet Added!",
+      description: "Now you can view it in the planets tab 🪐",
+    });
   };
 
   return (
@@ -76,8 +83,8 @@ export function AddPlanetForm() {
           <CardHeader>
             <CardTitle className="text-textTitle">Add planet</CardTitle>
           </CardHeader>
-          <CardContent className="text-textAll m-5">
-            <div className="grid grid-cols-2 grid-rows-2 gap-10 my-5">
+          <CardContent className="text-textAll">
+            <div className="grid grid-cols-2 grid-rows-2 gap-6 my-5">
               <AddPlanetFormFieldInput form={form} title="Planet name" name="planet" description="Add the name of the new planet." />
               <AddPlanetFormFieldInput form={form} title="Tour" name="tours" description="Add the main tour of the new planet." />
               <AddPlanetFormFieldInput form={form} title="Weather" name="weather" description="Add the weather of the new planet." />
