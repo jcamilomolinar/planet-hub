@@ -45,6 +45,7 @@ import {
   useState, 
   useEffect 
 } from 'react'
+import { useToast } from "@/hooks/use-toast"
 
 function FlightSearchFormFieldDate({ form, title, name, description }:
   { form: any, name: string, title: string, description: string }) {
@@ -221,7 +222,7 @@ const FormSchema = z.object({
 
 export function FlightSearchForm() {
   const [flights, setFlights]: any = useState([]);
-  const [noFlights, setNoFlights]: any = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     const storedPlanet = localStorage.getItem('planetName');
@@ -273,10 +274,13 @@ export function FlightSearchForm() {
     let show_flights = filterFlightsByData(flights_data, filteredData);
 
     if (show_flights.length === 0) {
-      setNoFlights(true);
+      toast({
+        variant: "destructive",
+        title: "Oops, it seems that there are no flights with those characteristics",
+        description: "Try entering other data!",
+      })
       setFlights([]);
     } else {
-      setNoFlights(false);
       setFlights(show_flights);
     }
   }
@@ -310,13 +314,6 @@ export function FlightSearchForm() {
         </form>
       </Form>
       <Separator className="my-5" />
-      <div>
-        {noFlights && (
-          <div>
-            <p className="text-textTitle text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.5)] text-center my-10">Oops, it seems that there are no flights with those characteristics, try entering other data.</p>
-          </div>
-        )}
-      </div>
       <div>
         {
           flights.map((flight: any, index: number) => (
