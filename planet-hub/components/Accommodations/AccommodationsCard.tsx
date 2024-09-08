@@ -26,6 +26,7 @@ interface AccommodationsCardProps {
     planet: string;
     availableFrom: Date;
     availableTo: Date;
+    accommodationType: string;
 }
 
 export function AccommodationsCard({
@@ -35,14 +36,15 @@ export function AccommodationsCard({
     pricePerNight,
     planet,
     availableFrom,
-    availableTo
+    availableTo,
+    accommodationType,
 }: AccommodationsCardProps) {
     return (
         <Card className="w-full shadow-2xl bg-white rounded-xl p-3 m-4 shadow-palleteOrangeVariant hover:scale-105 duration-200 ease-in-out">
             <CardHeader className="flex items-center flex-col sm:flex-row gap-2 sm:gap-5">
                 <CardTitle className="text-textTitle flex flex-col sm:flex-row justify-between w-full items-center">
                     <section className="flex flex-col justify-between text-sm sm:text-base whitespace-nowrap">
-                        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-center sm:text-left mb-2 sm:mb-0 truncate overflow-hidden">{accommodationName}</p>
+                        <p className="text-base sm:text-base md:text-xl lg:text-2xl text-center sm:text-left mb-2 sm:mb-0 truncate overflow-hidden">{accommodationName}</p>
                         <p className="text-base sm:text-sm italic text-gray-600"> Planet : {planet}</p>
                     </section>
                     <section className="flex justify-between text-sm sm:text-base items-center whitespace-nowrap">
@@ -75,14 +77,14 @@ export function AccommodationsCard({
                     <CarouselNext />
                 </Carousel>
                 <div className="mt-4 text-sm text-gray-600">
-                    <p>Available from: {format(availableFrom, "MMM dd, yyyy")}</p>
-                    <p>Available to: {format(availableTo, "MMM dd, yyyy")}</p>
+                    <p className="text-xs">Available from: {format(availableFrom, "MMM dd, yyyy")} - {format(availableTo, "MMM dd, yyyy")}</p>
+                    <p className="text-xs">Type: {accommodationType}</p>
                 </div>
             </CardContent>
             <CardFooter className="text-muted-foreground">
                 <section className="flex flex-col sm:flex-row justify-between w-full items-center gap-2 sm:gap-0">
-                    <p className="text-sm sm:text-base truncate overflow-hidden"> $ {pricePerNight} MP night</p>
-                    <p className="bg-green-700 text-blue-50 p-2 rounded-lg text-xs sm:text-sm whitespace-nowrap">Available</p>
+                    <p className="text-sm truncate overflow-hidden"> $ {pricePerNight} MP night</p>
+                    <p className="bg-green-700 text-blue-50 p-2 rounded-lg text-xs whitespace-nowrap">Available</p>
                 </section>
             </CardFooter>
         </Card>
