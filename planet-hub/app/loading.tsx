@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Loading() {
     return (
-        <div className="fixed inset-0 flex items-center justify-center">
+        <div className="fixed inset-0 flex items-center justify-center bg-white">
             <div className="relative w-64 h-64">
                 {/* Portal exterior */}
                 <div className="absolute inset-0 bg-purple-600 rounded-full opacity-50 animate-pulse"></div>
