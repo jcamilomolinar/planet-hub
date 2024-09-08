@@ -25,7 +25,7 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { users_data } from "@/lib/data"
-import { useState } from "react";
+import { toast } from "sonner"
 
 function LoginFormFieldInput({ form, title, name, type }:
   { form: any, name: string, title: string, type: string }) {
@@ -53,11 +53,6 @@ const FormSchema = z.object({
 })
 
 export function LoginForm({setIsLogged}: {setIsLogged: any}) {
-  const [notRegistered, setNotRegistered] = useState<boolean>();
-
-  const handleClick = () => {
-    setNotRegistered(false);
-  };
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -75,10 +70,15 @@ export function LoginForm({setIsLogged}: {setIsLogged: any}) {
 
     if (isRegistered){
       localStorage.setItem("user", data.user);
-      setNotRegistered(false);
       setIsLogged(true);
     } else {
-      setNotRegistered(true);
+      toast.error("You are not registered", {
+        description: "Hint: Sign up first!",
+        action: {
+          label: "Close",
+          onClick: () => {},
+        },
+      })
     }
   };
 
@@ -105,7 +105,6 @@ export function LoginForm({setIsLogged}: {setIsLogged: any}) {
           </Form>
         <SheetFooter className="flex flex-col">
           <SheetClose
-            onClick={handleClick}
             className={buttonVariants({
               variant: "destructive",
               className: "text-lg w-full",
@@ -114,11 +113,6 @@ export function LoginForm({setIsLogged}: {setIsLogged: any}) {
             Close
           </SheetClose>
         </SheetFooter>
-        {notRegistered && (
-            <div>
-              <p className="text-textTitle text-xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.5)] text-center my-10 animate-bounce">You are not registered, Sign up first!</p>
-            </div>
-        )}
       </SheetContent>
     </Sheet>
   );

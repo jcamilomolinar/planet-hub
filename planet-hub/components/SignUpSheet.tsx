@@ -25,7 +25,8 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { addUser } from "@/lib/data"
-import { useState, useEffect } from "react";
+import { useState } from "react"
+import { toast } from "sonner"
 
 function SignUpFormFieldInput({ form, title, name, type }:
   { form: any, name: string, title: string, type: string }) {
@@ -73,7 +74,13 @@ export function SignUpForm() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     addUser(data.user, data.name, data.email, data.password);
-    setUserAdded(true);
+    toast.success("Sign Up successful", {
+      description: "Try to log in to your new Account!",
+      action: {
+        label: "Close",
+        onClick: () => {},
+      },
+    })
   };
 
   return (
