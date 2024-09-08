@@ -367,52 +367,44 @@ export const flights_data = [
   }
 ] as const;
 
-// Accomodations info
+export const AccomodationType = [
+  {
+    "label": "Hotel",
+    "value": "Hotel"
+  },
+  {
+    "label": "Hostel",
+    "value": "Hostel"
+  },
+  {
+    "label": "Apartment",
+    "value": "Apartment"
+  },
+  {
+    "label": "Resort",
+    "value": "Resort"
+  },
+  {
+    "label": "Glamping",
+    "value": "Glamping"
+  },
+  {
+    "label": "Cabin",
+    "value": "Cabin"
+  }
+] as const
 
-// export const accommodations_data = [
-//   {
-//     id: 1,
-//     accommodationName: "Accomodation 3",
-//     accommodationStars: 4.5,
-//     accommodationPhotos: PlanetPhotoPlanetPhotoPlanetPhoto,
-//     accommodationPrice: "3.000.000"
-//   },
-//   {
-//     id: 2,
-//     accommodationName: "Accomodation2",
-//     accommodationStars: 4.1,
-//     accommodationPhotos: PlanetPhotoPlanetPhoto,
-//     accommodationPrice: "3.300.000"
-//   },
-//   {
-//     id: 3,
-//     accommodationName: "Accomodation3",
-//     accommodationStars: 4.1,
-//     accommodationPhotos: PlanetPhoto,
-//     accommodationPrice: "3.540.000"
-//   },
-//   {
-//     id: 4,
-//     accommodationName: "Accomodation4",
-//     accommodationStars: 5.0,
-//     accommodationPhotos: PlanetPhotoPlanetPhotoPlanetPhoto,
-//     accommodationPrice: "1.000.000"
-//   },
-//   {
-//     id: 5,
-//     accommodationName: "Accomodation5",
-//     accommodationStars: 4.7,
-//     accommodationPhotos: PlanetPhotoPlanetPhoto,
-//     accommodationPrice: "3.000.000"
-//   },
-//   {
-//     id: 6,
-//     accommodationName: "Accomodation6",
-//     accommodationStars: 4.9,
-//     accommodationPhotos: PlanetPhotoPlanetPhoto,
-//     accommodationPrice: "2.100.000"
-//   }
-// ] as const;
+export const mealsIncluded = [
+
+  {
+    "label": "All inclusive",
+    "value": "All inclusive"
+  },
+  {
+    "label": "Nothing inclusive",
+    "value": "Nothing inclusive"
+  }
+] as const
 
 export const accommodations: AccommodationsData[] = [
   {
@@ -565,32 +557,32 @@ export const accommodations: AccommodationsData[] = [
   }
 ] as const;
 
-export const accommodation_search = [
-  {
-    "id": "acc001",
-    "planet": "Marte",
-    "availableFrom": setDate("2024-09-20"),
-    "availableTo": setDate("2024-10-20"),
-    "capacity": 2,
-    "pricePerNight": 500,
-  },
-  {
-    "id": "acc002",
-    "planet": "Luna",
-    "availableFrom": setDate("2024-10-22"),
-    "availableTo": setDate("2024-11-22"),
-    "capacity": 4,
-    "pricePerNight": 750,
-  },
-  {
-    "id": "acc003",
-    "planet": "Venus",
-    "availableFrom": setDate("2024-06-26"),
-    "availableTo": setDate("2024-07-26"),
-    "capacity": 3,
-    "pricePerNight": 1000,
-  }
-] as const;
+// export const accommodation_search = [
+//   {
+//     "id": "acc001",
+//     "planet": "Tatooine",
+//     "availableFrom": setDate("2024-09-20"),
+//     "availableTo": setDate("2024-10-20"),
+//     "capacity": 2,
+//     "pricePerNight": 500,
+//   },
+//   {
+//     "id": "acc002",
+//     "planet": "Luna",
+//     "availableFrom": setDate("2024-10-22"),
+//     "availableTo": setDate("2024-11-22"),
+//     "capacity": 4,
+//     "pricePerNight": 750,
+//   },
+//   {
+//     "id": "acc003",
+//     "planet": "Venus",
+//     "availableFrom": setDate("2024-06-26"),
+//     "availableTo": setDate("2024-07-26"),
+//     "capacity": 3,
+//     "pricePerNight": 1000,
+//   }
+// ] as const;
 
 
 // Accomodations
@@ -598,93 +590,118 @@ export const accommodation_search = [
 export const accommodations_data = [
   {
     id: "1",
-    planet: "Marte",
+    planet: "Tatooine",
     availableFrom: setDate("2024-09-10"),
     availableTo: setDate("2024-09-12"),
-    capacity: 4.2,
+    capacity: 4,
     pricePerNight: 1000,
-    accommodationName: "Cabaña Marte",
+    accommodationName: "Desert Retreat",
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
-    accommodationStars: 5
+    accommodationStars: 3,
+    accommodationType: "Hotel",
+    accommodationPuntuation: "3",
+    mealsIncluded: "All inclusive",
   },
   {
     id: "2",
-    accommodationName: "Cabaña Bloom",
-    accommodationStars: 4.9,
+    accommodationName: "Skyline Loft",
+    accommodationStars: 4,
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 450,
-    planet: "Neptuno",
+    planet: "Coruscant",
     availableFrom: setDate("2024-10-01"),
     availableTo: setDate("2024-11-01"),
-    capacity: 4
+    capacity: 4,
+    accommodationType: "Apartment",
+    accommodationPuntuation: "4",
+    mealsIncluded: "Nothing inclusive",
   },
   {
     id: "3",
-    accommodationName: "Juiter Green Suite",
-    accommodationStars: 4,
+    accommodationName: "Naboo Lake House",
+    accommodationStars: 2,
     accommodationPhotos: [PlanetPhoto],
     pricePerNight: 550,
-    planet: "Jupiter",
+    planet: "Naboo",
     availableFrom: setDate("2024-09-15"),
     availableTo: setDate("2024-10-15"),
-    capacity: 3
+    capacity: 3,
+    accommodationType: "Cabin",
+    accommodationPuntuation: "2",
+    mealsIncluded: "All inclusive",
   },
   {
     id: "4",
-    accommodationName: "Venetian Suite",
-    accommodationStars: 5,
+    accommodationName: "Glacial Hideaway",
+    accommodationStars: 4,
     accommodationPhotos: [PlanetPhoto, PlanetPhoto, PlanetPhoto],
     pricePerNight: 200,
-    planet: "Venus",
+    planet: "Hoth",
     availableFrom: setDate("2024-08-01"),
     availableTo: setDate("2024-08-31"),
-    capacity: 2
+    capacity: 2,
+    accommodationType: "Glamping",
+    accommodationPuntuation: "4",
+    mealsIncluded: "All inclusive",
   },
   {
     id: "5",
-    accommodationName: "Saturno Suite",
-    accommodationStars: 5,
+    accommodationName: "Swamp Refuge",
+    accommodationStars: 3,
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 600,
-    planet: "Saturno",
+    planet: "Dagobah",
     availableFrom: setDate("2024-11-01"),
     availableTo: setDate("2024-12-01"),
-    capacity: 4
+    capacity: 4,
+    accommodationType: "Hostel",
+    accommodationPuntuation: "3",
+    mealsIncluded: "All inclusive",
   },
   {
     id: "6",
-    accommodationName: "Urano Suite",
-    accommodationStars: 5,
+    accommodationName: "Lava Fortress",
+    accommodationStars: 4,
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 400,
-    planet: "Urano",
+    planet: "Mustafar",
     availableFrom: setDate("2024-09-10"),
     availableTo: setDate("2024-10-10"),
-    capacity: 3
+    capacity: 3,
+    accommodationType: "Resort",
+    accommodationPuntuation: "4",
+    mealsIncluded: "Nothing inclusive",
   },
   {
     id: "7",
-    accommodationName: "Neptuno cozy",
-    accommodationStars: 4,
+    accommodationName: "Forest Haven",
+    accommodationStars: 2,
     accommodationPhotos: [PlanetPhoto],
     pricePerNight: 300,
-    planet: "Neptuno",
+    planet: "Endor",
     availableFrom: setDate("2024-10-05"),
     availableTo: setDate("2024-11-05"),
-    capacity: 2
+    capacity: 2,
+    accommodationType: "Hotel",
+    accommodationPuntuation: "2",
+    mealsIncluded: "All inclusive",
   },
   {
     id: "8",
-    accommodationName: "Marte olimpo",
-    accommodationStars: 4,
+    accommodationName: "Oceanic Retreat",
+    accommodationStars: 3,
     accommodationPhotos: [PlanetPhoto, PlanetPhoto],
     pricePerNight: 350,
-    planet: "Marte",
+    planet: "Kamino",
     availableFrom: setDate("2024-10-20"),
     availableTo: setDate("2024-10-25"),
-    capacity: 5
+    capacity: 5,
+    accommodationType: "Apartment",
+    accommodationPuntuation: "3",
+    mealsIncluded: "All inclusive",
   }
 ] as const;
+
 
 // Users info
 

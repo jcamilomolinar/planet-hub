@@ -2,13 +2,14 @@
 
 import React, { useState } from 'react';
 import { z } from 'zod';
-
+import { planets, AccomodationType, puntuations, mealsIncluded } from "@/lib/data"
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from 'next/link';
 import { AccommodationsCard } from '@/components/Accommodations/AccommodationsCard';
+import { Check, ChevronsUpDown } from "lucide-react"
 import PlanetPhoto from "@/public/planet.jpg";
 import {
     Form,
@@ -19,6 +20,14 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
+import {
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
+    CommandList,
+} from "@/components/ui/command"
 import {
     Card,
     CardContent,
@@ -38,11 +47,15 @@ import { Calendar } from "@/components/ui/calendar";
 
 const accommodationSchema = z.object({
     id: z.string(),
-    planet: z.string(),
+    planet: z.string().optional(),
     availableFrom: z.date(),
     availableTo: z.date(),
-    capacity: z.number().positive(),
+    capacity: z.number().positive().optional(),
     pricePerNight: z.number().positive(),
+    accommodationName: z.string(),
+    accommodationStars: z.number().positive(),
+    accommodationPhotos: z.any(),
+
 });
 
 const searchFormSchema = z.object({
@@ -55,12 +68,92 @@ const searchFormSchema = z.object({
     max_price: z.number().nonnegative().optional().refine((max_price) => max_price === undefined || max_price > 0, {
         message: "The maximum price must be greater than 0",
     }),
+    puntuation: z.string().optional(),
+    accommodationType: z.string().optional(),
+    mealsIncluded: z.string().optional(),
 });
 
 
 type SearchFormInputs = z.infer<typeof searchFormSchema>;
 
-function FlightSearchFormFieldDate({ form, title, name, description }: {
+function AccommodationSearchFormFieldCombobox({ elements, form, title, name, description }:
+    { elements: any, form: any, name: string, title: string, description: string }) {
+
+    return (
+        <FormField
+            control={form.control}
+            name={name}
+            render={({ field }: { field: any }) => (
+                <FormItem className="flex flex-col">
+                    <FormLabel>{title}</FormLabel>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <FormControl>
+                                <Button
+                                    variant="outline"
+                                    role="combobox"
+                                    className={cn(
+                                        "w-[200px] justify-between",
+                                        !field.value && "text-muted-foreground"
+                                    )}
+                                >
+                                    {field.value
+                                        ? elements.find(
+                                            (element: any) => element.value === field.value
+                                        )?.label
+                                        : "Select an option"}
+                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                </Button>
+                            </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-[200px] p-0">
+                            <Command>
+                                <CommandInput placeholder="Search option..." />
+                                <CommandList>
+                                    <CommandEmpty>Not found</CommandEmpty>
+                                    <CommandGroup>
+                                        {elements.map((element: any) => (
+                                            <CommandItem
+                                                value={element.label}
+                                                key={element.value}
+                                                onSelect={() => {
+                                                    form.setValue(name, element.value)
+                                                }}
+                                            >
+                                                <Check
+                                                    className={cn(
+                                                        "mr-2 h-4 w-4",
+                                                        element.value === field.value
+                                                            ? "opacity-100"
+                                                            : "opacity-0"
+                                                    )}
+                                                />
+                                                {element.label}
+                                            </CommandItem>
+                                        ))}
+                                    </CommandGroup>
+                                </CommandList>
+                            </Command>
+                        </PopoverContent>
+                    </Popover>
+                    <FormDescription>
+                        {description}
+                    </FormDescription>
+                    <FormMessage />
+                </FormItem>
+            )}
+        />
+    );
+}
+
+const planetsListData = planets.map(planet => ({
+    label: planet.name,
+    value: planet.name
+}));
+
+const planetsList = [...planetsListData, { label: "All", value: "" }];
+
+function AccommodationSearchFormFieldDate({ form, title, name, description }: {
     form: any;
     title: string;
     name: string;
@@ -135,6 +228,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
     const onSubmit = (formData: SearchFormInputs) => {
         let results = data;
         console.log(data);
+        console.log(formData);
 
         // filter by planet | optional
         if (formData.planet) {
@@ -166,7 +260,28 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
         results = results.filter((accommodationInfo) =>
             accommodationInfo.capacity >= formData.guests
         );
-        console.log("Resiltados", results.planet);
+        // filter by puntuation | optional
+        if (formData.puntuation) {
+            results = results.filter((accommodationInfo) =>
+                accommodationInfo.accommodationStars >= formData.puntuation
+            );
+        }
+
+        // filter by accommodation type | optional
+        if (formData.accommodationType) {
+            results = results.filter((accommodationInfo) =>
+                accommodationInfo.accommodationType >= formData.accommodationType
+            );
+        }
+
+        // filter by meals included | optional
+        if (formData.mealsIncluded) {
+            console.log("Meals included", formData.mealsIncluded);
+            results = results.filter((accommodationInfo) =>
+                accommodationInfo.mealsIncluded === formData.mealsIncluded
+            );
+        }
+
         setSearchResults(results);
     };
 
@@ -179,7 +294,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                             <CardTitle className="text-textTitle">Search Accommodations</CardTitle>
                         </CardHeader>
                         <CardContent className="text-textAll">
-                            <FlightSearchFormFieldDate
+                            <AccommodationSearchFormFieldDate
                                 form={form}
                                 title="Travel date"
                                 name="date"
@@ -187,7 +302,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                             />
 
                             <div className="grid grid-cols-2 gap-6">
-                                <FormField
+                                {/* <FormField
                                     control={form.control}
                                     name="planet"
                                     render={({ field }) => (
@@ -202,7 +317,8 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                                             <FormMessage />
                                         </FormItem>
                                     )}
-                                />
+                                /> */}
+                                <AccommodationSearchFormFieldCombobox elements={planetsList} form={form} name="planet" title="Planet" description="Enter the planet you want to visit." />
                                 <FormField
                                     control={form.control}
                                     name="guests"
@@ -236,6 +352,10 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                                         </FormItem>
                                     )}
                                 />
+                                <AccommodationSearchFormFieldCombobox elements={puntuations} form={form} title="Puntuation" name="puntuation" description="Select the minimum puntuation you want for your destination." />
+                                <AccommodationSearchFormFieldCombobox elements={AccomodationType} form={form} title="Accommodation type" name="accommodationType" description="Select the accommodation type you want for your destination." />
+                                <AccommodationSearchFormFieldCombobox elements={mealsIncluded} form={form} title="Meals included" name="mealsIncluded" description="" />
+
                             </div>
                             <Button className="mt-6" type="submit">Search</Button>
                         </CardContent>
@@ -262,6 +382,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                                 planet={option.planet}
                                 availableFrom={option.availableFrom}
                                 availableTo={option.availableTo}
+                                accommodationType={option.accommodationType}
                             />
                         </Link>
                     ))}
