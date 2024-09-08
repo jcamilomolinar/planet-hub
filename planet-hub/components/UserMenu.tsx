@@ -27,11 +27,15 @@ import {
   AvatarImage 
 } from "@/components/ui/avatar"
 import Link from "next/link"
+import { useRouter } from 'next/navigation'
   
 export function UserMenu({setIsLogged}: {setIsLogged: any}) {
+  const router = useRouter();
+
   const handleClick = () => {
     setIsLogged(false);
     localStorage.removeItem('user');
+    router.push('/');
   };
 
   return (
