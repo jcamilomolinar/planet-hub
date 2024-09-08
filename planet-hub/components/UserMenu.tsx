@@ -1,9 +1,11 @@
 import {
-  CreditCard,
-  Keyboard,
-  LogOut,
-  Settings,
-  User,
+  HousePlus,
+  BookText,
+  Hotel,
+  Rocket,
+  Earth,
+  ShoppingCart,
+  LogOut
 } from "lucide-react"
 import {
   DropdownMenu,
@@ -13,6 +15,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal,
+  DropdownMenuSubContent
 } from "@/components/ui/dropdown-menu"
 import { 
   Avatar, 
@@ -38,21 +44,37 @@ export function UserMenu({setIsLogged}: {setIsLogged: any}) {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
+          {localStorage.getItem('user') === "admin" && (
+            <DropdownMenuItem>
+              <Earth className="mr-2 h-4 w-4" />
+              <span>Add planet</span>
+            </DropdownMenuItem>
+          )}
           <DropdownMenuItem>
-            <User className="mr-2 h-4 w-4" />
-            <span>Profile</span>
+            <HousePlus className="mr-2 h-4 w-4" />
+            <span>Add accomodation</span>
           </DropdownMenuItem>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>
+              <BookText className="mr-2 h-4 w-4" />
+              <span>Bookings</span>
+            </DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent>
+                <DropdownMenuItem>
+                  <Hotel className="mr-2 h-4 w-4" />
+                  <span>Accomodations</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Rocket className="mr-2 h-4 w-4" />
+                  <span>Flights</span>
+                </DropdownMenuItem>
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
           <DropdownMenuItem>
-            <CreditCard className="mr-2 h-4 w-4" />
-            <span>Billing</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Settings className="mr-2 h-4 w-4" />
-            <span>Settings</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Keyboard className="mr-2 h-4 w-4" />
-            <span>Keyboard shortcuts</span>
+            <ShoppingCart className="mr-2 h-4 w-4" />
+            <span>Shopping Cart</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
