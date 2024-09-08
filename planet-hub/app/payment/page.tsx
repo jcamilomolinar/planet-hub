@@ -1,11 +1,10 @@
-'use client'
-import { PaymentForm } from "@/components/PaymentForm";
+import { PaymentForm } from "@/components/PaymentForm"
 
 export default function Home() {
 
   return (
     <div>
-        <PaymentForm />
+      <PaymentForm />
     </div>
   );
 }

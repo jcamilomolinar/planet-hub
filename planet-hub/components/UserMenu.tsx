@@ -5,7 +5,8 @@ import {
   Rocket,
   Earth,
   ShoppingCart,
-  LogOut
+  LogOut,
+  LandPlot
 } from "lucide-react"
 import {
   DropdownMenu,
@@ -25,6 +26,7 @@ import {
   AvatarFallback, 
   AvatarImage 
 } from "@/components/ui/avatar"
+import Link from "next/link"
   
 export function UserMenu({setIsLogged}: {setIsLogged: any}) {
   const handleClick = () => {
@@ -45,10 +47,20 @@ export function UserMenu({setIsLogged}: {setIsLogged: any}) {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           {localStorage.getItem('user') === "admin" && (
-            <DropdownMenuItem>
-              <Earth className="mr-2 h-4 w-4" />
-              <span>Add planet</span>
-            </DropdownMenuItem>
+            <div>
+              <Link href="/addplanet">
+                <DropdownMenuItem>
+                  <Earth className="mr-2 h-4 w-4" />
+                  <span>Add planet</span>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/addflight">
+                <DropdownMenuItem>
+                  <LandPlot className="mr-2 h-4 w-4" />
+                  <span>Add flight</span>
+                </DropdownMenuItem>
+              </Link>
+            </div>
           )}
           <DropdownMenuItem>
             <HousePlus className="mr-2 h-4 w-4" />

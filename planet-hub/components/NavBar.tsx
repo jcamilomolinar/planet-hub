@@ -10,7 +10,7 @@ import Link from 'next/link'
 import Logo from '@/public/Logo.png'
 import { LoginForm } from '@/components/LoginSheet'
 import { SignUpForm } from '@/components/SignUpSheet'
-import { UserMenu } from '@/components/UserMenu';
+import { UserMenu } from '@/components/UserMenu'
 
 function NavBar() {
   const [isLogged, setIsLogged] = useState<boolean>();

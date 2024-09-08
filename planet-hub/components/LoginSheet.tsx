@@ -25,7 +25,7 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { users_data } from "@/lib/data"
-import { toast } from "sonner"
+import { useToast } from "@/hooks/use-toast"
 
 function LoginFormFieldInput({ form, title, name, type }:
   { form: any, name: string, title: string, type: string }) {
@@ -53,6 +53,7 @@ const FormSchema = z.object({
 })
 
 export function LoginForm({setIsLogged}: {setIsLogged: any}) {
+  const { toast } = useToast()
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -72,12 +73,10 @@ export function LoginForm({setIsLogged}: {setIsLogged: any}) {
       localStorage.setItem("user", data.user);
       setIsLogged(true);
     } else {
-      toast.error("You are not registered", {
-        description: "Hint: Sign up first!",
-        action: {
-          label: "Close",
-          onClick: () => {},
-        },
+      toast({
+        variant: "destructive",
+        title: "Login to your account failed",
+        description: "It seems that you are not registered or you entered your data incorrectly!",
       })
     }
   };
