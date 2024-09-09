@@ -24,9 +24,9 @@ import { useToast } from "@/hooks/use-toast"
 
 function AddPlanetFormFieldInput({ form, title, name, description }:
   { form: any, name: string, title: string, description: string }) {
-  
+
   return (
-      <FormField
+    <FormField
       control={form.control}
       name={name}
       render={({ field }) => (
@@ -39,18 +39,18 @@ function AddPlanetFormFieldInput({ form, title, name, description }:
             {description}
           </FormDescription>
           <FormMessage />
-          </FormItem>
-          )}
-        />
+        </FormItem>
+      )}
+    />
   )
 }
 
 const FormSchema = z.object({
-  planet: z.string().min(1, {message: "Planet is required"}),
-  tours: z.string().min(1, {message: "Tour is required"}),
-  weather: z.string().min(1, {message: "Weather is required"}),
-  typeActivity: z.string().min(1, {message: "Type of activity is required"}),
-  description: z.string().min(1, {message: "Description is required"})
+  planet: z.string().min(1, { message: "Planet is required" }),
+  tours: z.string().min(1, { message: "Tour is required" }),
+  weather: z.string().min(1, { message: "Weather is required" }),
+  typeActivity: z.string().min(1, { message: "Type of activity is required" }),
+  description: z.string().min(1, { message: "Description is required" })
 })
 
 export function AddPlanetForm() {
