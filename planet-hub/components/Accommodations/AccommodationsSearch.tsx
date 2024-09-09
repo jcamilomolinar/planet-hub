@@ -302,22 +302,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                             />
 
                             <div className="grid grid-cols-2 gap-6">
-                                {/* <FormField
-                                    control={form.control}
-                                    name="planet"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Planet</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="Enter planet name" {...field} />
-                                            </FormControl>
-                                            <FormDescription>
-                                                Enter the planet you want to visit.
-                                            </FormDescription>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                /> */}
+
                                 <AccommodationSearchFormFieldCombobox elements={planetsList} form={form} name="planet" title="Planet" description="Enter the planet you want to visit." />
                                 <FormField
                                     control={form.control}
