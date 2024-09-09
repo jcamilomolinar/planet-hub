@@ -1,5 +1,6 @@
 import PlanetPhoto from "@/public/planet.jpg";
 import { AccommodationsData } from "@/lib/types";
+import { Cat, SunSnow, PlaneTakeoff, AirVent, Utensils, Clock, Flame, Dam } from "lucide-react";
 import { faSwimmer, faTaxi, faSnowflake, faGlobe, faClock, faSnowplow, faBroom, faBullseye, faClipboardCheck, faComments, faMapMarkerAlt, faTag } from '@fortawesome/free-solid-svg-icons';
 
 // Planets
@@ -724,3 +725,20 @@ export let users_data = [
     password: "test"
   }
 ]
+
+export const servicesList = [
+  { value: "outdoor-swimming-pool", label: "Outdoor swimming pool", icon: SunSnow },
+  { value: "airport-transfer", label: "Airport transfer", icon: PlaneTakeoff },
+  { value: "air-conditioning", label: "Air conditioning", icon: AirVent },
+  { value: "interplanetary-gastronomy", label: "Interplanetary Gastronomy", icon: Utensils },
+  { value: "24-hour-reception", label: "24.6 hour reception", icon: Clock },
+  { value: "heated-accommodation", label: "Heated Accommodation", icon: Flame },
+  { value: "galactic-kittens", label: "Company of Galactic Kittens", icon: Cat },
+  { value: "winter-spa", label: "Winter Spa", icon: Dam },
+] as const;
+
+export const defaultServicesList = [
+  "outdoor-swimming-pool",
+  "airport-transfer",
+] as const;
+
