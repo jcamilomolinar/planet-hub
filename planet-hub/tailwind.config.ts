@@ -73,10 +73,30 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "fly-ship1": {
+          '0%': { transform: 'translateX(-100vw)' },
+          '100%': { transform: 'translateX(100vw)' },
+        },
+        "fly-ship2": {
+          '0%': { transform: 'translateX(100vw)' },
+          '100%': { transform: 'translateX(-100vw)' },
+        },
+        "fly-ship3": {
+          '0%': { transform: 'translateX(-100vw)' },
+          '100%': { transform: 'translateX(100vw)' },
+        },
+        "fly-ship4": {
+          '0%': { transform: 'translateX(100vw)' },
+          '100%': { transform: 'translateX(-100vw)' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fly-ship1": "fly-ship1 9s linear infinite",
+        "fly-ship2": "fly-ship2 7s linear infinite",
+        "fly-ship3": "fly-ship3 12s linear infinite",
+        "fly-ship4": "fly-ship4 5s linear infinite",
       },
     },
   },
