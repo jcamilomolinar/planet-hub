@@ -36,10 +36,10 @@ export default function Home() {
           </div>
         </div>
         
-        <Image style={{ animationDelay: '0.1s' }} className="absolute top-[30px] left-[-150px] w-24 animate-fly-ship1 z-0 hover:cursor-pointer" src={Ship1} width={100} height={100} alt="Ship1" />
-        <Image style={{ animationDelay: '0.2s' }} className="absolute top-[120px] left-[-150px] w-24 animate-fly-ship2 z-0 hover:cursor-pointer" src={Ship2} width={100} height={100} alt="Ship2" />
-        <Image style={{ animationDelay: '0.3s' }} className="absolute top-[300px] left-[-150px] w-24 animate-fly-ship3 z-0 hover:cursor-pointer" src={Ship3} width={100} height={100} alt="Ship3" />
-        <Image style={{ animationDelay: '0.4' }} className="absolute top-[410px] left-[-150px] w-24 animate-fly-ship4 z-0 hover:cursor-pointer" src={Ship4} width={100} height={100} alt="Ship4" />
+        <Image style={{ animationDelay: '0.1s' }} className="absolute top-[30px] left-[-50px] w-24 animate-fly-ship1 z-0 hover:cursor-pointer" src={Ship1} width={100} height={100} alt="Ship1" />
+        <Image style={{ animationDelay: '0.2s' }} className="absolute top-[120px] left-[-50px] w-24 animate-fly-ship2 z-0 hover:cursor-pointer" src={Ship2} width={100} height={100} alt="Ship2" />
+        <Image style={{ animationDelay: '0.3s' }} className="absolute top-[300px] left-[-50px] w-24 animate-fly-ship3 z-0 hover:cursor-pointer" src={Ship3} width={100} height={100} alt="Ship3" />
+        <Image style={{ animationDelay: '0.4' }} className="absolute top-[410px] left-[-50px] w-24 animate-fly-ship4 z-0 hover:cursor-pointer" src={Ship4} width={100} height={100} alt="Ship4" />
       </div>
 
       <div className="my-10">

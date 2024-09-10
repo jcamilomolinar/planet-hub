@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { z } from 'zod';
 import { planets, AccomodationType, puntuations, mealsIncluded } from "@/lib/data"
 import { useForm } from 'react-hook-form';
@@ -216,6 +216,19 @@ function AccommodationSearchFormFieldDate({ form, title, name, description }: {
 
 function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSchema>[] }) {
     const [searchResults, setSearchResults] = useState<z.infer<typeof accommodationSchema>[]>([]);
+
+    useEffect(() => {
+        const storedPlanet = localStorage.getItem('planetName');
+        const storedDate = localStorage.getItem('date');
+        if (storedPlanet) {
+          form.setValue("planet", storedPlanet);
+          localStorage.removeItem('planetName');
+        }
+        if (storedDate !== null) {
+          form.setValue("date", JSON.parse(storedDate));
+          localStorage.removeItem('date');
+        }
+      }, []);
 
     const form = useForm<SearchFormInputs>({
         resolver: zodResolver(searchFormSchema),
