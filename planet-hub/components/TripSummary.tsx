@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import CheckoutList from "./checkoutList";
 
 interface TripSummaryProps {
   planet: string;
@@ -20,18 +21,7 @@ const TripSummary: React.FC<TripSummaryProps> = ({ planet, dates, total }) => (
       <CardDescription>Details of your selection</CardDescription>
     </CardHeader>
     <CardContent>
-      <div className="mb-5">
-        <p className="font-bold">Your selection</p>
-        <p>{planet}</p>
-      </div>
-      <div className="mb-5">
-        <p className="font-bold">Dates</p>
-        <p>{dates}</p>
-      </div>
-      <div>
-        <p className="font-bold">Total (USD)</p>
-        <p>{total}</p>
-      </div>
+      <CheckoutList />
     </CardContent>
   </Card>
 );

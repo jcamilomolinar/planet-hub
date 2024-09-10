@@ -2,9 +2,8 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Link from 'next/link';
-import { Button } from "@/components/ui/button"; // Adjust the path according to your project structure
+import { Button } from "@/components/ui/button"; 
 
-// Dropdown container styles
 const dropdownVariants = cva(
   "absolute right-0 mt-2 bg-white border shadow-lg p-4 rounded-md z-50 transition-all duration-200 ease-in-out",
   {
@@ -27,7 +26,6 @@ const dropdownVariants = cva(
   }
 );
 
-// Cart item styles
 const itemVariants = cva(
   "flex justify-between items-center border-b pb-2 last:border-none transition-colors",
   {
@@ -46,57 +44,78 @@ const itemVariants = cva(
 
 type CartProps = VariantProps<typeof dropdownVariants>;
 
-type Flight = {
-  planet: string;
-  timeTravel: number;
+interface Accommodation {
+  name: string;
+  host: {
+    name: string;
+    joinedYear: number;
+    email: string;
+    avatar: string;
+  };
+  id: number;
+}
+
+interface Flight {
+  planet: String;
+  hour: String
   price: number;
-  hour: string;
-};
+}
 
 const ShoppingCart: React.FC<CartProps> = ({ variant, size }) => {
   const [cartItems, setCartItems] = React.useState<Flight[]>(() => {
-    // Load items from local storage or default to an empty array
     const storedItems = localStorage.getItem("cartItems");
     return storedItems ? JSON.parse(storedItems) : [];
+  });
+
+  const [cartAccommodations, setCartAccommodations] = React.useState<Accommodation[]>(() => {
+    const storedAccommodations = localStorage.getItem("cartAccommodations");
+    return storedAccommodations ? JSON.parse(storedAccommodations) : [];
   });
 
   const [isDropdownOpen, setDropdownOpen] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    // Save cartItems to localStorage whenever they change
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
+    if (cartItems.length > 0) {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+    
+    if (cartAccommodations.length > 0) {
+      localStorage.setItem("cartAccommodations", JSON.stringify(cartAccommodations));
+    }
+  }, [cartItems, cartAccommodations]);
 
-  const removeFromCart = (index: number) => {
+  const removeFlightFromCart = (index: number) => {
     setCartItems((prevItems) => {
       const updatedItems = prevItems.filter((_, i) => i !== index);
-      // Update local storage with new cartItems
-      localStorage.setItem("cartItems", JSON.stringify(updatedItems));
       return updatedItems;
+    });
+  };
+
+  const removeAccommodationFromCart = (index: number) => {
+    setCartAccommodations((prevAccommodations) => {
+      const updatedAccommodations = prevAccommodations.filter((_, i) => i !== index);
+      return updatedAccommodations;
     });
   };
 
   return (
     <div className="relative">
-      {/* Shopping Cart Icon */}
       <button
         onClick={() => setDropdownOpen(!isDropdownOpen)}
         className="relative flex items-center justify-center text-gray-700 hover:text-gray-900 focus:outline-none"
       >
         <AiOutlineShoppingCart size={24} />
-        {/* Cart item count */}
-        {cartItems.length > 0 && (
+        {(cartItems.length + cartAccommodations.length) > 0 && (
           <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
-            {cartItems.length}
+            {cartItems.length + cartAccommodations.length}
           </span>
         )}
       </button>
 
-      {/* Dropdown */}
       {isDropdownOpen && (
         <div className={dropdownVariants({ variant, size })}>
           <h2 className="text-lg font-semibold mb-2">Shopping Cart</h2>
-          {cartItems.length === 0 ? (
+          {cartItems.length === 0 && cartAccommodations.length === 0 ? (
             <p className="text-gray-500">Your cart is empty.</p>
           ) : (
             <>
@@ -106,11 +125,25 @@ const ShoppingCart: React.FC<CartProps> = ({ variant, size }) => {
                     <div>
                       <p className="font-medium">Planet: {flight.planet}</p>
                       <p className="text-gray-500">Date: {flight.hour}</p>
-                      <p className="text-gray-500">Time: {flight.hour}</p>
                       <p className="text-gray-500">Price: ${flight.price}</p>
                     </div>
                     <button
-                      onClick={() => removeFromCart(index)}
+                      onClick={() => removeFlightFromCart(index)}
+                      className="text-red-500 hover:text-red-700 font-semibold focus:outline-none"
+                    >
+                      X
+                    </button>
+                  </li>
+                ))}
+
+                {cartAccommodations.map((accommodation, index) => (
+                  <li key={index} className={itemVariants({ variant })}>
+                    <div>
+                      <p className="font-medium">Accommodation: {accommodation.name}</p>
+                      <p className="text-gray-500">Host: {accommodation.host.name}</p>
+                    </div>
+                    <button
+                      onClick={() => removeAccommodationFromCart(index)}
                       className="text-red-500 hover:text-red-700 font-semibold focus:outline-none"
                     >
                       X
@@ -119,7 +152,6 @@ const ShoppingCart: React.FC<CartProps> = ({ variant, size }) => {
                 ))}
               </ul>
 
-              {/* Checkout Button */}
               <Link href="/checkout" passHref>
                 <Button variant="default" className="mt-4 w-full">
                   Go to Checkout
@@ -132,5 +164,7 @@ const ShoppingCart: React.FC<CartProps> = ({ variant, size }) => {
     </div>
   );
 };
+
+  
 
 export default ShoppingCart;

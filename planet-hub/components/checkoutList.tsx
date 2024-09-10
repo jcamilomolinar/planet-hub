@@ -16,10 +16,6 @@ const CheckoutList: React.FC = () => {
     return storedItems ? JSON.parse(storedItems) : [];
   });
 
-  const handleConfirmOrder = () => {
-    alert("Order confirmed!");
-    window.location.href = "/confirmation";
-  };
 
   const handleRemoveFlight = (index: number) => {
     setCartItems((prevItems) => {
@@ -31,7 +27,6 @@ const CheckoutList: React.FC = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Checkout</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {cartItems.length === 0 ? (
           <p className="text-gray-500">Your cart is empty.</p>
@@ -51,11 +46,6 @@ const CheckoutList: React.FC = () => {
             </Card>
           ))
         )}
-      </div>
-      <div className="mt-6">
-        <Button variant="default" onClick={handleConfirmOrder} className="w-full">
-          Confirm Order
-        </Button>
       </div>
     </div>
   );
