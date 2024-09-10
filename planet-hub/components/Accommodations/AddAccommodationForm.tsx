@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form"
 import { useToast } from "@/hooks/use-toast"
-import { MultiSelect } from "@/components/multi-select";
+import MultiSelect from "@/components/multi-select";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
@@ -42,6 +42,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { cn } from "@/lib/utils";
 import { Check, ChevronsUpDown } from "lucide-react"
 import { planets, servicesList, defaultServicesList } from "@/lib/data"
+// import { planets, defaultServicesList } from "@/lib/data"
 import MultiImageUpload from '@/components/multi-image-upload';
 
 function AccommodationFormFieldDate({ form, title, name, description }: {
@@ -241,12 +242,13 @@ const FormSchema = z.object({
     images: z.array(z.object({
         file: z.any(),
     })).optional(),
-    services: z.array(z.string()).optional(),
+    services: z.array(z.string()).min(1, { message: "Selecciona al menos un servicio" }),
 })
 
 function AddAccommodation() {
+
     const { toast } = useToast()
-    const [formData, setFormData] = useState(null);
+    const [formData, setFormData] = useState<z.infer<typeof FormSchema> | null>(null);
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -261,10 +263,8 @@ function AddAccommodation() {
             services: [],
         }
     })
-    const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>(Array.from(defaultServicesList));
-    const [selectedServices, setSelectedServices] = useState<string[]>([]);
 
-    function onSubmit(data: z.infer<typeof FormSchema>, services: selectedServices) {
+    function onSubmit(data: z.infer<typeof FormSchema>) {
         console.log(data);
         setFormData(data);
         toast({
@@ -273,6 +273,7 @@ function AddAccommodation() {
             description: "You can view the details below.",
         });
     };
+
 
     return (
         <Form {...form}>
@@ -312,12 +313,17 @@ function AddAccommodation() {
                         </Card>
                         <Card>
                             <CardHeader>
-                                <CardTitle className="text-textTitle">Add accommodation Services</CardTitle>
+                                <CardTitle className="text-textTitle">Servicios del alojamiento</CardTitle>
                             </CardHeader>
                             <CardContent className="text-textAll">
-                                <div className="flexs gap-6">
-                                    <MultiSelect options={servicesList} onValueChange={setSelectedFrameworks} defaultValue={selectedFrameworks} placeholder="Select frameworks" variant="inverted" animation={2} maxCount={3} />
-                                </div>
+                                <MultiSelect
+                                    control={form.control}
+                                    name="services"
+                                    label="Servicios"
+                                    options={[...servicesList]}
+                                    placeholder="Selecciona los servicios"
+                                    description="Selecciona todos los servicios que ofrece tu alojamiento"
+                                />
                             </CardContent>
                         </Card>
                         <div className="flex justify-center">

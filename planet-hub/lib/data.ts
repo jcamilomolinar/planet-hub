@@ -727,14 +727,14 @@ export let users_data = [
 ]
 
 export const servicesList = [
-  { value: "outdoor-swimming-pool", label: "Outdoor swimming pool", icon: SunSnow },
-  { value: "airport-transfer", label: "Airport transfer", icon: PlaneTakeoff },
-  { value: "air-conditioning", label: "Air conditioning", icon: AirVent },
-  { value: "interplanetary-gastronomy", label: "Interplanetary Gastronomy", icon: Utensils },
-  { value: "24-hour-reception", label: "24.6 hour reception", icon: Clock },
-  { value: "heated-accommodation", label: "Heated Accommodation", icon: Flame },
-  { value: "galactic-kittens", label: "Company of Galactic Kittens", icon: Cat },
-  { value: "winter-spa", label: "Winter Spa", icon: Dam },
+  { value: "outdoor-swimming-pool", label: "Outdoor swimming pool" },
+  { value: "airport-transfer", label: "Airport transfer" },
+  { value: "air-conditioning", label: "Air conditioning" },
+  { value: "interplanetary-gastronomy", label: "Interplanetary Gastronomy" },
+  { value: "24-hour-reception", label: "24.6 hour reception" },
+  { value: "heated-accommodation", label: "Heated Accommodation" },
+  { value: "galactic-kittens", label: "Company of Galactic Kittens" },
+  { value: "winter-spa", label: "Winter Spa" },
 ] as const;
 
 export const defaultServicesList = [
