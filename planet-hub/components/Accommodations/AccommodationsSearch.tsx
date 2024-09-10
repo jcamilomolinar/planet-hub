@@ -308,16 +308,20 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                             <CardTitle className="text-textTitle">Search Accommodations</CardTitle>
                         </CardHeader>
                         <CardContent className="text-textAll">
-                            <AccommodationSearchFormFieldDate
-                                form={form}
-                                title="Travel date"
-                                name="date"
-                                description="Enter when you will travel."
-                            />
 
-                            <div className="grid grid-cols-2 gap-6">
-
+                            <div className='flex justify-around my-5'>
                                 <AccommodationSearchFormFieldCombobox elements={planetsList} form={form} name="planet" title="Planet" description="Enter the planet you want to visit." />
+                                <AccommodationSearchFormFieldCombobox elements={puntuations} form={form} title="Puntuation" name="puntuation" description="Select the minimum puntuation you want for your destination." />
+                                <AccommodationSearchFormFieldCombobox elements={AccomodationType} form={form} title="Accommodation type" name="accommodationType" description="Select the accommodation type you want for your destination." />
+                                <AccommodationSearchFormFieldCombobox elements={mealsIncluded} form={form} title="Meals included" name="mealsIncluded" description="" />
+                            </div>
+                            <div className='flex justify-around my-5'>
+                                <AccommodationSearchFormFieldDate
+                                    form={form}
+                                    title="Travel date"
+                                    name="date"
+                                    description="Enter when you will travel."
+                                />
                                 <FormField
                                     control={form.control}
                                     name="guests"
@@ -334,7 +338,6 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                                         </FormItem>
                                     )}
                                 />
-
                                 <FormField
                                     control={form.control}
                                     name="max_price"
@@ -351,12 +354,8 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
                                         </FormItem>
                                     )}
                                 />
-                                <AccommodationSearchFormFieldCombobox elements={puntuations} form={form} title="Puntuation" name="puntuation" description="Select the minimum puntuation you want for your destination." />
-                                <AccommodationSearchFormFieldCombobox elements={AccomodationType} form={form} title="Accommodation type" name="accommodationType" description="Select the accommodation type you want for your destination." />
-                                <AccommodationSearchFormFieldCombobox elements={mealsIncluded} form={form} title="Meals included" name="mealsIncluded" description="" />
-
                             </div>
-                            <Button className="mt-6" type="submit">Search</Button>
+                            <Button variant="outline" className="mt-6" type="submit">Search</Button>
                         </CardContent>
                     </Card>
                 </form>
