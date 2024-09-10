@@ -55,7 +55,8 @@ const accommodationSchema = z.object({
     accommodationName: z.string(),
     accommodationStars: z.number().positive(),
     accommodationPhotos: z.any(),
-
+    accommodationType: z.string(),
+    mealsIncluded: z.string().optional(),
 });
 
 const searchFormSchema = z.object({
@@ -247,7 +248,7 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
 
         // filter by guest | obligatory
         results = results.filter((accommodationInfo) =>
-            accommodationInfo.capacity >= formData.guests
+            (accommodationInfo.capacity ?? 0) >= formData.guests
         );
 
         // filter by price | optional
@@ -258,19 +259,19 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
         }
 
         results = results.filter((accommodationInfo) =>
-            accommodationInfo.capacity >= formData.guests
+            (accommodationInfo.capacity ?? 0) >= formData.guests
         );
         // filter by puntuation | optional
         if (formData.puntuation) {
             results = results.filter((accommodationInfo) =>
-                accommodationInfo.accommodationStars >= formData.puntuation
+                accommodationInfo.accommodationStars >= (formData.puntuation ? parseFloat(formData.puntuation) : 0)
             );
         }
 
         // filter by accommodation type | optional
         if (formData.accommodationType) {
             results = results.filter((accommodationInfo) =>
-                accommodationInfo.accommodationType >= formData.accommodationType
+                accommodationInfo.accommodationType && accommodationInfo.accommodationType >= (formData.accommodationType ?? "")
             );
         }
 
@@ -358,18 +359,18 @@ function AccommodationsSearch({ data }: { data: z.infer<typeof accommodationSche
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
                     {searchResults.map(option => (
-                        <Link href={`/accomodation/${option.id}`} key={option.id}>
-                            <AccommodationsCard
-                                accommodationName={option.accommodationName}
-                                accommodationPhotos={option.accommodationPhotos}
-                                accommodationStars={option.accommodationStars}
-                                pricePerNight={option.pricePerNight}
-                                planet={option.planet}
-                                availableFrom={option.availableFrom}
-                                availableTo={option.availableTo}
-                                accommodationType={option.accommodationType}
-                            />
-                        </Link>
+                        <AccommodationsCard
+                            key={option.id}
+                            accommodationId={option.id} // Pasa el ID al componente para usarlo dentro del mismo
+                            accommodationName={option.accommodationName}
+                            accommodationPhotos={option.accommodationPhotos}
+                            accommodationStars={option.accommodationStars}
+                            pricePerNight={option.pricePerNight}
+                            planet={option.planet || ""}
+                            availableFrom={option.availableFrom}
+                            availableTo={option.availableTo}
+                            accommodationType={option.accommodationType}
+                        />
                     ))}
                 </div>
             )}
