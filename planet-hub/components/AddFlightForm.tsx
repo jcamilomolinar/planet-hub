@@ -218,13 +218,15 @@ export function AddFlightForm() {
             <CardTitle className="text-textTitle">Add flight</CardTitle>
           </CardHeader>
           <CardContent className="text-textAll">
-            <div className="grid grid-cols-2 grid-rows-2 gap-10">
+            <div className="flex justify-around my-5">
               <AddFlightFormFieldCombobox elements={planetsList} form={form} title="Destiny planet" name="planet" description="Choose the planet where the flight is headed" />
               <AddFlightFormFieldDatePicker form={form} />
+            </div>
+            <div className="grid grid-cols-2 grid-rows-1 gap-10">
               <AddFlightFormFieldInput form={form} title="Price" name="price" description="Add the price of the flight." />
               <AddFlightFormFieldInput form={form} title="Time travel" name="timeTravel" description="Add the flight travel time (in light years)." />
             </div>
-            <Button className="mt-5" type="submit" variant="outline">Add Planet!</Button>
+            <Button className="my-5" type="submit" variant="outline">Add Planet!</Button>
           </CardContent>
         </Card>
       </form>
