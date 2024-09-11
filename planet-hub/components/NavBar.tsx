@@ -11,6 +11,7 @@ import Logo from '@/public/Logo.png'
 import { LoginForm } from '@/components/LoginSheet'
 import { SignUpForm } from '@/components/SignUpSheet'
 import { UserMenu } from '@/components/UserMenu'
+import ShoppingCart from '@/components/ShoppingCart';
 
 function NavBar() {
   const [isLogged, setIsLogged] = useState<boolean>();
@@ -63,6 +64,7 @@ function NavBar() {
             </div>
           )}
         </div>
+        <ShoppingCart />
       </ul>
     </nav>
   );

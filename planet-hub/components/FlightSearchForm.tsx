@@ -104,6 +104,7 @@ function FlightSearchFormFieldDate({ form, title, name, description }:
   );
 }
 
+
 function FlightSearchFormFieldInput({ form, title, name, description }:
   { form: any, name: string, title: string, description: string }) {
 
@@ -285,6 +286,7 @@ export function FlightSearchForm() {
     }
   }
 
+
   return (
     <div>
       <Form {...form}>
@@ -318,11 +320,18 @@ export function FlightSearchForm() {
         <h1 className="text-textTitle text-5xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">Search results</h1>
         <h2 className="text-xl text-muted-foreground my-5">These are the flights options we found for you!</h2>
         {
-          flights.map((flight: any, index: number) => (
-            <Flight key={index} planet={flight.planet} timeTravel={flight.timeTravel} price={flight.price} hour={flight.time} date={flight.date.toISOString().split('T')[0]} showButton={true} />
+          flights.map((flight: { planet: string; timeTravel: number; price: number; hour: string }, index: number) => (
+            <Flight
+              key={index}
+              planet={flight.planet}
+              timeTravel={flight.timeTravel}
+              price={flight.price}
+              hour={flight.hour} 
+            />
           ))
         }
       </div>
+
 
     </div>
   )
