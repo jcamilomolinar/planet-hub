@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from 'react';
 import {
   Card,
@@ -5,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-export function Flight({ timeTravel, planet, price, hour }: { timeTravel: number, planet: string, price: number, hour: string }) {
+export function Flight({ timeTravel, planet, price, hour, date, showButton }: { timeTravel: number, planet: string, price: number, hour: string, date: string, showButton: boolean }) {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleSelect = () => {
@@ -27,20 +29,23 @@ export function Flight({ timeTravel, planet, price, hour }: { timeTravel: number
         </div>
       </div>
       <div className="flex items-center justify-around gap-10">
+        <p className="text-textAll italic">{date}</p>
         <p className="text-textAll text-xl italic">{hour}</p>
         <p className="text-textAll text-xl italic">{planet}</p>
         <p><span className="text-textAll text-xl font-bold">{timeTravel}</span> Hours at light speed!</p>
         <p className="text-textAll"><span className="text-textAll text-xl font-bold">$</span> {price}</p>
       </div>
-      <div className="grid items-center justify-items-center">
-        <Button
-          className="w-2/3"
-          variant="outline"
-          onClick={handleSelect}
-        >
-          {isSelected ? "Selected" : "Select"}
-        </Button>
-      </div>
+      {
+          showButton && (<div className="grid items-center justify-items-center">
+                          <Button
+                            className="w-2/3"
+                            variant="outline"
+                            onClick={handleSelect}
+                          >
+                            {isSelected ? "Selected" : "Select"}
+                          </Button>
+                        </div>)
+      }
     </Card>
   );
 }
