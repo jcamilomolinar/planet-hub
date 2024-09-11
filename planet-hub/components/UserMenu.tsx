@@ -88,10 +88,6 @@ export function UserMenu({setIsLogged}: {setIsLogged: any}) {
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
-          <DropdownMenuItem>
-            <ShoppingCart className="mr-2 h-4 w-4" />
-            <span>Shopping Cart</span>
-          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleClick}>
