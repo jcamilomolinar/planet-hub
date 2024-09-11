@@ -3,6 +3,9 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Link from 'next/link';
 import { Button } from "@/components/ui/button"; 
+import {
+    ShoppingCartIcon
+} from "lucide-react"
 
 const dropdownVariants = cva(
   "absolute right-0 mt-2 bg-white border shadow-lg p-4 rounded-md z-50 transition-all duration-200 ease-in-out",
@@ -31,9 +34,9 @@ const itemVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-gray-900 hover:bg-gray-100",
-        outline: "text-gray-800 hover:bg-gray-200",
-        ghost: "text-gray-900 hover:bg-transparent",
+        default: "text-white-200 hover:bg-gray-100",
+        outline: "text-white-800 hover:bg-gray-200",
+        ghost: "text-white-900 hover:bg-transparent",
       },
     },
     defaultVariants: {
@@ -59,6 +62,7 @@ interface Flight {
   planet: String;
   hour: String
   price: number;
+  timeTravel: number;
 }
 
 const ShoppingCart: React.FC<CartProps> = ({ variant, size }) => {
@@ -104,7 +108,8 @@ const ShoppingCart: React.FC<CartProps> = ({ variant, size }) => {
         onClick={() => setDropdownOpen(!isDropdownOpen)}
         className="relative flex items-center justify-center text-gray-700 hover:text-gray-900 focus:outline-none"
       >
-        <AiOutlineShoppingCart size={24} />
+        <ShoppingCartIcon color="white" />
+        
         {(cartItems.length + cartAccommodations.length) > 0 && (
           <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
             {cartItems.length + cartAccommodations.length}
@@ -124,7 +129,7 @@ const ShoppingCart: React.FC<CartProps> = ({ variant, size }) => {
                   <li key={index} className={itemVariants({ variant })}>
                     <div>
                       <p className="font-medium">Planet: {flight.planet}</p>
-                      <p className="text-gray-500">Date: {flight.hour}</p>
+                      <p className="text-gray-500">Time: {flight.timeTravel} hours</p>
                       <p className="text-gray-500">Price: ${flight.price}</p>
                     </div>
                     <button
