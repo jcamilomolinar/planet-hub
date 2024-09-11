@@ -5,7 +5,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button";
 
-export function Flight({timeTravel, planet, price, hour, date}:{timeTravel: number, planet: string, price: number, hour: string, date: string}) {
+export function Flight({timeTravel, planet, price, hour, date, showButton}:{timeTravel: number, planet: string, price: number, hour: string, date: string, showButton:boolean}) {
 
     return (
       <Card className="flex justify-around hover:border-palleteOrange duration-150 ease-in-out">
@@ -25,9 +25,12 @@ export function Flight({timeTravel, planet, price, hour, date}:{timeTravel: numb
           <p><span className="text-textAll text-xl font-bold">{timeTravel}</span> Hours at light speed!</p>
           <p className="text-textAll"><span className="text-textAll text-xl font-bold">$</span> {price}</p>
         </div>
-        <div className="grid items-center justify-items-center">
-          <Button variant="outline">Select</Button>
-        </div>
+        {
+          showButton && (<div className="grid items-center justify-items-center">
+                          <Button variant="outline">Select</Button>
+                        </div>)
+        }
+
       </Card>
     );
   }

@@ -77,14 +77,18 @@ export function UserMenu({setIsLogged}: {setIsLogged: any}) {
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuItem>
-                  <Hotel className="mr-2 h-4 w-4" />
-                  <span>Accomodations</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Rocket className="mr-2 h-4 w-4" />
-                  <span>Flights</span>
-                </DropdownMenuItem>
+                <Link href="/myaccomodations">
+                  <DropdownMenuItem>
+                    <Hotel className="mr-2 h-4 w-4" />
+                    <span>Accomodations</span>
+                  </DropdownMenuItem>
+                </Link>
+                <Link href="/myflights">
+                  <DropdownMenuItem>
+                    <Rocket className="mr-2 h-4 w-4" />
+                    <span>Flights</span>
+                  </DropdownMenuItem>
+                </Link>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>

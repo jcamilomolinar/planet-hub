@@ -319,7 +319,7 @@ export function FlightSearchForm() {
         <h2 className="text-xl text-muted-foreground my-5">These are the flights options we found for you!</h2>
         {
           flights.map((flight: any, index: number) => (
-            <Flight key={index} planet={flight.planet} timeTravel={flight.timeTravel} price={flight.price} hour={flight.time} date={flight.date.toISOString().split('T')[0]} />
+            <Flight key={index} planet={flight.planet} timeTravel={flight.timeTravel} price={flight.price} hour={flight.time} date={flight.date.toISOString().split('T')[0]} showButton={true} />
           ))
         }
       </div>
