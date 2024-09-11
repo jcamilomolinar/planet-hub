@@ -23,7 +23,7 @@ import Link from 'next/link'
 
 export function PlanetCard({planetName, planetPhoto, description }: {planetName: string, planetPhoto: StaticImageData, description: string }) {
 
-  const handleClickFlights = () => {
+  const handleClick = () => {
     localStorage.setItem("planetName", planetName);
   };
 
@@ -55,10 +55,10 @@ export function PlanetCard({planetName, planetPhoto, description }: {planetName:
           </div>
 
           <DrawerFooter className="flex flex-row">
-            <Button onClick={handleClickFlights} variant="outline">
+            <Button onClick={handleClick} variant="outline">
               <Link href='/flights'>View flights 🚀</Link>
             </Button>
-            <Button variant="outline">
+            <Button onClick={handleClick} variant="outline">
               <Link href='/accomodation'>View accomodations 🏨</Link>
             </Button>
             <DrawerClose asChild>

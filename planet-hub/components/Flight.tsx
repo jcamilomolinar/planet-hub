@@ -5,7 +5,6 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-
 export function Flight({ timeTravel, planet, price, hour }: { timeTravel: number, planet: string, price: number, hour: string }) {
   const [isSelected, setIsSelected] = useState(false);
 
@@ -45,3 +44,4 @@ export function Flight({ timeTravel, planet, price, hour }: { timeTravel: number
     </Card>
   );
 }
+
